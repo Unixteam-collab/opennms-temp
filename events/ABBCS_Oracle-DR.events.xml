@@ -1,0 +1,16 @@
+<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/DRlag-trigger</uei>
+      <event-label>ABBCS-oracle-DR DR DB lag uei.opennms.org/ABBCS/jdbc/oracle/DRlag-trigger</event-label>
+      <descr>ABBCS Oracle DR lag %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle DR DB lag %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/DRlag-rearm</uei>
+      <event-label>ABBCS-oracle-DR DR DB lag -rearm uei.opennms.org/ABBCS/jdbc/oracle/DRlag-rearm</event-label>
+      <descr>ABBCS Oracle DR rearmed DR DB lag %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS rearmed Oracle DR DB lag  %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+</events>

@@ -1,0 +1,40 @@
+<destinationPaths xmlns="http://xmlns.opennms.org/xsd/destinationPaths">
+   <header>
+      <rev>1.2</rev>
+      <created>2020-02-10T17:05:51.607+10:00</created>
+      <mstation>localhost</mstation>
+   </header>
+   <path name="Email-Admin" initial-delay="1m">
+      <target>
+         <name>emailsink</name>
+         <autoNotify>off</autoNotify>
+         <command>javaEmail</command>
+      </target>
+      <target interval="0m">
+         <name>Admin</name>
+         <autoNotify>off</autoNotify>
+         <command>browser</command>
+      </target>
+   </path>
+   <path name="EventCapture" initial-delay="1m">
+      <target interval="1m">
+         <name>rfinteg</name>
+         <autoNotify>on</autoNotify>
+         <command>EventCapture</command>
+      </target>
+   </path>
+   <path name="EventCapture5mDelay" initial-delay="5m">
+      <target interval="5m">
+         <name>rfinteg</name>
+         <autoNotify>on</autoNotify>
+         <command>EventCapture</command>
+      </target>
+   </path>
+   <path name="EventCaptureNoDelay" initial-delay="0s">
+      <target interval="0m">
+         <name>rfinteg</name>
+         <autoNotify>on</autoNotify>
+         <command>EventCapture</command>
+      </target>
+   </path>
+</destinationPaths>

@@ -1,0 +1,110 @@
+<datacollection-group xmlns="http://xmlns.opennms.org/xsd/config/datacollection" name="Microsoft">
+   <group name="windows-host" ifType="ignore">
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="0" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="1" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="2" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="3" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="4" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="5" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="6" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="7" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="8" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="9" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="10" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="11" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="12" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="13" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="14" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="15" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="16" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="17" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="18" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="19" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="20" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="21" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="22" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="23" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="24" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="25" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="26" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="27" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="28" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="29" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="30" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="31" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="32" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="33" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="34" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="35" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="36" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="37" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="38" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="39" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="40" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="41" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="42" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="43" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="44" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="45" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="46" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="47" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="48" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="49" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="50" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="51" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="52" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="53" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="54" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="55" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="56" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="57" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="58" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="59" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="60" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="61" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="62" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="63" alias="cpuPercentBusy" type="integer" />
+      <mibObj oid=".1.3.6.1.2.1.25.3.3.1.2" instance="64" alias="cpuPercentBusy" type="integer" />
+      <!-- Memory in KBytes -->
+      <mibObj oid=".1.3.6.1.2.1.25.2.2" instance="0" alias="memorySize" type="integer"/>
+   </group>
+   <group name="microsoft-http" ifType="ignore">
+      <mibObj oid=".1.3.6.1.4.1.311.1.7.3.1.5" instance="0" alias="totalFilesSent" type="Counter"/>
+      <mibObj oid=".1.3.6.1.4.1.311.1.7.3.1.6" instance="0" alias="currAnonUsers" type="gauge"/>
+      <mibObj oid=".1.3.6.1.4.1.311.1.7.3.1.7" instance="0" alias="currNonAnonUsers" type="gauge"/>
+      <mibObj oid=".1.3.6.1.4.1.311.1.7.3.1.12" instance="0" alias="currentConnections" type="gauge"/>
+      <mibObj oid=".1.3.6.1.4.1.311.1.7.3.1.13" instance="0" alias="maxConnections" type="gauge"/>
+      <mibObj oid=".1.3.6.1.4.1.311.1.7.3.1.14" instance="0" alias="connectionAttempts" type="Counter"/>
+      <mibObj oid=".1.3.6.1.4.1.311.1.7.3.1.15" instance="0" alias="logonAttempts" type="Counter"/>
+      <mibObj oid=".1.3.6.1.4.1.311.1.7.3.1.16" instance="0" alias="totalGets" type="Counter"/>
+      <mibObj oid=".1.3.6.1.4.1.311.1.7.3.1.17" instance="0" alias="totalPosts" type="Counter"/>
+      <mibObj oid=".1.3.6.1.4.1.311.1.7.3.1.18" instance="0" alias="totalHeads" type="Counter"/>
+      <mibObj oid=".1.3.6.1.4.1.311.1.7.3.1.19" instance="0" alias="totalOthers" type="Counter"/>
+      <mibObj oid=".1.3.6.1.4.1.311.1.7.3.1.20" instance="0" alias="totalCGIRequests" type="Counter"/>
+      <mibObj oid=".1.3.6.1.4.1.311.1.7.3.1.21" instance="0" alias="totalBGIRequests" type="Counter"/>
+      <mibObj oid=".1.3.6.1.4.1.311.1.7.3.1.22" instance="0" alias="totalNotFoundErrors" type="Counter"/>
+   </group>
+   <systemDef name="Microsoft Windows NT/2000">
+      <sysoidMask>.1.3.6.1.4.1.311.1.1.3.1.</sysoidMask>
+      <collect>
+         <includeGroup>domino-stats</includeGroup>
+         <includeGroup>microsoft-http</includeGroup>
+         <includeGroup>snmpinformant-cpu</includeGroup>
+         <includeGroup>snmpinformant-adv-cpu</includeGroup>
+         <includeGroup>snmpinformant-disk</includeGroup>
+         <includeGroup>snmpinformant-adv-disk</includeGroup>
+         <includeGroup>snmpinformant-exchange-mta</includeGroup>
+         <includeGroup>snmpinformant-exchange-is</includeGroup>
+         <includeGroup>snmpinformant-memory</includeGroup>
+         <includeGroup>snmpinformant-adv-memory</includeGroup>
+         <includeGroup>snmpinformant-processes</includeGroup>
+         <includeGroup>snmpinformant-sqlserver</includeGroup>
+         <includeGroup>snmpinformant-network</includeGroup>
+         <includeGroup>snmpinformant-adv-network</includeGroup>
+         <includeGroup>mib2-host-resources-storage</includeGroup>
+         <includeGroup>mib2-host-resources-system</includeGroup>
+         <includeGroup>windows-host</includeGroup>
+         <includeGroup>mib2-interfaces</includeGroup>
+      </collect>
+   </systemDef>
+</datacollection-group>

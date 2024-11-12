@@ -1,0 +1,8 @@
+<model-import xmlns="http://xmlns.opennms.org/xsd/config/model-import" date-stamp="2018-09-04T16:19:22.201+10:00" foreign-source="MSSqlDatabases_ali-sasn-sql01" last-import="2018-09-04T16:22:32.941+10:00">
+   <node foreign-id="ali-sasn" node-label="ali-sasn">
+      <interface ip-addr="10.165.19.29" status="1" snmp-primary="P">
+         <monitored-service service-name="ABBCS-MSSql-ali-sasn"/>
+      </interface>
+      <category name="Databases_ali-sasn"/>
+   </node>
+</model-import>

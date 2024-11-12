@@ -1,0 +1,471 @@
+<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+   <event>
+      <mask>
+         <maskelement>
+            <mename>service</mename>
+            <mevalue>SWAP</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/nodes/nodeLostService</uei>
+      <event-label>ABBCS-defined node event: ABBCS nodeLostService: SWAP</event-label>
+      <descr>&lt;p>A %service% error was identified on 
+            %nodelabel% because of the following condition: %parm[eventReason]%.&lt;/p> &lt;p>
+            A new Outage record has been created and service level
+            availability calculations will be impacted until this outage is
+            resolved.&lt;/p></descr>
+      <logmsg dest="logndisplay">
+            %service% outage identified on interface %interface%.
+        </logmsg>
+      <severity>Critical</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/highwaitIO-trigger</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/highwaitIO-trigger</event-label>
+      <descr>Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Warning</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/highwaitIO-rearm</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/highwaitIO-rearm</event-label>
+      <descr>Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/highdiskP4-trigger</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/highdiskP4-trigger</event-label>
+      <descr>Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]% %fsName%</descr>
+      <logmsg dest="logndisplay">Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Warning</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/highdiskP4-rearm</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/highdiskP4-rearm</event-label>
+      <descr>Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/highdiskP3-trigger</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/highdiskP3-trigger</event-label>
+      <descr>Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Minor</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/highdiskP3-rearm</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/highdiskP3-rearm</event-label>
+      <descr>Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/highdiskP2-trigger</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/highdiskP2-trigger</event-label>
+      <descr>Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/highdiskP2-rearm</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/highdiskP2-rearm</event-label>
+      <descr>Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/highdiskP1-trigger</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/highdiskP1-trigger</event-label>
+      <descr>Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Critical</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/highdiskP1-rearm</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/highdiskP1-rearm</event-label>
+      <descr>Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/highdiskWarn-trigger</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/highdiskWarn-trigger</event-label>
+      <descr>Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Warning</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/highdiskWarn-rearm</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/highdiskWarn-rearm</event-label>
+      <descr>Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/highdiskMinor-trigger</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/highdiskMinor-trigger</event-label>
+      <descr>Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Minor</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/highdiskMinor-rearm</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/highdiskMinor-rearm</event-label>
+      <descr>Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/highdiskMajor-trigger</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/highdiskMajor-trigger</event-label>
+      <descr>Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/highdiskMajor-rearm</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/highdiskMajor-rearm</event-label>
+      <descr>Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/highdiskCritical-trigger</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/highdiskCritical-trigger</event-label>
+      <descr>Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Critical</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/highdiskCritical-rearm</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/highdiskCritical-rearm</event-label>
+      <descr>Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/lowdiskWarn-trigger</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/lowdiskWarn-trigger</event-label>
+      <descr>Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Warning</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/lowdiskWarn-rearm</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/lowdiskWarn-rearm</event-label>
+      <descr>Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/lowdiskMinor-trigger</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/lowdiskMinor-trigger</event-label>
+      <descr>Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Minor</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/lowdiskMinor-rearm</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/lowdiskMinor-rearm</event-label>
+      <descr>Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/lowdiskMajor-trigger</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/lowdiskMajor-trigger</event-label>
+      <descr>Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/lowdiskMajor-rearm</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/lowdiskMajor-rearm</event-label>
+      <descr>Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/lowdiskCritical-trigger</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/lowdiskCritical-trigger</event-label>
+      <descr>Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Critical</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/lowdiskCritical-rearm</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/lowdiskCritical-rearm</event-label>
+      <descr>Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/highcpuload-trigger</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/highcpuload-trigger</event-label>
+      <descr>Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Warning</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/highcpuload-rearm</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/highcpuload-rearm</event-label>
+      <descr>Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/highswap-trigger</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/highswap-trigger</event-label>
+      <descr>Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Warning</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/highswap-rearm</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/highswap-rearm</event-label>
+      <descr>Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/SNMP-minor</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/SNMP-minor</event-label>
+      <descr>Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Minor</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/SNMP-warn</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/SNMP-warn</event-label>
+      <descr>Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Warning</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/SNMP-major</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/SNMP-major</event-label>
+      <descr>Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/SNMP-critical</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/SNMP-critical</event-label>
+      <descr>Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Critical</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/RSYNCCheck-trigger</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/RSYNCCheck-trigger</event-label>
+      <descr>Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Critical</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/RSYNCCheck-rearm</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/RSYNCCheck-rearm</event-label>
+      <descr>Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/VPNCheck-trigger</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/VPNCheck-trigger</event-label>
+      <descr>Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Warning</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/VPNCheck-rearm</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/VPNCheck-rearm</event-label>
+      <descr>Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/cupsqueuehigh-trigger</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/cupsqueuehigh-trigger</event-label>
+      <descr>Printer queue %parm[instance]% is %parm[value]% over the threshold.  parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Warning</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%parm[instance]%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/OpenFiles-trigger</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/OpenFiles-trigger</event-label>
+      <descr>Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold exceeded for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Critical</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/OpenFiles-rearm</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/OpenFiles-rearm</event-label>
+      <descr>Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/cupsqueuehigh-rearm</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/cupsqueuehigh-rearm</event-label>
+      <descr>Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/testevent</uei>
+      <event-label>ABBCS test event uei.opennms.org/ABBCS/testevent</event-label>
+      <descr>ABBCS test event. parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">ABBCS test event - Testing only. parms: %parm[all]%</logmsg>
+      <severity>Warning</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/heartbeat</uei>
+      <event-label>ABBCS Heartbeat event uei.opennms.org/ABBCS/heartbeat</event-label>
+      <descr>ABBCS heartbeat event. parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">ABBCS heartbeat event. parms: %parm[all]%</logmsg>
+      <severity>Normal</severity>
+      <autoaction>/opt/opennms/scripts/heartbeatcapture.sh %nodelabel% %parm[outage]% %parm[notifCategory]%</autoaction>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/heartbeat-failure</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/heartbeat-failure</event-label>
+      <descr>Hearbeat failure for %nodelabel%. Last heartbeat %parm[value]% minutes ago, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Heartbeat not received for %nodelabel%, %parm[all]%</logmsg>
+      <severity>Critical</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/heartbeat-rearm</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/heartbeat-rearm</event-label>
+      <descr>Heartbeat failure rearmed for %nodelabel% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Heartbeat failure rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/syslog/testevent</uei>
+      <event-label>ABBCS-defined syslog test event uei.opennms.org/ABBCS/syslog/testevent</event-label>
+      <descr>got an ABBCS syslog message. parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Got an ABBCS syslog message. parms: %parm[all]%</logmsg>
+      <severity>Normal</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/JVM-highmem-trigger</uei>
+      <event-label>User-defined HIGH threshold event exceeded: uei.opennms.org/ABBCS/JVM-highmem-trigger</event-label>
+      <descr>&lt;p>High threshold exceeded for %service% datasource
+            %parm[ds]% on interface %interface%, parms: %parm[all]%&lt;/p>
+            &lt;p>By default, OpenNMS watches some key parameters
+            on devices in your network and will alert you with
+            an event if certain conditions arise. For example, if
+            the CPU utilization on your Cisco router maintains an
+            inordinately high percentage of utilization for an extended
+            period, an event will be generated. These thresholds are
+            determined and configured based on vendor recommendations,
+            tempered with real-world experience in working
+            deployments.&lt;/p> &lt;p>This specific event
+            indicates that a high threshold was exceeded.&lt;/p></descr>
+      <logmsg dest="logndisplay">
+            High threshold exceeded for %service% datasource %parm[ds]% on interface
+            %interface%, parms: %parm[all]%
+        </logmsg>
+      <severity>Critical</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/JVM-highmem-rearm</uei>
+      <event-label>User-defined HIGH threshold event rearmed: uei.opennms.org/ABBCS/JVM-highmem-rearm</event-label>
+      <descr>&lt;p>High threshold has been rearmed for %service% datasource
+            %parm[ds]% on interface %interface%, parms: %parm[all]%&lt;/p>
+            &lt;p>By default, OpenNMS watches some key parameters
+            on devices in your network and will alert you with
+            an event if certain conditions arise. For example, if
+            the CPU utilization on your Cisco router maintains an
+            inordinately high percentage of utilization for an extended
+            period, an event will be generated. These thresholds are
+            determined and configured based on vendor recommendations,
+            tempered with real-world experience in working
+            deployments.&lt;/p> &lt;p>This specific event
+            indicates that a high threshold was exceeded but then dropped
+            below the rearm threshold..&lt;/p></descr>
+      <logmsg dest="logndisplay">
+            High threshold rearmed for %service% datasource %parm[ds]% on interface
+            %interface%, parms: %parm[all]%
+        </logmsg>
+      <severity>Cleared</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="2" clear-key="uei.opennms.org/ABBCS/JVM-highmem-trigger:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/TCP/ConnEstab-trigger</uei>
+      <event-label>User-defined HIGH threshold event exceeded: uei.opennms.org/ABBCS/TCP/ConnEstab-trigger</event-label>
+      <descr>&lt;p>High threshold exceeded for %service% datasource
+            %parm[ds]% on interface %interface%, parms: %parm[all]%&lt;/p>
+            &lt;p>By default, OpenNMS watches some key parameters
+            on devices in your network and will alert you with
+            an event if certain conditions arise. For example, if
+            the CPU utilization on your Cisco router maintains an
+            inordinately high percentage of utilization for an extended
+            period, an event will be generated. These thresholds are
+            determined and configured based on vendor recommendations,
+            tempered with real-world experience in working
+            deployments.&lt;/p> &lt;p>This specific event
+            indicates that a high threshold was exceeded.&lt;/p></descr>
+      <logmsg dest="logndisplay">
+            High threshold exceeded for %service% datasource %parm[ds]% on interface
+            %interface%, parms: %parm[all]%
+        </logmsg>
+      <severity>Critical</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/TCP/ConnEstab-rearm</uei>
+      <event-label>User-defined HIGH threshold event rearmed: uei.opennms.org/ABBCS/TCP/ConnEstab-rearm</event-label>
+      <descr>&lt;p>High threshold has been rearmed for %service% datasource
+            %parm[ds]% on interface %interface%, parms: %parm[all]%&lt;/p>
+            &lt;p>By default, OpenNMS watches some key parameters
+            on devices in your network and will alert you with
+            an event if certain conditions arise. For example, if
+            the CPU utilization on your Cisco router maintains an
+            inordinately high percentage of utilization for an extended
+            period, an event will be generated. These thresholds are
+            determined and configured based on vendor recommendations,
+            tempered with real-world experience in working
+            deployments.&lt;/p> &lt;p>This specific event
+            indicates that a high threshold was exceeded but then dropped
+            below the rearm threshold..&lt;/p></descr>
+      <logmsg dest="logndisplay">
+            High threshold rearmed for %service% datasource %parm[ds]% on interface
+            %interface%, parms: %parm[all]%
+        </logmsg>
+      <severity>Cleared</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="2" clear-key="uei.opennms.org/ABBCS/TCP/ConnEstab-trigger:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/event</uei>
+      <event-label>ABBCS-defined event uei.opennms.org/ABBCS/event</event-label>
+      <descr>ABBCS event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">ABBCS event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/elk/event</uei>
+      <event-label>ABBCS-defined event uei.opennms.org/ABBCS/elk/event</event-label>
+      <descr>ABBCS event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">ABBCS event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/backup/event</uei>
+      <event-label>ABBCS-defined event uei.opennms.org/ABBCS/backup/event</event-label>
+      <descr>ABBCS backup event %service%  parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">ABBCS event %service%  parms: %parm[all]%</logmsg>
+   </event>
+</events>

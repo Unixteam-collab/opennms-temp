@@ -1,0 +1,11 @@
+<xml-groups>
+
+    <xml-group name="ABBCS-TCP" resource-type="TCPConnection"
+                resource-xpath="/node/interface/port"
+                key-xpath="@port">
+      <xml-object name="tcpPort" type="STRING" xpath="@port" />
+      <xml-object name="tcpState" type="STRING" xpath="@state" />
+      <xml-object name="tcpCount" type="GAUGE" xpath="@count" />
+      <xml-object name="tcpThreshold" type="GAUGE" xpath="@threshold" />
+    </xml-group>
+</xml-groups>

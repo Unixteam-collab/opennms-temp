@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<wmi-config retry="2" timeout="1500" 
+	username="svc-opennms!" domain="GMS" password="a88wM1M0nt1t0r1n6">
+</wmi-config>
+

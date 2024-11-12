@@ -1,0 +1,9 @@
+<datacollection-group name="ABBCS-TCP">
+  <resourceType name="TCPConnection" label="TCP Connection" resourceLabel="${tcpPort} (established connections)" >
+      <persistenceSelectorStrategy class="org.opennms.netmgt.collection.support.PersistAllSelectorStrategy"/>
+      <storageStrategy class="org.opennms.netmgt.dao.support.SiblingColumnStorageStrategy">
+         <parameter key="sibling-column-name" value="tcpName"/>
+      </storageStrategy>
+  </resourceType>
+</datacollection-group>
+

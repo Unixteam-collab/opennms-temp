@@ -1,0 +1,19 @@
+<xml-groups>
+    <xml-group name="ABBCS-EllipseBatch" resource-type="node"
+                resource-xpath="/ellipse"
+                key-xpath="@node">
+      <xml-object name="NodeID" type="string" xpath="@node" />
+      <xml-object name="batchcount" type="GAUGE" xpath="batchcount" />
+      <xml-object name="executing" type="GAUGE" xpath="executing" />
+      <xml-object name="queued" type="GAUGE" xpath="queued" />
+      <xml-object name="qThreshold" type="GAUGE" xpath="qThreshold"/>
+      <xml-object name="qThresholdExceeded" type="GAUGE" xpath="qThresholdExceeded"/>
+      <xml-object name="qTrigger" type="GAUGE" xpath="qTrigger"/>
+      <xml-object name="batchfailures" type="GAUGE" xpath="batchfailures"/>
+      <xml-object name="lrTotalOverdue" type="GAUGE" xpath="lrTotalOverdue"/>
+      <xml-object name="lrTotalCount" type="GAUGE" xpath="lrTotalCount"/>
+      <xml-object name="lrBase" type="GAUGE" xpath="lrBase"/>
+      <xml-object name="lrMultiplier" type="GAUGE" xpath="lrMultiplier"/>
+    </xml-group>
+</xml-groups>
+

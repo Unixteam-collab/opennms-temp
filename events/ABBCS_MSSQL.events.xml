@@ -1,0 +1,184 @@
+<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+   <event>
+      <uei>uei.opennms.org/ABBCS/MSSQL/blocker-warn</uei>
+      <event-label>ABBCS-defined syslog event uei.opennms.org/ABBCS/MSSQL/blocker-warn</event-label>
+      <descr>ABBCS MSSQL event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS MSSQL event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Warning</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/MSSQL/blocker-err</uei>
+      <event-label>ABBCS-defined syslog event uei.opennms.org/ABBCS/MSSQL/blocker-err</event-label>
+      <descr>ABBCS MSSQL event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS MSSQL event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/MSSQL/blocker-crit</uei>
+      <event-label>ABBCS-defined syslog event uei.opennms.org/ABBCS/MSSQL/blocker-crit</event-label>
+      <descr>ABBCS MSSQL event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS MSSQL event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>critical</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/MSSQL/replication-failure</uei>
+      <event-label>ABBCS replication issue uei.opennms.org/ABBCS/MSSQL/replication-failure</event-label>
+      <descr>ABBCS MSSQL replication issue %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS MSSQL replication issue %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/MSSQL/failure-warn</uei>
+      <event-label>ABBCS-defined syslog event uei.opennms.org/ABBCS/MSSQL/failure-warn</event-label>
+      <descr>ABBCS MSSQL event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS MSSQL event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Warning</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/MSSQL/failure-err</uei>
+      <event-label>ABBCS-defined syslog event uei.opennms.org/ABBCS/MSSQL/failure-err</event-label>
+      <descr>ABBCS MSSQL event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS MSSQL event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/MSSQL/failure-crit</uei>
+      <event-label>ABBCS-defined syslog event uei.opennms.org/ABBCS/MSSQL/failure-crit</event-label>
+      <descr>ABBCS MSSQL event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS MSSQL event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>critical</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/MSSQL/Normal</uei>
+      <event-label>ABBCS-defined syslog event uei.opennms.org/ABBCS/MSSQL/Normal</event-label>
+      <descr>ABBCS MSSQL event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS MSSQL event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Normal</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/MSSQL/DaysSinceLastBackedUp-trigger</uei>
+      <event-label>ABBCS-MSSQL days since last backed up uei.opennms.org/ABBCS/jdbc/MSSQL/DaysSinceLastBackedUp-trigger</event-label>
+      <descr>ABBCS MSSQL Days since last backed up %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS MSSQL days since last backed up  %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/MSSQL/DaysSinceLastBackedUp-rearm</uei>
+      <event-label>ABBCS-MSSQL days since last backed up -rearm uei.opennms.org/ABBCS/jdbc/MSSQL/DaysSinceLastBackedUp-rearm</event-label>
+      <descr>ABBCS MSSQL rearmed Days since last backed up %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS rearmed MSSQL days since last backed up  %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/MSSQL/HoursSinceLastBackedUp-trigger</uei>
+      <event-label>ABBCS-MSSQL Hours since last transaction log backup uei.opennms.org/ABBCS/jdbc/MSSQL/HoursSinceLastBackedUp-trigger</event-label>
+      <descr>ABBCS MSSQL Hours since last transaction log backup %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS MSSQL Hours since last transaction log back up %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/MSSQL/HoursSinceLastBackedUp-rearm</uei>
+      <event-label>ABBCS-MSSQL Hours since last transaction log backup -rearm uei.opennms.org/ABBCS/jdbc/MSSQL/HoursSinceLastBackedUp-rearm</event-label>
+      <descr>ABBCS MSSQL rearmed Hours since last transaction log backup %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS rearmed MSSQL Hours since last trabsaction log back up %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/MSSQL/BufferCacheHitRatio-trigger</uei>
+      <event-label>ABBCS-MSSQL Bufer Cache Hit Ratio uei.opennms.org/ABBCS/jdbc/MSSQL/BufferCacheHitRatio-trigger</event-label>
+      <descr>ABBCS MSSQL Buffer Cache Hit Ratiio on %service%,  parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS MSSQL Buffer Cache Hit Ratio for %service% on interface %interface%, below threshold parms: %parm[all]%</logmsg>
+      <severity>Warning</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/MSSQL/BufferCacheHitRatio-rearm</uei>
+      <event-label>ABBCS-MSSQL Bufer Cache Hit Ratio  - rearm uei.opennms.org/ABBCS/jdbc/MSSQL/BufferCacheHitRatio-rearm</event-label>
+      <descr>ABBCS MSSQL Buffer Cache Hit Ratiio on %service%,  parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS MSSQL Buffer Cache Hit Ratio for %service% on interface %interface%, below threshold parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/MSSQL/DailyAnalyticRefreshJobFailed-trigger</uei>
+      <event-label>ABBCS-MSSQL Daily Analytic refresh job failed to complete uei.opennms.org/ABBCS/jdbc/MSSQL/DailyAnalyticRefreshJobFailed-trigger</event-label>
+      <descr>ABBCS MSSQL Daily Analytic refresh job failed to complete %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">ABBCS MSSQL Daily Analytic refresh job failed to complete %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/MSSQL/DailyAnalyticRefreshJobFailed-rearm</uei>
+      <event-label>ABBCS-MSSQL Daily Analytic refresh job failed to complete -rearm uei.opennms.org/ABBCS/jdbc/MSSQL/DailyAnalyticRefreshJobFailed-rearm</event-label>
+      <descr>ABBCS MSSQL rearmed Daily Analytic refresh job failed to complete %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">ABBCS MSSQL rearmed Daily Analytic refresh job failed to complete %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/MSSQL/DailyAnalyticRefreshJobRunmorethan24hrs-trigger</uei>
+      <event-label>ABBCS-MSSQL Daily Analytic refresh job did not start as scheduled since the last 24 hours uei.opennms.org/ABBCS/jdbc/MSSQL/DailyAnalyticRefreshJobRunmorethan24hrs-trigger</event-label>
+      <descr>ABBCS MSSQL Daily Analytic refresh job did not start as scheduled since the last 24 hours %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">ABBCS MSSQL Daily Analytic refresh job did not start as scheduled since the last 24 hours %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/MSSQL/DailyAnalyticRefreshJobRunmorethan24hrs-rearm</uei>
+      <event-label>ABBCS-MSSQL Daily Analytic refresh job did not start as scheduled since the last 24 hours -rearm uei.opennms.org/ABBCS/jdbc/MSSQL/DailyAnalyticRefreshJobRunmorethan24hrs-rearm</event-label>
+      <descr>ABBCS MSSQL rearmed Daily Analytic refresh job did not start as scheduled since the last 24 hours %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">ABBCS MSSQL rearmed Daily Analytic refresh job did not start as scheduled since the last 24 hours %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/MSSQL/DailyAnalyticRefreshJobHung-trigger</uei>
+      <event-label>ABBCS-MSSQL Daily Analytic refresh job has been running more than 3 hours uei.opennms.org/ABBCS/jdbc/MSSQL/DailyAnalyticRefreshJobHung-trigger</event-label>
+      <descr>ABBCS MSSQL Daily Analytic refresh job has been running more than 3 hours %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">ABBCS MSSQL Daily Analytic refresh job has been running more than 3 hours %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/MSSQL/DailyAnalyticRefreshJobHung-rearm</uei>
+      <event-label>ABBCS-MSSQL Daily Analytic refresh job has been running more than 3 hours -rearm uei.opennms.org/ABBCS/jdbc/MSSQL/DailyAnalyticRefreshJobHung-rearm</event-label>
+      <descr>ABBCS MSSQL rearmed Daily Analytic refresh job has been running more than 3 hours %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">ABBCS MSSQL rearmed Daily Analytic refresh job has been running more than 3 hours %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/MSSQL/DailyNRTAnalyticRefreshJobHung-trigger</uei>
+      <event-label>ABBCS-MSSQL Daily NRT Analytic refresh job has hung uei.opennms.org/ABBCS/jdbc/MSSQL/DailyNRTAnalyticRefreshJobHung-trigger</event-label>
+      <descr>ABBCS MSSQL Daily NRT Analytic refresh job has hung %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">ABBCS MSSQL Daily NRT Analytic refresh job has hung %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/MSSQL/DailyNRTAnalyticRefreshJobHung-rearm</uei>
+      <event-label>ABBCS-MSSQL Daily NRT Analytic refresh job has hung -rearm uei.opennms.org/ABBCS/jdbc/MSSQL/DailyNRTAnalyticRefreshJobHung-rearm</event-label>
+      <descr>ABBCS MSSQL rearmed Daily NRT Analytic refresh job has hung %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">ABBCS MSSQL rearmed Daily NRT Analytic refresh job has hung %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/MSSQL/DailyNRTAnalyticRefreshScheduleNotWorking-trigger</uei>
+      <event-label>ABBCS-MSSQL Daily NRT Analytic refresh job schedule is not working uei.opennms.org/ABBCS/jdbc/MSSQL/DailyNRTAnalyticRefreshScheduleNotWorking-trigger</event-label>
+      <descr>ABBCS MSSQL Daily NRT Analytic refresh job schedule is not working %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">ABBCS MSSQL Daily NRT Analytic refresh job schedule is not working %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/MSSQL/DailyNRTAnalyticRefreshScheduleNotWorking-rearm</uei>
+      <event-label>ABBCS-MSSQL Daily NRT Analytic refresh job schedule is not working -rearm uei.opennms.org/ABBCS/jdbc/MSSQL/DailyNRTAnalyticRefreshScheduleNotWorking-rearm</event-label>
+      <descr>ABBCS MSSQL rearmed Daily NRT Analytic refresh job schedule is not working %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">ABBCS MSSQL rearmed Daily NRT Analytic refresh job schedule is not working %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/MSSQL/DailyNRTAnalyticRefreshJobHasError-trigger</uei>
+      <event-label>ABBCS-MSSQL Daily NRT Analytic refresh job has load error uei.opennms.org/ABBCS/jdbc/MSSQL/DailyNRTAnalyticRefreshJobHasError-trigger</event-label>
+      <descr>ABBCS MSSQL Daily NRT Analytic refresh job has load error %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">ABBCS MSSQL Daily NRT Analytic refresh job has load error %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/MSSQL/DailyNRTAnalyticRefreshJobHasError-rearm</uei>
+      <event-label>ABBCS-MSSQL Daily NRT Analytic refresh job has load error -rearm uei.opennms.org/ABBCS/jdbc/MSSQL/DailyNRTAnalyticRefreshJobHasError-rearm</event-label>
+      <descr>ABBCS MSSQL rearmed Daily NRT Analytic refresh job has load error %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">ABBCS MSSQL rearmed Daily NRT Analytic refresh job has load error %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+</events>

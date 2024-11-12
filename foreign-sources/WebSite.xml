@@ -1,0 +1,19 @@
+<foreign-source xmlns="http://xmlns.opennms.org/xsd/config/foreign-source" name="WebSite" date-stamp="2017-03-08T15:14:55.608+10:00">
+   <scan-interval>1d</scan-interval>
+   <detectors/>
+   <policies>
+      <policy name="WebSite" class="org.opennms.netmgt.provision.persist.policies.NodeCategorySettingPolicy">
+         <parameter key="matchBehavior" value="ALL_PARAMETERS"/>
+         <parameter key="category" value="WebSite"/>
+      </policy>
+      <policy name="RFNotification" class="org.opennms.netmgt.provision.persist.policies.NodeCategorySettingPolicy">
+         <parameter key="category" value="RFNotification"/>
+         <parameter key="matchBehavior" value="ALL_PARAMETERS"/>
+      </policy>
+      <policy name="Http" class="org.opennms.netmgt.provision.persist.policies.NodeCategorySettingPolicy">
+         <parameter key="category" value="Http"/>
+         <parameter key="sysName" value="~(^ell.*|^vip.*|^ews.*|^batch.*|^ellipse.*|^waf*|.*rfinteg.*)"/>
+         <parameter key="matchBehavior" value="ALL_PARAMETERS"/>
+      </policy>
+   </policies>
+</foreign-source>

@@ -1,0 +1,13 @@
+<datacollection-group name="ABBCS-FSMon">
+  <resourceType name="FilesystemMon" label="Filesystem Mon" resourceLabel="${fsName} (fmindex ${index})" >
+      <persistenceSelectorStrategy class="org.opennms.netmgt.collection.support.PersistAllSelectorStrategy"/>
+      <storageStrategy class="org.opennms.netmgt.dao.support.SiblingColumnStorageStrategy">
+         <parameter key="sibling-column-name" value="fsName"/>
+         <parameter key="replace-first" value="s/^-$/_root_fs/"/>
+         <parameter key="replace-all" value="s/^-//"/>
+         <parameter key="replace-all" value="s/\s//"/>
+         <parameter key="replace-all" value="s/:\\.*//"/>
+      </storageStrategy>
+  </resourceType>
+</datacollection-group>
+

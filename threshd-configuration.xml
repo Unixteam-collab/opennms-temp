@@ -1,0 +1,1209 @@
+<threshd-configuration xmlns="http://xmlns.opennms.org/xsd/config/thresholding" threads="5">
+   <package name="mib2">
+      <filter>IPADDR != '0.0.0.0'</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="SNMP" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="mib2"/>
+      </service>
+   </package>
+   <package name="hrstorage">
+      <filter>IPADDR != '0.0.0.0' &amp; (nodeSysOID LIKE '.1.3.6.1.4.1.311.%' | nodeSysOID LIKE '.1.3.6.1.4.1.2.3.1.2.1.1.3.%' | nodeSysOID LIKE '.1.3.6.1.4.1.8072.%')</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="SNMP" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="hrstorage"/>
+      </service>
+   </package>
+   <package name="cisco">
+      <filter>IPADDR != '0.0.0.0' &amp; nodeSysOID LIKE '.1.3.6.1.4.1.9.%'</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="SNMP" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="cisco"/>
+      </service>
+   </package>
+   <package name="juniper-srx">
+      <filter>IPADDR != '0.0.0.0' &amp; nodeSysOID LIKE '.1.3.6.1.4.1.2636.1.1.1.2.39'</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="SNMP" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="juniper-srx"/>
+      </service>
+   </package>
+   <package name="ABBCS-netsnmp">
+      <filter>IPADDR != '0.0.0.0' &amp; (nodeSysOID LIKE '.1.3.6.1.4.1.2021.%' | nodeSysOID LIKE '.1.3.6.1.4.1.8072.%' | nodeSysOID LIKE '.1.3.6.1.4.1.311.%')</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="SNMP" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-netsnmp"/>
+      </service>
+   </package>
+   <package name="ABBCS-fs">
+      <filter>IPADDR != '0.0.0.0' &amp; (nodeSysOID LIKE '.1.3.6.1.4.1.2021.%' | nodeSysOID LIKE '.1.3.6.1.4.1.8072.%' | nodeSysOID LIKE '.1.3.6.1.4.1.311.%') &amp; (NOT catincJboss7)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="SNMP" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-fs"/>
+      </service>
+   </package>
+   <package name="ABBCS-fs-jboss">
+      <filter>IPADDR != '0.0.0.0' &amp; (nodeSysOID LIKE '.1.3.6.1.4.1.2021.%' | nodeSysOID LIKE '.1.3.6.1.4.1.8072.%' | nodeSysOID LIKE '.1.3.6.1.4.1.311.%') &amp; (catincJboss7)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="SNMP" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-fs-jboss"/>
+      </service>
+   </package>
+   <package name="netsnmp">
+      <filter>IPADDR != '0.0.0.0' &amp; (nodeSysOID LIKE '.1.3.6.1.4.1.2021.%' | nodeSysOID LIKE '.1.3.6.1.4.1.8072.%')</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="SNMP" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="netsnmp"/>
+      </service>
+   </package>
+   <package name="ABBCS-OpenFiles">
+      <filter>IPADDR != '0.0.0.0' &amp; (nodeSysOID LIKE '.1.3.6.1.4.1.2021.%' | nodeSysOID LIKE '.1.3.6.1.4.1.8072.%')</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="SNMP" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-OpenFiles"/>
+      </service>
+   </package>
+   <package name="netsnmp-memory-linux">
+      <filter>IPADDR != '0.0.0.0' &amp; (nodeSysOID == '.1.3.6.1.4.1.8072.3.2.10' | nodeSysOID LIKE '.1.3.6.1.4.1.8072.3.2.10.%')</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="SNMP" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="netsnmp-memory-linux"/>
+      </service>
+   </package>
+   <package name="netsnmp-memory-nonlinux">
+      <filter>IPADDR != '0.0.0.0' &amp; (nodeSysOID LIKE '.1.3.6.1.4.1.2021.%' | nodeSysOID LIKE '.1.3.6.1.4.1.8072.%') &amp; (nodeSysOID != '.1.3.6.1.4.1.8072.3.2.10' &amp; nodeSysOID NOT LIKE '.1.36.1.4.1.8072.3.2.10.%')</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="SNMP" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="netsnmp-memory-nonlinux"/>
+      </service>
+   </package>
+   <package name="ABBCS-Azure-Metrics">
+      <filter>IPADDR != '0.0.0.0'</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Azure-Metrics" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Azure-Metrics"/>
+      </service>
+   </package>
+   <package name="ABBCS-CUPS">
+      <filter>IPADDR != '0.0.0.0'</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-CUPS" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-CUPS"/>
+      </service>
+   </package>
+   <package name="ABBCS-CheckVPN">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincvpnmonitor)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-CheckVPN" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-CheckVPN"/>
+      </service>
+   </package>
+   <package name="ABBCS-CheckRSYNC">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincrsyncmonitor)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="SNMP" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-CheckRSYNC"/>
+      </service>
+   </package>
+   <package name="ABBCS-JVM-Alerts">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincjvmAlerts)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="SNMP" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-JVM-Alerts"/>
+      </service>
+   </package>
+   <package name="ABBCS-TCP-Alerts">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catinctcpAlerts)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="SNMP" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-TCP-Alerts"/>
+      </service>
+   </package>
+   <package name="ABBCS-logmatch">
+      <filter>IPADDR != '0.0.0.0'</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-logmatch" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-logmatch"/>
+      </service>
+   </package>
+   <package name="ABBCS-EllipseBatch">
+      <filter>IPADDR != '0.0.0.0'</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-EllipseBatch" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-EllipseBatch"/>
+      </service>
+   </package>
+   <package name="ABBCS-logmatch">
+      <filter>IPADDR != '0.0.0.0'</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-logmatch" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-logmatch"/>
+      </service>
+   </package>
+   <package name="ABBCS-EllipseOnline">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincEllipseOnline)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="SNMP" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-EllipseOnline"/>
+      </service>
+   </package>
+   <package name="ABBCS-EllipseEWS">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincEllipseEWS)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="SNMP" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-EllipseEWS"/>
+      </service>
+   </package>
+   <package name="ABBCS-URL-Ellipse-Login">
+      <filter>(IPADDR != '0.0.0.0')</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-URL-Ellipse-Login" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-URL-Ellipse-Login"/>
+      </service>
+   </package>
+   <package name="ABBCS-MSSQL">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_MSSQL)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-MSSQL" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-SQLServer"/>
+      </service>
+   </package>
+   <package name="ABBCS-MSSQL-Analytics">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_MSSQL_Analytics)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-MSSQL-Analytics" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-SQLServer"/>
+      </service>
+   </package>
+   <package name="ABBCS-MSSQL-Analytics-NRT">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_Analytics_NRT)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-MSSQL-Analytics-NRT" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-SQLServer"/>
+      </service>
+   </package>
+   <package name="ABBCS-MSSQL-acme-sql01">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_acme-sql01)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-MSSQL-acme-sql01" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-SQLServer"/>
+      </service>
+   </package>
+   <package name="oracle">
+      <filter>IPADDR != '0.0.0.0'</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <service name="ABBCS-Oracle" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521a">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521a" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521a-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521a-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521b">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521b" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521b-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521b-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521c">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521c" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521c-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521c-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521d">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521d" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521d-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521d-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521e">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521e" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521e-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521e-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521f">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521f" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521f-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521f-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521g">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521g" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521g-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521g-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521h">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521h" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521h-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521h-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521i">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521i" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521i-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521i-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521j">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521j" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521j-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521j-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521k">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521k" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521k-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521k-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521l">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521l" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521l-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521l-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521m">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521m" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521m-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521m-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1522">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1522" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1522-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1522-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1558">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1558" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1558-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1558-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1559">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1559" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1559-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1559-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1560">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1560" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1560-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1560-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1561">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1561" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1561-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1561-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1900">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1900" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1900-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1900-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1901">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1901" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1901-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1901-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1901a">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1901a" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1901a-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1901a-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1902">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1902" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1902-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1902-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1903">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1903" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1903-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1903-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1904">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1904" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1904-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1904-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1905">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1905" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1905-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1905-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1906">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1906" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1906-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1906-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1906a">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1906a" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1906a-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1906a-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1907">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1907" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1907-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1907-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1908">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1908" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1908-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1908-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1909">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1909" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1909-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1909-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1910">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1910" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1910-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1910-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1910a">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1910a" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1910a-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1910a-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1910b">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1910b" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1910b-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1910b-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1910c">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1910c" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1910c-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1910c-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1912">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1912" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1912-1hr">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1912-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle-1hr"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-artelprd">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_artelprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-artelprd" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-artelcfg">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_artelcfg)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-artelcfg" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-arteltst">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_arteltst)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-arteltst" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-arteltrn">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_arteltrn)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-arteltrn" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-geqelprd">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_geqelprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-geqelprd" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-geqelcfg">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_geqelcfg)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-geqelcfg" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-geqeltst">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_geqeltst)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-geqeltst" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-geqeltrn">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_geqeltrn)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-geqeltrn" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-orielprd">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_orielprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-orielprd" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-orieldev">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_orieldev)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-orieldev" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-orieltst">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_orieltst)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-orieltst" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-orieltrn">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_orieltrn)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-orieltrn" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-minccprd">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_minccprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-minccprd" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-lsgasprd">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_lsgasprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-lsgasprd" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-lsgasdev">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_lsgasdev)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-lsgasdev" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-lsgastst">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_lsgastst)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-lsgastst" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-bepasprd">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_bepasprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-bepasprd" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-bepasdev">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_bepasdev)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-bepasdev" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-bepastst">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_bepastst)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-bepastst" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-bepemprd">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_bepemprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-bepemprd" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-bepemdev">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_bepemdev)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-bepemdev" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-bepemtst">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_bepemtst)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-bepemtst" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-alielprd">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_alielprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-alielprd" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-alieldev">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_alieldev)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-alieldev" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-alieltst">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_alieltst)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-alieltst" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-alieltrn">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_alieltrn)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-alieltrn" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-kumeltst">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_kumeltst)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-kumeltst" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-kumeltrn">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_kumeltrn)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-kumeltrn" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-kumeldev">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_kumeldev)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-kumeldev" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-recman">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_recman)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-recman" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-skyccprd">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_skyccprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-skyccprd" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-kumelprd">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_kumelprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-kumelprd" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-eaueldev">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_eaueldev)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-eaueldev" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-eaueltst">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_eaueltst)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-eaueltst" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-eaueltrn">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_eaueltrn)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-eaueltrn" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-eauelprd">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_eauelprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-eauelprd" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-octelprd">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_octelprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-octelprd" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-octeluat">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_octeluat)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-octeluat" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-octeltst">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_octeltst)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-octeltst" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-viceldev">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_viceldev)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-viceldev" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-viceltst">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_viceltst)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-viceltst" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-viceltrn">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_viceltrn)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-viceltrn" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-vicelprd">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_vicelprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-vicelprd" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-quueldev">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_quueldev)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-quueldev" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-quueltst">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_quueltst)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-quueltst" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-quueltrn">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_quueltrn)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-quueltrn" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-quuelprd">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_quuelprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-quuelprd" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-Oracle"/>
+      </service>
+   </package>
+   <package name="ABBCS-FSMon">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincSNMP)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-FSMon" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-FSMon"/>
+      </service>
+   </package>
+   <package name="ABBCS-wmi-thresholds">
+      <filter>(IPADDR != '0.0.0.0')</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="WMI" interval="300000" user-defined="false" status="on">
+         <parameter key="thresholding-group" value="ABBCS-wmi-thresholds"/>
+      </service>
+   </package>
+   <package name="wmi-thresholds">
+      <filter>(IPADDR != '0.0.0.0')</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="WMI" interval="300000" user-defined="false" status="off">
+         <parameter key="thresholding-group" value="wmi-thresholds"/>
+      </service>
+   </package>
+   <package name="ABBCS-cpu-90">
+      <filter>(IPADDR != '0.0.0.0')</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-cpu-90" interval="300000" user-defined="false" status="off">
+         <parameter key="thresholding-group" value="ABBCS-cpu-90"/>
+      </service>
+   </package>
+</threshd-configuration>

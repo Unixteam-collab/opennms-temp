@@ -1,0 +1,14 @@
+<foreign-source xmlns="http://xmlns.opennms.org/xsd/config/foreign-source" name="Databases" date-stamp="2017-03-08T15:14:55.608+10:00">
+   <scan-interval>1d</scan-interval>
+   <detectors/>
+   <policies>
+      <policy name="Databases" class="org.opennms.netmgt.provision.persist.policies.NodeCategorySettingPolicy">
+         <parameter key="category" value="Databases"/>
+         <parameter key="matchBehavior" value="ALL_PARAMETERS"/>
+      </policy>
+      <policy name="RFNotification" class="org.opennms.netmgt.provision.persist.policies.NodeCategorySettingPolicy">
+         <parameter key="category" value="RFNotification"/>
+         <parameter key="matchBehavior" value="ALL_PARAMETERS"/>
+      </policy>
+   </policies>
+</foreign-source>

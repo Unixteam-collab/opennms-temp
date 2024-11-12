@@ -1,0 +1,10 @@
+<xml-groups>
+    <xml-group name="ABBCS-CUPS" resource-type="CUPSPrinters"
+                resource-xpath="/printers/printer"
+                key-xpath="@name">
+      <xml-object name="printerName" type="string" xpath="@name" />
+      <xml-object name="njobs" type="GAUGE" xpath="njobs" />
+      <xml-object name="queueThreshold" type="GAUGE" xpath="threshold" />
+    </xml-group>
+</xml-groups>
+

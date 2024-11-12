@@ -1,0 +1,198 @@
+<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+   <event>
+      <uei>uei.opennms.org/ABBCS/oracle/Warning</uei>
+      <event-label>ABBCS-defined event uei.opennms.org/ABBCS/oracle/Warning</event-label>
+      <descr>ABBCS Oracle event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Warning</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/oracle/Minor</uei>
+      <event-label>ABBCS-defined event uei.opennms.org/ABBCS/oracle/Minor</event-label>
+      <descr>ABBCS Oracle event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Minor</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/oracle/Error</uei>
+      <event-label>ABBCS-defined event uei.opennms.org/ABBCS/oracle/Error</event-label>
+      <descr>ABBCS Oracle event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Minor</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/oracle/Major</uei>
+      <event-label>ABBCS-defined event uei.opennms.org/ABBCS/oracle/Major</event-label>
+      <descr>ABBCS Oracle event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/oracle/Critical</uei>
+      <event-label>ABBCS-defined event uei.opennms.org/ABBCS/oracle/Critical</event-label>
+      <descr>ABBCS Oracle event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>critical</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/oracle/Normal</uei>
+      <event-label>ABBCS-defined event uei.opennms.org/ABBCS/oracle/Normal</event-label>
+      <descr>ABBCS Oracle event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Normal</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/vendor/ABBCS/oracle/Warning</uei>
+      <event-label>ABBCS-defined syslog event uei.opennms.org/ABBCS/oracle/Warning</event-label>
+      <descr>ABBCS Oracle event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Warning</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/vendor/ABBCS/oracle/Minor</uei>
+      <event-label>ABBCS-defined syslog event uei.opennms.org/ABBCS/oracle/Minor</event-label>
+      <descr>ABBCS Oracle event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Minor</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/vendor/ABBCS/oracle/Error</uei>
+      <event-label>ABBCS-defined syslog event uei.opennms.org/ABBCS/oracle/Error</event-label>
+      <descr>ABBCS Oracle event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Minor</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/vendor/ABBCS/oracle/Major</uei>
+      <event-label>ABBCS-defined syslog event uei.opennms.org/ABBCS/oracle/Major</event-label>
+      <descr>ABBCS Oracle event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/vendor/ABBCS/oracle/Critical</uei>
+      <event-label>ABBCS-defined syslog event uei.opennms.org/ABBCS/oracle/Critical</event-label>
+      <descr>ABBCS Oracle event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>critical</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/vendor/ABBCS/oracle/Normal</uei>
+      <event-label>ABBCS-defined syslog event uei.opennms.org/ABBCS/oracle/Normal</event-label>
+      <descr>ABBCS Oracle event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle event %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Normal</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/DaysSinceLastBackedUp-trigger</uei>
+      <event-label>ABBCS-oracle days since last backed up uei.opennms.org/ABBCS/jdbc/oracle/DaysSinceLastBackedUp-trigger</event-label>
+      <descr>ABBCS Oracle Days since last backed up %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle days since last backed up  %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/DaysSinceLastBackedUp-rearm</uei>
+      <event-label>ABBCS-oracle days since last backed up -rearm uei.opennms.org/ABBCS/jdbc/oracle/DaysSinceLastBackedUp-rearm</event-label>
+      <descr>ABBCS Oracle rearmed Days since last backed up %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS rearmed Oracle days since last backed up  %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/InvalidObjects-trigger</uei>
+      <event-label>ABBCS-oracle invalid objects uei.opennms.org/ABBCS/jdbc/oracle/InvalidObjects-trigger</event-label>
+      <descr>ABBCS Oracle invalid objects %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle invalid objects %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/InvalidObjects-rearm</uei>
+      <event-label>ABBCS-oracle invalid objects - rearm uei.opennms.org/ABBCS/jdbc/oracle/InvalidObjects-rearm</event-label>
+      <descr>ABBCS Oracle rearmed invalid objects %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle rearmed invalid objects %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/BcacheHitRatio-trigger</uei>
+      <event-label>ABBCS-oracle bcache hit ratio uei.opennms.org/ABBCS/jdbc/oracle/BcacheHitRatio-trigger</event-label>
+      <descr>ABBCS Oracle bcache hit ratio %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle bcache hit ratio %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/BcacheHitRatio-rearm</uei>
+      <event-label>ABBCS-oracle bcache hit ratio uei.opennms.org/ABBCS/jdbc/oracle/BcacheHitRatio-rearm</event-label>
+      <descr>ABBCS Oracle rearmed bcache hit ratio %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle rearmed bcache hit ratio %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/ForceLogging-trigger</uei>
+      <event-label>ABBCS-oracle Force Logging uei.opennms.org/ABBCS/jdbc/oracle/ForceLogging-trigger</event-label>
+      <descr>ABBCS Oracle Force Logging %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle Force Logging %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/ForceLogging-rearm</uei>
+      <event-label>ABBCS-oracle Force Logging uei.opennms.org/ABBCS/jdbc/oracle/ForceLogging-rearm</event-label>
+      <descr>ABBCS Oracle rearmed  Force Logging %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle rearmed  Force Logging %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/CorruptBlocks-trigger</uei>
+      <event-label>ABBCS-oracle Corrupt Blocks uei.opennms.org/ABBCS/jdbc/oracle/CorruptBlocks-trigger</event-label>
+      <descr>ABBCS Oracle Corrupt Blocks %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle Corrupt Blocks %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/CorruptBlocks-rearm</uei>
+      <event-label>ABBCS-oracle Corrupt Blocks uei.opennms.org/ABBCS/jdbc/oracle/CorruptBlocks-rearm</event-label>
+      <descr>ABBCS Oracle rearmed  Corrupt Blocks %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle rearmed  Corrupt Blocks %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/TempSpaceUsed-trigger</uei>
+      <event-label>ABBCS-oracle Temp Space Used uei.opennms.org/ABBCS/jdbc/oracle/TempSpaceUsed-trigger</event-label>
+      <descr>ABBCS Oracle Temp Space Used %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle Temp Space Used %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/TempSpaceUsed-rearm</uei>
+      <event-label>ABBCS-oracle Temp Space Used uei.opennms.org/ABBCS/jdbc/oracle/TempSpaceUsed-rearm</event-label>
+      <descr>ABBCS Oracle rearmed  Temp Space Used %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle rearmed  Temp Space Used %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/CursorsUsed-trigger</uei>
+      <event-label>ABBCS-oracle Cursors Used uei.opennms.org/ABBCS/jdbc/oracle/CursorsUsed-trigger</event-label>
+      <descr>ABBCS Oracle Cursors Used %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle Cursors Used %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/CursorsUsed-rearm</uei>
+      <event-label>ABBCS-oracle Cursors Used uei.opennms.org/ABBCS/jdbc/oracle/CursorsUsed-rearm</event-label>
+      <descr>ABBCS Oracle rearmed  Cursors Used %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle rearmed  Cursors Used %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/TablespaceUsageHigh-trigger</uei>
+      <event-label>ABBCS-oracle Table Space usage exceeded threshold uei.opennms.org/ABBCS/jdbc/oracle/TablespaceUsageHigh-trigger</event-label>
+      <descr>ABBCS Oracle Table space usage exceeded threshold %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle Table Space usage exceeded threshold %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Minor</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/TablespaceUsageHigh-rearm</uei>
+      <event-label>ABBCS-oracle Table space usage dropped below threshold uei.opennms.org/ABBCS/jdbc/oracle/TablespaceUsageHigh-rearm</event-label>
+      <descr>ABBCS Oracle rearmed  Table space usage dropped below threshold %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">ABBCS Oracle rearmed  Table space usage dropped below threshold %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+</events>

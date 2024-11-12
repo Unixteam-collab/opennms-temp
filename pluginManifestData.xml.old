@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pluginManagerData>
+    <pluginServerPassword>kntEof3EH6BDgtnPaBNU</pluginServerPassword>
+    <pluginServerUsername>admin</pluginServerUsername>
+    <pluginServerUrl>http://localhost:8980/opennms</pluginServerUrl>
+    <licenceShoppingCartUrl>http://opennms.org</licenceShoppingCartUrl>
+    <karafDataMap>
+        <entry>
+            <key>localhost</key>
+            <value>
+                <karafInstanceLastUpdated>2019-05-01T08:57:38.966+10:00</karafInstanceLastUpdated>
+                <systemId>NOT_SET</systemId>
+                <installedPlugins>
+                    <productSpecList>
+                        <productMetadata>
+                            <productId>internal-plugins-descriptor/24.0.0</productId>
+                            <featureRepository>mvn:org.opennms.karaf/opennms/24.0.0/xml/features</featureRepository>
+                            <packageingDescriptor>This system plugin is packaged with OpenNMS 24.0.0</packageingDescriptor>
+                            <productName>internal-plugins-descriptor</productName>
+                            <productDescription>This internal plugin describes the optional internal plugins included with the OpenNMS 24.0.0</productDescription>
+                            <productUrl>http:\\opennms.co.uk</productUrl>
+                            <organization>OpenNMS Project</organization>
+                            <licenceType>AGPL</licenceType>
+                            <licenceKeyRequired>false</licenceKeyRequired>
+                            <systemPlugin>true</systemPlugin>
+                        </productMetadata>
+                        <productMetadata>
+                            <productId>vaadin-opennms-pluginmanager/24.0.0</productId>
+                            <featureRepository>mvn:org.opennms.plugins/vaadin-opennms-pluginmanager/24.0.0/xml/features</featureRepository>
+                            <packageingDescriptor>Packaged as core OpenNMS feature</packageingDescriptor>
+                            <productName>vaadin-opennms-pluginmanager/24.0.0</productName>
+                            <productDescription>OpenNMS Vaadin Plugin Manager which uses libraries;
+    org.opennms.plugin.pluginmanager.pluginmanager-core/1.1.0
+    org.opennms.plugin.licencemanager/1.1.0
+    org.opennms.plugin.featuremanager/1.1.0
+  </productDescription>
+                            <productUrl>http://www.opennms.org</productUrl>
+                            <organization>OpenNMS</organization>
+                            <licenceType>GNU Affero General Public License (AGPL)</licenceType>
+                            <licenceKeyRequired>false</licenceKeyRequired>
+                            <systemPlugin>true</systemPlugin>
+                        </productMetadata>
+                    </productSpecList>
+                </installedPlugins>
+                <installedLicenceList>
+                    <licenceList/>
+                </installedLicenceList>
+            </value>
+        </entry>
+    </karafDataMap>
+    <karafManifestEntryMap>
+        <entry>
+            <key>localhost</key>
+            <value>
+                <karafInstanceName>localhost</karafInstanceName>
+                <karafInstanceUrl>http://localhost:8980/opennms</karafInstanceUrl>
+                <karafInstanceUserName>admin</karafInstanceUserName>
+                <karafInstancePassword>kntEof3EH6BDgtnPaBNU</karafInstancePassword>
+                <remoteIsAccessible>true</remoteIsAccessible>
+                <allowUpdateMessages>false</allowUpdateMessages>
+                <pluginManifest>
+                    <productSpecList/>
+                </pluginManifest>
+                <manifestSystemId>NOT_SET</manifestSystemId>
+            </value>
+        </entry>
+    </karafManifestEntryMap>
+</pluginManagerData>

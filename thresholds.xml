@@ -1,0 +1,255 @@
+<thresholding-config xmlns="http://xmlns.opennms.org/xsd/config/thresholding">
+   <group name="mib2" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <threshold description="Trigger an alert if one or more incoming packets on the whole node were not received due to an error for one measurement interval" type="high" ds-type="node" value="1.0" rearm="0.0" trigger="1" filterOperator="OR" ds-name="tcpInErrors"/>
+      <expression description="Trigger an alert if one or more incoming or outgoing packets on an interface were not transmitted due to error for two consecutive measurement intervals" type="high" ds-type="if" value="1.0" rearm="0.0" trigger="2" ds-label="ifName" filterOperator="OR" expression="ifInErrors + ifOutErrors"/>
+      <expression description="Trigger an alert if one or more incoming or outgoing packets on an interface were discarded even though no errors were detected (possibly to free up buffer space) for two consecutive measurement intervals" type="high" ds-type="if" value="1.0" rearm="0.0" trigger="2" ds-label="ifName" filterOperator="OR" expression="ifInDiscards + ifOutDiscards"/>
+      <expression description="Trigger an alert if incoming usage of any interface reaches or goes above 90% of its maximum speed for three consecutive measurement intervals (only for interfaces that have a maximum speed value defined)" type="high" ds-type="if" value="90.0" rearm="75.0" trigger="3" ds-label="ifName" filterOperator="OR" expression="ifHCInOctets * 8 / 1000000 / ifHighSpeed * 100">
+         <resource-filter field="ifHighSpeed">^[1-9]+[0-9]*$</resource-filter>
+      </expression>
+      <expression description="Trigger an alert if outgoing usage of an interface reaches or goes above 90% of its maximum speed for three consecutive measurement intervals (only for interfaces that have a maximum speed value defined)" type="high" ds-type="if" value="90.0" rearm="75.0" trigger="3" ds-label="ifName" filterOperator="OR" expression="ifHCOutOctets * 8 / 1000000 / ifHighSpeed * 100">
+         <resource-filter field="ifHighSpeed">^[1-9]+[0-9]*$</resource-filter>
+      </expression>
+      <expression description="Trigger an alert if incoming usage of any interface reaches or goes above 90% of its maximum speed for three consecutive measurement intervals (only for interfaces that have a maximum speed value defined)" type="high" ds-type="if" value="90.0" rearm="75.0" trigger="3" ds-label="ifName" filterOperator="OR" expression="ifInOctets * 8 / ifSpeed * 100">
+         <resource-filter field="ifSpeed">^[1-9]+[0-9]*$</resource-filter>
+      </expression>
+      <expression description="Trigger an alert if outgoing usage of an interface reaches or goes above 90% of its maximum speed for three consecutive measurement intervals (only for interfaces that have a maximum speed value defined)" type="high" ds-type="if" value="90.0" rearm="75.0" trigger="3" ds-label="ifName" filterOperator="OR" expression="ifOutOctets * 8 / ifSpeed * 100">
+         <resource-filter field="ifSpeed">^[1-9]+[0-9]*$</resource-filter>
+      </expression>
+   </group>
+   <group name="mib2-thresholds-CPU" rrdRepository="/var/lib/opennms/rrd/snmp/">
+      <threshold description="Customization: Trigger an event when average CPU usage for the entire system (CPUs 1-32) goes above the specified threshold for two consecutive measurement intervals (by default, 5 minutes each)" type="high" ds-type="node" value="90.0" rearm="75.0" trigger="2" ds-label="cpuPercentBusy > 90" filterOperator="OR" ds-name="cpuPercentBusy"/>
+      <threshold description="Trigger an alert when CPU IO wait goes above 90% for two consecutive measurement intervals" type="high" ds-type="node" value="9.0" rearm="8.5" trigger="1" triggeredUEI="uei.opennms.org/ABBCS/highwaitIO-trigger" rearmedUEI=" uei.opennms.org/ABBCS/highwaitIO-rearm" filterOperator="OR" ds-name="Node"/>
+   </group>
+   <group name="hrstorage" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <expression description="Trigger an alert when the percentage of disk space used reaches or goes above 90% for two consecutive measurement intervals (only for disks of type hrStorageFixedDisk, such as a locally attached or USB-attached hard disk)" type="high" ds-type="hrStorageIndex" value="90.0" rearm="75.0" trigger="2" ds-label="hrStorageDescr" filterOperator="OR" expression="hrStorageUsed / hrStorageSize * 100.0">
+         <resource-filter field="hrStorageType">^\.1\.3\.6\.1\.2\.1\.25\.2\.1\.4$</resource-filter>
+      </expression>
+   </group>
+   <group name="hrstorage-disabled" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <expression description="Trigger an alert when the percentage of disk space used increases by a relative 33.3% compared to its most recent previous measurement (e.g. there is suddenly less free space) (only for disks of type hrStorageFixedDisk, such as a locally attached or USB-attached hard disk)" type="relativeChange" ds-type="hrStorageIndex" value="1.333" rearm="0.0" trigger="1" ds-label="hrStorageDescr" filterOperator="OR" expression="hrStorageUsed / hrStorageSize * 100.0">
+         <resource-filter field="hrStorageType">^\.1\.3\.6\.1\.2\.1\.25\.2\.1\.4$</resource-filter>
+      </expression>
+   </group>
+   <group name="ABBCS-OpenFiles" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <threshold description="Trigger an alert when OpenFiles exceeds threshold" type="high" ds-type="node" value="3800.0" rearm="3700.0" trigger="1" ds-label="openfilesSearch" triggeredUEI="uei.opennms.org/ABBCS/OpenFiles-trigger" rearmedUEI="uei.opennms.org/ABBCS/OpenFiles-rearm" filterOperator="OR" ds-name="openfilesLsof"/>
+   </group>
+   <group name="cisco" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <threshold description="Trigger an alert when the five minute exponentially-decayed moving average of the CPU busy percentage metric on a Cisco device reaches or goes above 80% for three measurement intervals" type="high" ds-type="node" value="80.0" rearm="50.0" trigger="3" filterOperator="OR" ds-name="avgBusy5"/>
+      <threshold description="Trigger an alert when the five minute memory pool percentage utilization metric on a Cisco device increases by 25% in one measurement interval" type="relativeChange" ds-type="ciscoMemoryPoolType" value="0.25" rearm="0.0" trigger="1" ds-label="cscoMemoryPoolName" filterOperator="OR" ds-name="cscoMemPoolUtl5Min"/>
+      <threshold description="Trigger an alert when the temperature metric on a Cisco device reaches or goes above 55 degrees Celcius for three measurement intervals" type="high" ds-type="ciscoEnvMonTemperatureStatusIndex" value="55.0" rearm="50.0" trigger="3" ds-label="cvmTempStatusDescr" filterOperator="OR" ds-name="cvmTempStatusValue"/>
+      <threshold description="Trigger an alert when the temperature metric on a Cisco device increases by 20% in one measurement interval" type="relativeChange" ds-type="ciscoEnvMonTemperatureStatusIndex" value="0.2" rearm="0.0" trigger="1" ds-label="cvmTempStatusDescr" filterOperator="OR" ds-name="cvmTempStatusValue"/>
+   </group>
+   <group name="juniper-srx" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <expression description="Trigger an alert when the number of tracked sessions of a Juniper SRX router exceeds 90% of its capacity for two consecutive measurement intervals" type="high" ds-type="node" value="90.0" rearm="75.0" trigger="2" filterOperator="OR" expression="juniSPUMonCurrFlow / juniSPUMonMaxFlow * 100.0"/>
+   </group>
+   <group name="netsnmp" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <threshold description="Trigger an alert when the percentage of disk space used on any disk reaches or goes above 90% full for two consecutive measurement intervals" type="high" ds-type="dskIndex" value="90.0" rearm="75.0" trigger="2" ds-label="ns-dskPath" filterOperator="OR" ds-name="ns-dskPercent"/>
+      <threshold description="Trigger an alert when the percentage of inodes used on any disk (excluding the specified special paths) reaches or goes above 90% for two consecutive measurement intervals" type="high" ds-type="dskIndex" value="90.0" rearm="75.0" trigger="2" ds-label="ns-dskPath" filterOperator="OR" ds-name="ns-dskPercentNode">
+         <resource-filter field="ns-dskPath">^(?:(?!(/proc|/sys|/dev/pts|/var/lib/nfs/rpc_pipefs|/mnt/resource|/appliance/data/repo/yum/.*)).)+$</resource-filter>
+      </threshold>
+      <threshold description="Trigger an alert when the percentage of disk space used on any disk increases by a relative 33.3% compared to its most recent previous measurement (that is, there is suddenly less free space)" type="relativeChange" ds-type="dskIndex" value="1.333" rearm="0.0" trigger="1" ds-label="ns-dskPath" filterOperator="OR" ds-name="ns-dskPercent"/>
+      <threshold description="Trigger an alert when the percentage of inodes used on any disk increases by a relative 33.3% compared to its most recent previous measurement (that is, there are suddenly fewer free inodes)" type="relativeChange" ds-type="dskIndex" value="1.333" rearm="0.0" trigger="1" ds-label="ns-dskPath" filterOperator="OR" ds-name="ns-dskPercentNode"/>
+      <expression description="Trigger an alert when the five minute CPU load average metric reaches or goes above 10 for two consecutive measurement intervals" type="high" ds-type="node" value="10.0" rearm="7.5" trigger="2" filterOperator="OR" expression="loadavg5 / 100.0"/>
+      <expression description="Trigger an alert when the five minute CPU load average metric reaches or goes above 70% for two consecutive measurement intervals" type="high" ds-type="node" value="70.0" rearm="50.0" trigger="2" filterOperator="OR" expression="((loadavg5 / 100) / CpuNumCpus) * 100.0"/>
+      <expression description="Trigger an alert when the amount of available swap space reaches or goes below 10% of the total amount of swap space for two consecutive measurement intervals (only for systems that have a total swap space value defined)" type="low" ds-type="node" value="10.0" rearm="15.0" trigger="2" filterOperator="OR" expression="memAvailSwap / memTotalSwap * 100.0">
+         <resource-filter field="memTotalSwap">^[1-9]+[.0-9]*$</resource-filter>
+      </expression>
+   </group>
+   <group name="ABBCS-CUPS" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <expression description="Trigger an alert when a printer queue length is greater than threshold for 4 consectutive measurement intervals" type="high" ds-type="CUPSPrinters" value="0.0" rearm="-1.0" trigger="4" ds-label="printerName" triggeredUEI="uei.opennms.org/ABBCS/cupsqueuehigh-trigger" rearmedUEI="uei.opennms.org/ABBCS/cupsqueuehigh-rearm" filterOperator="OR" expression="njobs - queueThreshold"/>
+   </group>
+   <group name="ABBCS-Azure-Metrics" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <threshold description="Trigger an alert when CPU Credits drops below 5 for 4 consectutive measurement intervals" type="low" ds-type="AzureMetric" value="5.0" rearm="10.0" trigger="4" ds-label="Metric" triggeredUEI="uei.opennms.org/ABBCS/AzureCPUCredits-trigger" rearmedUEI="uei.opennms.org/ABBCS/AzureCPUCredits-rearm" filterOperator="OR" ds-name="value">
+         <resource-filter field="Metric">^CPU Credits Remaining$</resource-filter>
+      </threshold>
+   </group>
+   <group name="ABBCS-netsnmp" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <threshold description="Trigger an alert when the percentage of inodes used on any disk (excluding the specified special paths) reaches or goes above 90% for two consecutive measurement intervals" type="high" ds-type="dskIndex" value="90.0" rearm="75.0" trigger="2" ds-label="ns-dskPath" filterOperator="OR" ds-name="ns-dskPercentNode">
+         <resource-filter field="ns-dskPath">^(?:(?!(/proc|/sys|/dev/pts|/var/lib/nfs/rpc_pipefs|/mnt/resource|/appliance/data/repo/yum/.*)).)+$</resource-filter>
+      </threshold>
+      <threshold description="Trigger an alert when CPU IO wait goes above 50% for two consecutive measurement intervals" type="high" ds-type="node" value="50.0" rearm="49.0" trigger="2" triggeredUEI="uei.opennms.org/ABBCS/highwaitIO-trigger" rearmedUEI="uei.opennms.org/ABBCS/highwaitIO-rearm" filterOperator="OR" ds-name="CpuRawWait"/>
+      <expression description="Trigger an alert when the five minute CPU load average metric reaches or goes above 10 for two consecutive measurement intervals" type="high" ds-type="node" value="10.0" rearm="7.5" trigger="2" triggeredUEI="uei.opennms.org/ABBCS/highcpuload-trigger" rearmedUEI="uei.opennms.org/ABBCS/highcpuload-rearm" filterOperator="OR" expression="loadavg5 / 100.0"/>
+      <expression description="Trigger an alert when the five minute CPU load average metric reaches or goes above the CPU count for 3 consecutive measurement intervals (SET RIDICULOUSLY HIGH TO SUPPRESS UNTIL APPROPRIATE THRESHOLD CAN BE DETERMINED)" type="high" ds-type="node" value="9990.9" rearm="0.75" trigger="3" triggeredUEI="uei.opennms.org/ABBCS/highcpuload-trigger" rearmedUEI="uei.opennms.org/ABBCS/highcpuload-rearm" filterOperator="OR" expression="(loadavg5 / ((CpuRawIdle + CpuRawInterrupt + CpuRawKernel + CpuRawNice + CpuRawSoftIRQ + CpuRawSystem + CpuRawUser + CpuRawWait) / 100.0)) / 100.0"/>
+      <expression description="Trigger an alert when the amount of available swap space reaches or goes below 10% of the total amount of swap space for two consecutive measurement intervals (only for systems that have a total swap space value defined)" type="low" ds-type="node" value="10.0" rearm="15.0" trigger="2" triggeredUEI="uei.opennms.org/ABBCS/highswap-trigger" rearmedUEI="uei.opennms.org/ABBCS/highswap-rearm" filterOperator="OR" expression="memAvailSwap / memTotalSwap * 100.0">
+         <resource-filter field="memTotalSwap">^[1-9]+[.0-9]*$</resource-filter>
+      </expression>
+   </group>
+   <group name="ABBCS-FSMon" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <expression description="Trigger an alert when the percentage of disk space used reaches or goes above P4 threshold %fsPctUsed% for two consecutive measurement intervals" type="high" ds-type="FilesystemMon" value="1.0" rearm="0.99" trigger="2" ds-label="fsName" triggeredUEI="uei.opennms.org/ABBCS/highdiskP4-trigger" rearmedUEI="uei.opennms.org/ABBCS/highdiskP4-rearm" filterOperator="AND" expression="fsPctUsed / fsThreshP4">
+         <resource-filter field="fsName">^(?:(?!(/proc|/sys|/dev/pts|/var/lib/nfs/rpc_pipefs|/mnt/resource|/appliance/data/repo/yum/.*|/kvm/guests/.*)).)+$</resource-filter>
+      </expression>
+      <expression description="Trigger an alert when the percentage of disk space used reaches or goes above P3 threshold for two consecutive measurement intervals" type="high" ds-type="FilesystemMon" value="1.0" rearm="0.99" trigger="2" ds-label="fsName" triggeredUEI="uei.opennms.org/ABBCS/highdiskP3-trigger" rearmedUEI="uei.opennms.org/ABBCS/highdiskP3-rearm" filterOperator="AND" expression="fsPctUsed / fsThreshP3">
+         <resource-filter field="fsName">^(?:(?!(/proc|/sys|/dev/pts|/var/lib/nfs/rpc_pipefs|/mnt/resource|/appliance/data/repo/yum/.*|/kvm/guests/.*)).)+$</resource-filter>
+      </expression>
+      <expression description="Trigger an alert when the percentage of disk space used reaches or goes above P2 threshold for two consecutive measurement intervals" type="high" ds-type="FilesystemMon" value="1.0" rearm="0.99" trigger="2" ds-label="fsName" triggeredUEI="uei.opennms.org/ABBCS/highdiskP2-trigger" rearmedUEI="uei.opennms.org/ABBCS/highdiskP2-rearm" filterOperator="AND" expression="fsPctUsed / fsThreshP2">
+         <resource-filter field="fsName">^(?:(?!(/proc|/sys|/dev/pts|/var/lib/nfs/rpc_pipefs|/mnt/resource|/appliance/data/repo/yum/.*|/kvm/guests/.*)).)+$</resource-filter>
+      </expression>
+      <expression description="Trigger an alert when the percentage of disk space used reaches or goes above P1 threshold for two consecutive measurement intervals" type="high" ds-type="FilesystemMon" value="1.0" rearm="0.99" trigger="2" ds-label="fsName" triggeredUEI="uei.opennms.org/ABBCS/highdiskP1-trigger" rearmedUEI="uei.opennms.org/ABBCS/highdiskP1-rearm" filterOperator="AND" expression="fsPctUsed / fsThreshP1">
+         <resource-filter field="fsName">^(?:(?!(/proc|/sys|/dev/pts|/var/lib/nfs/rpc_pipefs|/mnt/resource|/appliance/data/repo/yum/.*|/kvm/guests/.*)).)+$</resource-filter>
+      </expression>
+   </group>
+   <group name="ABBCS-fs" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <expression description="Trigger an alert when the percentage of disk space used reaches or goes above 80% for two consecutive measurement intervals (only for disks of type hrStorageFixedDisk, such as a locally attached or USB-attached hard disk)" type="high" ds-type="hrStorageIndex" value="80.0" rearm="79.0" trigger="2" ds-label="hrStorageDescr" triggeredUEI="uei.opennms.org/ABBCS/highdiskWarn-trigger" rearmedUEI="uei.opennms.org/ABBCS/highdiskWarn-rearm" filterOperator="AND" expression="hrStorageUsed / hrStorageSize * 100.0">
+         <resource-filter field="hrStorageDescr">^(?:(?!(/proc|/sys|/dev/pts|/var/lib/nfs/rpc_pipefs|/mnt/resource|/appliance/data/repo/yum/.*|/kvm/guests/.*)).)+$</resource-filter>
+         <resource-filter field="hrStorageType">^\.1\.3\.6\.1\.2\.1\.25\.2\.1\.4$</resource-filter>
+      </expression>
+      <expression description="Trigger an alert when the percentage of disk space used reaches or goes above 85% for two consecutive measurement intervals (only for disks of type hrStorageFixedDisk, such as a locally attached or USB-attached hard disk)" type="high" ds-type="hrStorageIndex" value="85.0" rearm="84.0" trigger="2" ds-label="hrStorageDescr" triggeredUEI="uei.opennms.org/ABBCS/highdiskMinor-trigger" rearmedUEI="uei.opennms.org/ABBCS/highdiskMinor-rearm" filterOperator="AND" expression="hrStorageUsed / hrStorageSize * 100.0">
+         <resource-filter field="hrStorageType">^\.1\.3\.6\.1\.2\.1\.25\.2\.1\.4$</resource-filter>
+         <resource-filter field="hrStorageDescr">^(?:(?!(/proc|/sys|/dev/pts|/var/lib/nfs/rpc_pipefs|/mnt/resource|/appliance/data/repo/yum/.*|/kvm/guests/.*)).)+$</resource-filter>
+      </expression>
+      <expression description="Trigger an alert when the percentage of disk space used reaches or goes above 90% for two consecutive measurement intervals (only for disks of type hrStorageFixedDisk, such as a locally attached or USB-attached hard disk)" type="high" ds-type="hrStorageIndex" value="90.0" rearm="89.0" trigger="2" ds-label="hrStorageDescr" triggeredUEI="uei.opennms.org/ABBCS/highdiskMajor-trigger" rearmedUEI="uei.opennms.org/ABBCS/highdiskMajor-rearm" filterOperator="AND" expression="hrStorageUsed / hrStorageSize * 100.0">
+         <resource-filter field="hrStorageType">^\.1\.3\.6\.1\.2\.1\.25\.2\.1\.4$</resource-filter>
+         <resource-filter field="hrStorageDescr">^(?:(?!(/proc|/sys|/dev/pts|/var/lib/nfs/rpc_pipefs|/mnt/resource|/appliance/data/repo/yum/.*|/kvm/guests/.*)).)+$</resource-filter>
+      </expression>
+      <expression description="Trigger an alert when the percentage of disk space used reaches or goes above 95% for two consecutive measurement intervals (only for disks of type hrStorageFixedDisk, such as a locally attached or USB-attached hard disk)" type="high" ds-type="hrStorageIndex" value="95.0" rearm="94.0" trigger="2" ds-label="hrStorageDescr" triggeredUEI="uei.opennms.org/ABBCS/highdiskCritical-trigger" rearmedUEI="uei.opennms.org/ABBCS/highdiskCritical-rearm" filterOperator="AND" expression="hrStorageUsed / hrStorageSize * 100.0">
+         <resource-filter field="hrStorageType">^\.1\.3\.6\.1\.2\.1\.25\.2\.1\.4$</resource-filter>
+         <resource-filter field="hrStorageDescr">^(?:(?!(/proc|/sys|/dev/pts|/var/lib/nfs/rpc_pipefs|/mnt/resource|/appliance/data/repo/yum/.*|/kvm/guests/.*)).)+$</resource-filter>
+      </expression>
+   </group>
+   <group name="ABBCS-fs-jboss" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <expression description="Trigger an alert when the percentage of disk space used reaches or goes above 60% for two consecutive measurement intervals (only for disks of type hrStorageFixedDisk, such as a locally attached or USB-attached hard disk)" type="high" ds-type="hrStorageIndex" value="60.0" rearm="59.0" trigger="2" ds-label="hrStorageDescr" triggeredUEI="uei.opennms.org/ABBCS/highdiskWarn-trigger" rearmedUEI="uei.opennms.org/ABBCS/highdiskWarn-rearm" filterOperator="AND" expression="hrStorageUsed / hrStorageSize * 100.0">
+         <resource-filter field="hrStorageType">^\.1\.3\.6\.1\.2\.1\.25\.2\.1\.4$</resource-filter>
+         <resource-filter field="hrStorageDescr">^(?:(?!(/proc|/sys|/dev/pts|/var/lib/nfs/rpc_pipefs|/mnt/resource|/appliance/data/repo/yum/.*|/kvm/guests/.*)).)+$</resource-filter>
+      </expression>
+      <expression description="Trigger an alert when the percentage of disk space used reaches or goes above 70% for two consecutive measurement intervals (only for disks of type hrStorageFixedDisk, such as a locally attached or USB-attached hard disk)" type="high" ds-type="hrStorageIndex" value="70.0" rearm="69.0" trigger="2" ds-label="hrStorageDescr" triggeredUEI="uei.opennms.org/ABBCS/highdiskMinor-trigger" rearmedUEI="uei.opennms.org/ABBCS/highdiskMinor-rearm" filterOperator="AND" expression="hrStorageUsed / hrStorageSize * 100.0">
+         <resource-filter field="hrStorageType">^\.1\.3\.6\.1\.2\.1\.25\.2\.1\.4$</resource-filter>
+         <resource-filter field="hrStorageDescr">^(?:(?!(/proc|/sys|/dev/pts|/var/lib/nfs/rpc_pipefs|/mnt/resource|/appliance/data/repo/yum/.*|/kvm/guests/.*)).)+$</resource-filter>
+      </expression>
+      <expression description="Trigger an alert when the percentage of disk space used reaches or goes above 75% for two consecutive measurement intervals (only for disks of type hrStorageFixedDisk, such as a locally attached or USB-attached hard disk)" type="high" ds-type="hrStorageIndex" value="75.0" rearm="74.0" trigger="2" ds-label="hrStorageDescr" triggeredUEI="uei.opennms.org/ABBCS/highdiskMajor-trigger" rearmedUEI="uei.opennms.org/ABBCS/highdiskMajor-rearm" filterOperator="AND" expression="hrStorageUsed / hrStorageSize * 100.0">
+         <resource-filter field="hrStorageType">^\.1\.3\.6\.1\.2\.1\.25\.2\.1\.4$</resource-filter>
+         <resource-filter field="hrStorageDescr">^(?:(?!(/proc|/sys|/dev/pts|/var/lib/nfs/rpc_pipefs|/mnt/resource|/appliance/data/repo/yum/.*|/kvm/guests/.*)).)+$</resource-filter>
+      </expression>
+      <expression description="Trigger an alert when the percentage of disk space used reaches or goes above 80% for two consecutive measurement intervals (only for disks of type hrStorageFixedDisk, such as a locally attached or USB-attached hard disk)" type="high" ds-type="hrStorageIndex" value="80.0" rearm="79.0" trigger="2" ds-label="hrStorageDescr" triggeredUEI="uei.opennms.org/ABBCS/highdiskCritical-trigger" rearmedUEI="uei.opennms.org/ABBCS/highdiskCritical-rearm" filterOperator="AND" expression="hrStorageUsed / hrStorageSize * 100.0">
+         <resource-filter field="hrStorageType">^\.1\.3\.6\.1\.2\.1\.25\.2\.1\.4$</resource-filter>
+         <resource-filter field="hrStorageDescr">^(?:(?!(/proc|/sys|/dev/pts|/var/lib/nfs/rpc_pipefs|/mnt/resource|/appliance/data/repo/yum/.*|/kvm/guests/.*)).)+$</resource-filter>
+      </expression>
+   </group>
+   <group name="ABBCS-JVM-Alerts" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <expression description="Trigger an alert when the JVM heap memory utilisation exceeds 80% for three consecutive measurement intervals" type="high" ds-type="node" value="80.0" rearm="79.0" trigger="3" ds-label="JVM Heap Used" triggeredUEI="uei.opennms.org/ABBCS/JVM-highmem-trigger" rearmedUEI="uei.opennms.org/ABBCS/JVM-highmem-rearm" filterOperator="OR" expression="jvmHeapUsed / jvmHeapMax * 100.0"/>
+   </group>
+   <group name="ABBCS-TCP-Alerts" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <threshold description="Trigger an alert when the number of TCP connections exceeds Threshold" type="high" ds-type="node" value="250.0" rearm="240.0" trigger="3" ds-label="tcpCurrEstab" triggeredUEI="uei.opennms.org/ABBCS/TCP/ConnEstab-trigger" rearmedUEI="uei.opennms.org/ABBCS/TCP/ConnEstab-rearm" filterOperator="OR" ds-name="tcpCurrEstab"/>
+   </group>
+   <group name="netsnmp-memory-linux" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <expression description="Trigger an alert when the sum of the amount of unused real/physical memory plus the amount of real/virtual memory currently allocated as cached memory expressed as a percentage of total system memory reaches or goes below 5% for two consecutive measurement intervals" type="low" ds-type="node" value="5.0" rearm="10.0" trigger="2" filterOperator="OR" expression="(memAvailReal + memCached) / memTotalReal * 100.0"/>
+   </group>
+   <group name="netsnmp-memory-nonlinux" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <expression description="Trigger an alert when the amount of unused real/physical memory expressed as a percentage of total system memory reaches or goes below 5% for two consecutive measurement intervals" type="low" ds-type="node" value="5.0" rearm="10.0" trigger="2" filterOperator="OR" expression="memAvailReal / memTotalReal * 100.0"/>
+   </group>
+   <group name="opennms-jvm-jmx" rrdRepository="/opt/opennms/share/rrd/snmp">
+      <threshold description="Trigger an alarm when the ActiveMQ Broker Memory Usage exceeds 90% of the limit for two samples" type="high" ds-type="node" value="90" rearm="80" trigger="2" filterOperator="OR" ds-name="MemPctUsage"/>
+      <threshold description="Trigger an alarm when the ActiveMQ Broker Temp Usage exceeds 90% of the limit for two samples" type="high" ds-type="node" value="90" rearm="80" trigger="2" filterOperator="OR" ds-name="TempPctUsage"/>
+      <threshold description="Trigger an alarm when the ActiveMQ Broker Store Usage exceeds 90% of the limit for two samples" type="high" ds-type="node" value="90" rearm="80" trigger="2" filterOperator="OR" ds-name="StorePctUsage"/>
+      <threshold description="Trigger an alarm when an ActiveMQ Queue shows blocked sends for two sample periods" type="high" ds-type="queueMetrics" value="1" rearm="0" trigger="2" filterOperator="OR" ds-name="BlkdSends"/>
+      <threshold description="Trigger an alarm when the Memory Usage of an ActiveMQ Queue exceeds 95% of the limit for two samples" type="high" ds-type="queueMetrics" value="95.0" rearm="75.0" trigger="2" filterOperator="OR" ds-name="MemPctUsage"/>
+      <expression description="Trigger an alarm when the number of open file handles exceeds 90% of the maximum for two samples" type="high" ds-type="node" value="90.0" rearm="85.0" trigger="2" filterOperator="OR" expression="OsOpenFDCount / OsMaxFDCount * 100.0"/>
+      <expression description="Trigger an alarm when the used JVM heap exceeds 90% of the maximum JVM heap for two samples" type="high" ds-type="node" value="95.0" rearm="85.0" trigger="2" filterOperator="OR" expression="HeapUsageUsed / HeapUsageMax * 100"/>
+      <expression description="Trigger an alarm when the ActiveMQ Total Enqueued Messages and Total Dequeued Messages of a queue vary by greater than 15% for two samples" type="high" ds-type="queueMetrics" value="15.0" rearm="10.0" trigger="2" filterOperator="OR" expression="((EnqueCnt + DequeCnt) == 0) ? 0 : (((EnqueCnt - DequeCnt) / ((EnqueCnt + DequeCnt) / 2)) * 100)"/>
+      <expression description="Trigger an alarm when the ActiveMQ Total Enqueued Messages and Total Dequeued Messages of a queue vary by greater than 15% for two samples" type="low" ds-type="queueMetrics" value="-15.0" rearm="-10.0" trigger="2" filterOperator="OR" expression="((EnqueCnt + DequeCnt) == 0) ? 0 : (((EnqueCnt - DequeCnt) / ((EnqueCnt + DequeCnt) / 2)) * 100)"/>
+      <expression description="Trigger an alarm when the number of active pollerd threads exceeds 95% of the maximum thread pool size for three samples" type="high" ds-type="node" value="95" rearm="90" trigger="3" filterOperator="OR" expression="(ONMSPollerThreadAct / ONMSPollerPoolThrd) * 100"/>
+      <expression description="Trigger an alarm when the number of active collectd threads exceeds 95% of the maximum thread pool size for three samples" type="high" ds-type="node" value="95" rearm="90" trigger="3" filterOperator="OR" expression="(ONMSCollectThrdAct / ONMSCollectPoolThrd) * 100"/>
+   </group>
+   <group name="oracle" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <expression description="ABBCS test: Trigger an alert when a users table space use quota goes above 90%" type="high" ds-type="oracleQuota" value="90.0" rearm="85.0" trigger="2" ds-label="UserName" filterOperator="OR" expression="BytesUsed / MaxBytes * 100.0"/>
+   </group>
+   <group name="coffee" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <expression description="Trigger an alert when the coffee pot level reaches or goes below 25% in one measurement interval" type="low" ds-type="node" value="25.0" rearm="100.0" trigger="1" filterOperator="OR" expression="coffeePotLevel / coffeePotCapacity * 100.0"/>
+   </group>
+   <group name="ABBCS-CheckVPN" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <expression description="Trigger an alert when VPN fails for defined consecutive checks {vpnThreshold}" type="high" ds-type="node" value="1.0" rearm="0.9" trigger="1" ds-label="vpnMessage" triggeredUEI="uei.opennms.org/ABBCS/VPNCheck-trigger" rearmedUEI="uei.opennms.org/ABBCS/VPNCheck-rearm" filterOperator="OR" expression="vpnFailures / vpnThreshold"/>
+   </group>
+   <group name="ABBCS-CheckRSYNC" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <expression description="Trigger an alert when EFS sync has not successfully run for %rsyncEfsThreshold% seconds" type="high" ds-type="node" value="1.0" rearm="0.9" trigger="1" ds-label="rsyncEfsMessage" triggeredUEI="uei.opennms.org/ABBCS/RSYNCCheck-trigger" rearmedUEI="uei.opennms.org/ABBCS/RSYNCCheck-rearm" filterOperator="OR" expression="rsyncEfsLast / rsyncEfsThreshold"/>
+      <expression description="Trigger an alert when GIT sync has not successfully run for %rsyncGitThreshold% seconds" type="high" ds-type="node" value="1.0" rearm="0.9" trigger="1" ds-label="rsyncGitMessage" triggeredUEI="uei.opennms.org/ABBCS/RSYNCCheck-trigger" rearmedUEI="uei.opennms.org/ABBCS/RSYNCCheck-rearm" filterOperator="OR" expression="rsyncGitLast / rsyncGitThreshold"/>
+      <expression description="Trigger an alert when CUPS sync has not successfully run for %rsyncCupsThreshold% seconds" type="high" ds-type="node" value="1.0" rearm="0.9" trigger="1" ds-label="rsyncCupsMessage" triggeredUEI="uei.opennms.org/ABBCS/RSYNCCheck-trigger" rearmedUEI="uei.opennms.org/ABBCS/RSYNCCheck-rearm" filterOperator="OR" expression="rsyncCupsLast / rsyncCupsThreshold"/>
+   </group>
+   <group name="ABBCS-SQLServer" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <threshold description="Trigger an alert when the number of days since backed up exceeds Threshold" type="high" ds-type="dbDatabaseSql" value="3.0" rearm="1.0" trigger="1" ds-label="dbName" triggeredUEI="uei.opennms.org/ABBCS/jdbc/MSSQL/DaysSinceLastBackedUp-trigger" rearmedUEI="uei.opennms.org/ABBCS/jdbc/MSSQL/DaysSinceLastBackedUp-rearm" filterOperator="OR" ds-name="dbLastBackedUp">
+         <resource-filter field="dbName">^(?!master$|msdb$).*</resource-filter>
+      </threshold>
+      <threshold description="Trigger an alert when the number of days since backed up exceeds Threshold" type="high" ds-type="dbDatabaseSql" value="7.0" rearm="1.0" trigger="1" ds-label="dbName" triggeredUEI="uei.opennms.org/ABBCS/jdbc/MSSQL/DaysSinceLastBackedUp-trigger" rearmedUEI="uei.opennms.org/ABBCS/jdbc/MSSQL/DaysSinceLastBackedUp-rearm" filterOperator="OR" ds-name="dbLastBackedUp">
+         <resource-filter field="dbName">^(master|msdb)$</resource-filter>
+      </threshold>
+      <threshold description="Trigger an alert when the number of hour since transaction log backed up exceeds Threshold" type="high" ds-type="dbDatabaseSql" value="12.0" rearm="1.0" trigger="1" ds-label="dbName" triggeredUEI="uei.opennms.org/ABBCS/jdbc/MSSQL/HoursSinceLastBackedUp-trigger" rearmedUEI="uei.opennms.org/ABBCS/jdbc/MSSQL/HoursSinceLastBackedUp-rearm" filterOperator="OR" ds-name="dbLastBackedUpHrs"/>
+      <threshold description="Trigger an alert when the Buffer Cache Hit Ratio drops below Threshold" type="low" ds-type="node" value="70.0" rearm="71.0" trigger="12" ds-label="dbName" triggeredUEI="uei.opennms.org/ABBCS/jdbc/MSSQL/BufferCacheHitRatio-trigger" rearmedUEI="uei.opennms.org/ABBCS/jdbc/MSSQL/BufferCacheHitRatio-rearm" filterOperator="OR" ds-name="dbBufferCacheHit"/>
+      <threshold description="Trigger an alert when the daily NRT Analytic refresh job has hung" type="high" ds-type="node" value="0.9" rearm="0.1" trigger="1" ds-label="anlNRTFailedHung" triggeredUEI="uei.opennms.org/ABBCS/jdbc/MSSQL/DailyNRTAnalyticRefreshJobHung-trigger" rearmedUEI="uei.opennms.org/ABBCS/jdbc/MSSQL/DailyNRTAnalyticRefreshJobHung-rearm" filterOperator="OR" ds-name="anlNRTFailedHung">
+         <resource-filter field="anlNRTFailedHung">^(?!master$|msdb$|datamart$).*</resource-filter>
+      </threshold>
+      <threshold description="Trigger an alert when the daily NRT Analytic refresh job schedule is not working" type="low" ds-type="node" value="0.1" rearm="0.9" trigger="1" ds-label="anlScheduleNotWorking" triggeredUEI="uei.opennms.org/ABBCS/jdbc/MSSQL/DailyNRTAnalyticRefreshScheduleNotWorking-trigger" rearmedUEI="uei.opennms.org/ABBCS/jdbc/MSSQL/DailyNRTAnalyticRefreshScheduleNotWorking-rearm" filterOperator="OR" ds-name="anlScheduleNotWorking">
+         <resource-filter field="anlScheduleNotWorking">^(?!master$|msdb$|datamart$).*</resource-filter>
+      </threshold>
+      <threshold description="Trigger an alert when the daily NRT Analytic refresh job has load error" type="high" ds-type="node" value="0.9" rearm="0.1" trigger="1" ds-label="anlTableLoadError" triggeredUEI="uei.opennms.org/ABBCS/jdbc/MSSQL/DailyNRTAnalyticRefreshJobHasError-trigger" rearmedUEI="uei.opennms.org/ABBCS/jdbc/MSSQL/DailyNRTAnalyticRefreshJobHasError-rearm" filterOperator="OR" ds-name="anlTableLoadError">
+         <resource-filter field="anlTableLoadError">^(?!master$|msdb$|datamart$).*</resource-filter>
+      </threshold>
+      <threshold description="Trigger an alert when the daily Analytic refresh job has failed to complete" type="low" ds-type="node" value="0.1" rearm="0.9" trigger="1" ds-label="success" triggeredUEI="uei.opennms.org/ABBCS/jdbc/MSSQL/DailyAnalyticRefreshJobFailed-trigger" rearmedUEI="uei.opennms.org/ABBCS/jdbc/MSSQL/DailyAnalyticRefreshJobFailed-rearm" filterOperator="OR" ds-name="anlSuccess">
+         <resource-filter field="anlSuccess">^(?!master$|msdb$|datamart$).*</resource-filter>
+      </threshold>
+      <threshold description="Trigger an alert when the daily Analytic refresh job has run for more than 24 hours" type="high" ds-type="node" value="25.0" rearm="24.0" trigger="1" ds-label="anlLastStarted" triggeredUEI="uei.opennms.org/ABBCS/jdbc/MSSQL/DailyAnalyticRefreshJobRunmorethan24hrs-trigger" rearmedUEI="uei.opennms.org/ABBCS/jdbc/MSSQL/DailyAnalyticRefreshJobRunmorethan24hrs-rearm" filterOperator="OR" ds-name="anlLastStarted">
+         <resource-filter field="anlLastStarted">^(?!master$|msdb$|datamart$).*</resource-filter>
+      </threshold>
+	  <threshold description="Trigger an alert when the daily Analytic refresh job has been running more than 3 hours" type="high" ds-type="node" value="3.0" rearm="2.0" trigger="1" ds-label="anlFailedHung" triggeredUEI="uei.opennms.org/ABBCS/jdbc/MSSQL/DailyAnalyticRefreshJobHung-trigger" rearmedUEI="uei.opennms.org/ABBCS/jdbc/MSSQL/DailyAnalyticRefreshJobHung-rearm" filterOperator="OR" ds-name="anlFailedHung">
+         <resource-filter field="anlFailedHung">^(?!master$|msdb$|datamart$).*</resource-filter>
+      </threshold>
+   </group>
+   <group name="ABBCS-Oracle-DR" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <threshold description="Trigger an alert when the DR DB lag exceeds Threshold" type="high" ds-type="node" value="60.0" rearm="59.0" trigger="1" ds-label="dbName" triggeredUEI="uei.opennms.org/ABBCS/jdbc/oracle/DRlag-trigger" rearmedUEI="uei.opennms.org/ABBCS/jdbc/oracle/DRlag-rearm" filterOperator="OR" ds-name="dbDRlag"/>
+   </group>
+   <group name="ABBCS-Oracle" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <threshold description="Trigger an alert when the number of days since backed up exceeds Threshold" type="high" ds-type="node" value="2.0" rearm="1.9" trigger="1" ds-label="dbName" triggeredUEI="uei.opennms.org/ABBCS/jdbc/oracle/DaysSinceLastBackedUp-trigger" rearmedUEI="uei.opennms.org/ABBCS/jdbc/oracle/DaysSinceLastBackedUp-rearm" filterOperator="OR" ds-name="dbLastBackedUp"/>
+      <threshold description="Trigger an alert when the number of invalid database objects exceeds Threshold" type="high" ds-type="node" value="1.0" rearm="0.5" trigger="1" ds-label="dbName" triggeredUEI="uei.opennms.org/ABBCS/jdbc/oracle/InvalidObjects-trigger" rearmedUEI="uei.opennms.org/ABBCS/jdbc/oracle/InvalidObjects-rearm" filterOperator="OR" ds-name="dbInvalidObjects"/>
+      <threshold description="Trigger an alert when the bcache hit ratio below Threshold" type="low" ds-type="node" value="90.0" rearm="91.0" trigger="12" ds-label="dbName" triggeredUEI="uei.opennms.org/ABBCS/jdbc/oracle/BcacheHitRatio-trigger" rearmedUEI="uei.opennms.org/ABBCS/jdbc/oracle/BcacheHitRatio-rearm" filterOperator="OR" ds-name="dbBcacheHitRatio"/>
+      <threshold description="Trigger an alert when Force Logging not enabled" type="high" ds-type="node" value="1.0" rearm="0.0" trigger="2" ds-label="dbName" triggeredUEI="uei.opennms.org/ABBCS/jdbc/oracle/ForceLogging-trigger" rearmedUEI="uei.opennms.org/ABBCS/jdbc/oracle/ForceLogging-rearm" filterOperator="OR" ds-name="dbForceLogging"/>
+      <threshold description="Trigger an alert when the number of corrupt blocks exceeds 0" type="high" ds-type="node" value="1.0" rearm="0.5" trigger="2" ds-label="dbName" triggeredUEI="uei.opennms.org/ABBCS/jdbc/oracle/CorruptBlocks-trigger" rearmedUEI="uei.opennms.org/ABBCS/jdbc/oracle/CorruptBlocks-rearm" filterOperator="OR" ds-name="dbCorruptBlocks"/>
+      <threshold description="Trigger an alert when percent DB Temp space used exceeds Threshold" type="high" ds-type="node" value="80.0" rearm="79.0" trigger="2" ds-label="dbName" triggeredUEI="uei.opennms.org/ABBCS/jdbc/oracle/TempSpaceUsed-trigger" rearmedUEI="uei.opennms.org/ABBCS/jdbc/oracle/TempSpaceUsed-rearm" filterOperator="OR" ds-name="dbTempSpaceUsed"/>
+      <threshold description="Trigger an alert when percent Cursors used exceeds Threshold" type="high" ds-type="node" value="80.0" rearm="79.0" trigger="2" ds-label="dbName" triggeredUEI="uei.opennms.org/ABBCS/jdbc/oracle/CursorsUsed-trigger" rearmedUEI="uei.opennms.org/ABBCS/jdbc/oracle/CursorsUsed-rearm" filterOperator="OR" ds-name="dbCursorsUsed"/>
+      <threshold description="Trigger an alert when a tablespace exceeds 90%" type="high" ds-type="dbTableSpace" value="90.0" rearm="89.0" trigger="2" ds-label="dbTableSpaceName" triggeredUEI="uei.opennms.org/ABBCS/jdbc/oracle/TablespaceUsageHigh-trigger" rearmedUEI="uei.opennms.org/ABBCS/jdbc/oracle/TablespaceUsageHigh-rearm" filterOperator="OR" ds-name="dbTSpctUsed"/>
+   </group>
+   <group name="ABBCS-Oracle-1hr" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <threshold description="Trigger an alert when the number of days since backed up exceeds Threshold" type="high" ds-type="node" value="2.0" rearm="1.9" trigger="1" ds-label="dbName" triggeredUEI="uei.opennms.org/ABBCS/jdbc/oracle/DaysSinceLastBackedUp-trigger" rearmedUEI="uei.opennms.org/ABBCS/jdbc/oracle/DaysSinceLastBackedUp-rearm" filterOperator="OR" ds-name="dbLastBackedUp"/>
+      <threshold description="Trigger an alert when the number of invalid database objects exceeds Threshold" type="high" ds-type="node" value="1.0" rearm="0.5" trigger="1" ds-label="dbName" triggeredUEI="uei.opennms.org/ABBCS/jdbc/oracle/InvalidObjects-trigger" rearmedUEI="uei.opennms.org/ABBCS/jdbc/oracle/InvalidObjects-rearm" filterOperator="OR" ds-name="dbInvalidObjects"/>
+      <threshold description="Trigger an alert when the bcache hit ratio below Threshold" type="low" ds-type="node" value="90.0" rearm="91.0" trigger="12" ds-label="dbName" triggeredUEI="uei.opennms.org/ABBCS/jdbc/oracle/BcacheHitRatio-trigger" rearmedUEI="uei.opennms.org/ABBCS/jdbc/oracle/BcacheHitRatio-rearm" filterOperator="OR" ds-name="dbBcacheHitRatio"/>
+      <threshold description="Trigger an alert when Force Logging not enabled" type="high" ds-type="node" value="1.0" rearm="0.0" trigger="2" ds-label="dbName" triggeredUEI="uei.opennms.org/ABBCS/jdbc/oracle/ForceLogging-trigger" rearmedUEI="uei.opennms.org/ABBCS/jdbc/oracle/ForceLogging-rearm" filterOperator="OR" ds-name="dbForceLogging"/>
+      <threshold description="Trigger an alert when the number of corrupt blocks exceeds 0" type="high" ds-type="node" value="1.0" rearm="0.5" trigger="2" ds-label="dbName" triggeredUEI="uei.opennms.org/ABBCS/jdbc/oracle/CorruptBlocks-trigger" rearmedUEI="uei.opennms.org/ABBCS/jdbc/oracle/CorruptBlocks-rearm" filterOperator="OR" ds-name="dbCorruptBlocks"/>
+   </group>
+   <group name="ABBCS-wmi-thresholds" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <threshold description="Customization: Trigger an alert when the percentage of free disk space used on any disk reaches or goes below 20% for two measurement intervals (by default, five minutes each)" type="low" ds-type="wmiLogicalDisk" value="20.0" rearm="21.0" trigger="2" ds-label="wmiLDName" triggeredUEI="uei.opennms.org/ABBCS/lowdiskWarn-trigger" rearmedUEI="uei.opennms.org/ABBCS/lowdiskWarn-rearm" filterOperator="OR" ds-name="wmiLDPctFreeSpace">
+         <resource-filter field="wmiLDName">^\w\:$</resource-filter>
+      </threshold>
+      <threshold description="Customization: Trigger an alert when the percentage of free disk space used on any disk reaches or goes below 15% for two measurement intervals (by default, five minutes each)" type="low" ds-type="wmiLogicalDisk" value="15.0" rearm="16.0" trigger="2" ds-label="wmiLDName" triggeredUEI="uei.opennms.org/ABBCS/lowdiskMinor-trigger" rearmedUEI="uei.opennms.org/ABBCS/lowdiskMinor-rearm" filterOperator="OR" ds-name="wmiLDPctFreeSpace">
+         <resource-filter field="wmiLDName">^\w\:$</resource-filter>
+      </threshold>
+      <threshold description="Customization: Trigger an alert when the percentage of free disk space used on any disk reaches or goes below 10% for two measurement intervals (by default, five minutes each)" type="low" ds-type="wmiLogicalDisk" value="10.0" rearm="11.0" trigger="2" ds-label="wmiLDName" triggeredUEI="uei.opennms.org/ABBCS/lowdiskMajor-trigger" rearmedUEI="uei.opennms.org/ABBCS/lowdiskMajor-rearm" filterOperator="OR" ds-name="wmiLDPctFreeSpace">
+         <resource-filter field="wmiLDName">^\w\:$</resource-filter>
+      </threshold>
+      <threshold description="Customization: Trigger an alert when the percentage of free disk space used on any disk reaches or goes below 5% for two measurement intervals (by default, five minutes each)" type="low" ds-type="wmiLogicalDisk" value="5.0" rearm="6.0" trigger="2" ds-label="wmiLDName" triggeredUEI="uei.opennms.org/ABBCS/lowdiskCritical-trigger" rearmedUEI="uei.opennms.org/ABBCS/lowdiskCritical-rearm" filterOperator="OR" ds-name="wmiLDPctFreeSpace">
+         <resource-filter field="wmiLDName">^\w\:$</resource-filter>
+      </threshold>
+   </group>
+   <group name="wmi-thresholds" rrdRepository="/var/lib/opennms/rrd/snmp/">
+      <threshold description="Customization: Trigger an alert when the percentage of free disk space used on any disk reaches or goes below 10% for two measurement intervals (by default, five minutes each)" type="low" ds-type="wmiLogicalDisk" value="10.0" rearm="11.0" trigger="2" ds-label="wmiLDName" filterOperator="OR" ds-name="wmiLDPctFreeSpace">
+         <resource-filter field="wmiLDName">^\w\:$</resource-filter>
+      </threshold>
+   </group>
+   <group name="ABBCS-logmatch" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <threshold description="Trigger an alert for batch failures" type="high" ds-type="node" value="1.0" rearm="0.9" trigger="1" ds-label="logMatchName" triggeredUEI="uei.opennms.org/ABBCS/Batch/failure-crit" rearmedUEI="uei.opennms.org/ABBCS/Batch/failure-rearm" filterOperator="OR" ds-name="batchfailure"/>
+   </group>
+   <group name="ABBCS-EllipseBatch" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <threshold description="Ellipse Batch failure rate exceeded 10 failures in 15 minutes" type="high" ds-type="node" value="10.0" rearm="9.0" trigger="1" ds-label="batchfailures" triggeredUEI="uei.opennms.org/ABBCS/Batch/failure-crit" rearmedUEI="uei.opennms.org/ABBCS/Batch/failure-rearm" ds-name="batchfailures"/>
+      <expression description="Trigger an alert when Ellipse queue length exceeds threshold %qThreshold%" type="high" ds-type="node" value="0.0" rearm="-1.0" trigger="1" ds-label="batchcount" triggeredUEI="uei.opennms.org/ABBCS/EllipseQueue-trigger" rearmedUEI="uei.opennms.org/ABBCS/EllipseQueue-rearm" filterOperator="OR" expression="qThresholdExceeded - qTrigger"/>
+   </group>
+   <group name="ABBCS-EllipseOnline" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <expression description="CPU load is high on Ellipse Online Server.  Investigate Ellipse Java process." type="high" ds-type="node" value="1.0" rearm="0.9" trigger="6" ds-label="CPU Load" triggeredUEI="uei.opennms.org/ABBCS/Ellipse/OnlineCPUHigh-trigger" rearmedUEI="uei.opennms.org/ABBCS/OnlineCPUHigh-rearm" filterOperator="OR" expression="loadavg5 / 100.0"/>
+   </group>
+   <group name="ABBCS-EllipseEWS" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <expression description="CPU load is high on Ellipse EWS Server.  Investigate Ellipse Java process." type="high" ds-type="node" value="1.0" rearm="0.9" trigger="4" ds-label="CPU Load" triggeredUEI="uei.opennms.org/ABBCS/Ellipse/EWSCPUHighP4-trigger" rearmedUEI="uei.opennms.org/ABBCS/EWSCPUHighP4-rearm" filterOperator="OR" expression="loadavg5 / 100.0"/>
+      <expression description="CPU load is high on Ellipse EWS Server.  Investigate Ellipse Java process." type="high" ds-type="node" value="2.0" rearm="1.5" trigger="4" ds-label="CPU Load" triggeredUEI="uei.opennms.org/ABBCS/Ellipse/EWSCPUHighP3-trigger" rearmedUEI="uei.opennms.org/ABBCS/EWSCPUHighP3-rearm" filterOperator="OR" expression="loadavg5 / 100.0"/>
+      <expression description="CPU load is high on Ellipse EWS Server.  Investigate Ellipse Java process." type="high" ds-type="node" value="3.0" rearm="2.5" trigger="4" ds-label="CPU Load" triggeredUEI="uei.opennms.org/ABBCS/Ellipse/EWSCPUHighP2-trigger" rearmedUEI="uei.opennms.org/ABBCS/EWSCPUHighP2-rearm" filterOperator="OR" expression="loadavg5 / 100.0"/>
+      <expression description="CPU load is critical on Ellipse EWS Server.  Investigate Ellipse Java process." type="high" ds-type="node" value="4.0" rearm="3.5" trigger="4" ds-label="CPU Load" triggeredUEI="uei.opennms.org/ABBCS/Ellipse/EWSCPUHighP1-trigger" rearmedUEI="uei.opennms.org/ABBCS/EWSCPUHighP1-rearm" filterOperator="OR" expression="loadavg5 / 100.0"/>
+   </group>
+   <group name="ABBCS-URL-Ellipse-Login" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <threshold description="Ellipse Login failed to connect" type="low" ds-type="node" value="0.5" rearm="0.9" trigger="2" ds-label="Success" triggeredUEI="uei.opennms.org/ABBCS-Ellipse/login" rearmedUEI="uei.opennms.org/ABBCS-Ellipse/login-rearm" filterOperator="OR" ds-name="SUCCESS"/>
+   </group>
+   <group name="ABBCS-cpu-90" rrdRepository="/opt/opennms/share/rrd/snmp/">
+      <threshold description="Trigger an alert when CPU IO wait goes above 90% for two consecutive measurement intervals" type="high" ds-type="node" value="90.0" rearm="85.0" trigger="3" filterOperator="OR" ds-name="Node"/>
+   </group>
+</thresholding-config>

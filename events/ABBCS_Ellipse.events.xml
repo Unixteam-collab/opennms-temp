@@ -1,0 +1,218 @@
+<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+   <event>
+      <uei>uei.opennms.org/ABBCS/EIP-trigger</uei>
+      <event-label>ABBCS-defined EIP event uei.opennms.org/ABBCS/EIP-trigger</event-label>
+      <descr>EIP rowcount exceeded threshold for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">EIP rowcount exceeded threshold for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/EllipseQueue-trigger</uei>
+      <event-label>ABBCS-defined Batch event uei.opennms.org/ABBCS/EllipseQueue-trigger</event-label>
+      <descr>Batch Queue Length alert for %service%  %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">Batch Queue Length for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Warning</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/EllipseQueue-rearm</uei>
+      <event-label>ABBCS-defined threshold event uei.opennms.org/ABBCS/EllipseQueue-rearm</event-label>
+      <descr>Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">Threshold rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/Batch/failure-warn</uei>
+      <event-label>ABBCS-defined Batch event uei.opennms.org/ABBCS/Batch/failure-warn</event-label>
+      <descr>Batch Failure for %service%  %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">Batch failure for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Warning</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/Batch/failure-err</uei>
+      <event-label>ABBCS-defined Batch event uei.opennms.org/ABBCS/Batch/failure-err</event-label>
+      <descr>Batch Failure for %service%  %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">Batch failure for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/Batch/failure-crit</uei>
+      <event-label>ABBCS-defined Batch event uei.opennms.org/ABBCS/Batch/failure-crit</event-label>
+      <descr>Batch Failure for %service%  %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">Batch failure for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Critical</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/Batch/failure-rearm</uei>
+      <event-label>ABBCS-defined Batch event uei.opennms.org/ABBCS/Batch/failure-rearm</event-label>
+      <descr>Rearmed Batch Failure for %service%  %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">Batch failure rearmed for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Cleared</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/Batch/notrunning-warn</uei>
+      <event-label>ABBCS-defined Batch event uei.opennms.org/ABBCS/Batch/notrunning-warn</event-label>
+      <descr>Batch not started for %service%  %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">Batch not started for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Warning</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/Batch/notrunning-err</uei>
+      <event-label>ABBCS-defined Batch event uei.opennms.org/ABBCS/Batch/notrunning-err</event-label>
+      <descr>Batch not started for %service%  %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">Batch not started for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/Batch/notrunning-crit</uei>
+      <event-label>ABBCS-defined Batch event uei.opennms.org/ABBCS/Batch/notrunning-crit</event-label>
+      <descr>Batch not started for %service%  %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">Batch not started for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Critical</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/Ellipse/OnlineCPUHigh-trigger</uei>
+      <event-label>ABBCS-defined HIGH threshold event exceeded: uei.opennms.org/ABBCS/Ellipse/OnlineCPUHigh-trigger</event-label>
+      <descr>Online Ellipse Server is currently experiencing high CPU utilisation.
+            This can indicate an issue with the JVM requiring a restart of the JVM
+            This should be investigated to determine if JVM restart is required.
+            Service: %service% Datasource: %parm[ds]% Interface: %interface% parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">
+            High threshold exceeded for %service% datasource %parm[ds]% on interface
+            %interface%, parms: %parm[all]%
+        </logmsg>
+      <severity>Major</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/OnlineCPUHigh-rearm</uei>
+      <event-label>ABBCS-defined HIGH threshold event rearmed: uei.opennms.org/ABBCS/OnlineCPUHigh-rearm</event-label>
+      <descr>Online Ellipse Server high CPU utilisation has been rearmed.</descr>
+      <logmsg dest="logndisplay">
+            High threshold rearmed for %service% datasource %parm[ds]% on interface
+            %interface%, parms: %parm[all]%
+        </logmsg>
+      <severity>Cleared</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="2" clear-key="uei.opennms.org/ABBCS/Ellipse/OnlineCPUHigh-trigger:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/Ellipse/EWSCPUHighP4-trigger</uei>
+      <event-label>ABBCS-defined HIGH threshold event exceeded: uei.opennms.org/ABBCS/Ellipse/EWSCPUHighP4-trigger</event-label>
+      <descr>EWS Ellipse Server is currently experiencing high CPU utilisation.
+            This can indicate an issue with the JVM requiring a restart of the JVM
+            This should be investigated to determine if JVM restart is required.
+            Service: %service% Datasource: %parm[ds]% Interface: %interface% parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">
+            High threshold exceeded for %service% datasource %parm[ds]% on interface
+            %interface%, parms: %parm[all]%
+        </logmsg>
+      <severity>Warning</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/EWSCPUHighP4-rearm</uei>
+      <event-label>ABBCS-defined HIGH threshold event rearmed: uei.opennms.org/ABBCS/EWSCPUHighP4-rearm</event-label>
+      <descr>EWS Ellipse Server high CPU utilisation has been rearmed.</descr>
+      <logmsg dest="logndisplay">
+            High threshold rearmed for %service% datasource %parm[ds]% on interface
+            %interface%, parms: %parm[all]%
+        </logmsg>
+      <severity>Cleared</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="2" clear-key="uei.opennms.org/ABBCS/Ellipse/EWSCPUHighP4-trigger:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/Ellipse/EWSCPUHighP3-trigger</uei>
+      <event-label>ABBCS-defined HIGH threshold event exceeded: uei.opennms.org/ABBCS/Ellipse/EWSCPUHighP3-trigger</event-label>
+      <descr>EWS Ellipse Server is currently experiencing high CPU utilisation.
+            This can indicate an issue with the JVM requiring a restart of the JVM
+            This should be investigated to determine if JVM restart is required.
+            Service: %service% Datasource: %parm[ds]% Interface: %interface% parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">
+            High threshold exceeded for %service% datasource %parm[ds]% on interface
+            %interface%, parms: %parm[all]%
+        </logmsg>
+      <severity>Minor</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/EWSCPUHighP3-rearm</uei>
+      <event-label>ABBCS-defined HIGH threshold event rearmed: uei.opennms.org/ABBCS/EWSCPUHighP3-rearm</event-label>
+      <descr>EWS Ellipse Server high CPU utilisation has been rearmed.</descr>
+      <logmsg dest="logndisplay">
+            High threshold rearmed for %service% datasource %parm[ds]% on interface
+            %interface%, parms: %parm[all]%
+        </logmsg>
+      <severity>Cleared</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="2" clear-key="uei.opennms.org/ABBCS/Ellipse/EWSCPUHighP3-trigger:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/Ellipse/EWSCPUHighP2-trigger</uei>
+      <event-label>ABBCS-defined HIGH threshold event exceeded: uei.opennms.org/ABBCS/Ellipse/EWSCPUHighP2-trigger</event-label>
+      <descr>EWS Ellipse Server is currently experiencing high CPU utilisation.
+            This can indicate an issue with the JVM requiring a restart of the JVM
+            This should be investigated to determine if JVM restart is required.
+            Service: %service% Datasource: %parm[ds]% Interface: %interface% parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">
+            High threshold exceeded for %service% datasource %parm[ds]% on interface
+            %interface%, parms: %parm[all]%
+        </logmsg>
+      <severity>Major</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/EWSCPUHighP2-rearm</uei>
+      <event-label>ABBCS-defined HIGH threshold event rearmed: uei.opennms.org/ABBCS/EWSCPUHighP2-rearm</event-label>
+      <descr>EWS Ellipse Server high CPU utilisation has been rearmed.</descr>
+      <logmsg dest="logndisplay">
+            High threshold rearmed for %service% datasource %parm[ds]% on interface
+            %interface%, parms: %parm[all]%
+        </logmsg>
+      <severity>Cleared</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="2" clear-key="uei.opennms.org/ABBCS/Ellipse/EWSCPUHighP2-trigger:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/Ellipse/EWSCPUHighP1-trigger</uei>
+      <event-label>ABBCS-defined HIGH threshold event exceeded: uei.opennms.org/ABBCS/Ellipse/EWSCPUHighP1-trigger</event-label>
+      <descr>EWS Ellipse Server is currently experiencing high CPU utilisation.
+            This can indicate an issue with the JVM requiring a restart of the JVM
+            This should be investigated to determine if JVM restart is required.
+            Service: %service% Datasource: %parm[ds]% Interface: %interface% parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">
+            High threshold exceeded for %service% datasource %parm[ds]% on interface
+            %interface%, parms: %parm[all]%
+        </logmsg>
+      <severity>Critical</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/EWSCPUHighP1-rearm</uei>
+      <event-label>ABBCS-defined HIGH threshold event rearmed: uei.opennms.org/ABBCS/EWSCPUHighP1-rearm</event-label>
+      <descr>EWS Ellipse Server high CPU utilisation has been rearmed.</descr>
+      <logmsg dest="logndisplay">
+            High threshold rearmed for %service% datasource %parm[ds]% on interface
+            %interface%, parms: %parm[all]%
+        </logmsg>
+      <severity>Cleared</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="2" clear-key="uei.opennms.org/ABBCS/Ellipse/EWSCPUHighP1-trigger:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS-Ellipse/login</uei>
+      <event-label>ABBCS-defined LOW threshold event exceeded: uei.opennms.org/ABBCS-Ellipse/login</event-label>
+      <descr>URL check failed for %nodelabel%, parms: %parm[all]%</descr>
+      <logmsg dest="logndisplay">
+            Low threshold exceeded for %service% datasource %parm[ds]% on interface
+            %interface%, parms: %parm[all]%
+        </logmsg>
+      <severity>Warning</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS-Ellipse/login-rearm</uei>
+      <event-label>ABBCS-defined LOW threshold event rearmed: uei.opennms.org/ABBCS-Ellipse/login-rearm</event-label>
+      <descr>URL check for %nodelabel% successful</descr>
+      <logmsg dest="logndisplay">
+            URL check for %nodelabel% successfull on %interface%, parms: %parm[all]%
+        </logmsg>
+      <severity>Cleared</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="2" clear-key="uei.opennms.org/ABBCS-Ellipse/login:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" auto-clean="false"/>
+   </event>
+</events>

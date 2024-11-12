@@ -1,0 +1,10 @@
+<datacollection-group name="ABBCS-Azure">
+  <resourceType name="AzureMetric" label="Azure Metrics"
+   resourceLabel="${Metric}" >
+     <persistenceSelectorStrategy
+          class="org.opennms.netmgt.collection.support.PersistAllSelectorStrategy"/>
+     <storageStrategy
+          class="org.opennms.netmgt.collection.support.IndexStorageStrategy"/>
+  </resourceType>
+</datacollection-group>
+

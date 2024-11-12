@@ -1,0 +1,201 @@
+<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+   <event>
+      <mask>
+         <maskelement>
+            <mename>service</mename>
+            <mevalue>ABBCS-KernelMon</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/nodes/nodeLostService</uei>
+      <event-label>ABBCS-defined node event: ABBCS KernelMon</event-label>
+      <descr>&lt;p>Server requiring reboot due to kernel update: %parm[eventReason]%.</descr>
+      <logmsg dest="logndisplay">
+            Kernel reboot required for %nodelabel%: %parm[eventReason]%.
+        </logmsg>
+      <severity>Warning</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>service</mename>
+            <mevalue>RFINTEG-logcall</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/nodes/nodeLostService</uei>
+      <event-label>ABBCS-defined node event: ABBCS nodeLostService:RFINTEG-logcall</event-label>
+      <descr>&lt;p>A %service% outage was identified on interface
+            %interface% because of the following condition: %parm[eventReason]%.&lt;/p> &lt;p>
+            A new Outage record has been created and service level
+            availability calculations will be impacted until this outage is
+            resolved.&lt;/p></descr>
+      <logmsg dest="logndisplay">
+            %service% outage identified on interface %interface%.
+        </logmsg>
+      <severity>Critical</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>service</mename>
+            <mevalue>RFINTEG-logcall_fqdn</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/nodes/nodeLostService</uei>
+      <event-label>OpenNMS-defined node event: ABBCS nodeLostService: RFINTEG-logcall_fqdn</event-label>
+      <descr>&lt;p>A %service% outage was identified on interface
+            %interface% because of the following condition: %parm[eventReason]%.&lt;/p> &lt;p>
+            A new Outage record has been created and service level
+            availability calculations will be impacted until this outage is
+            resolved.&lt;/p></descr>
+      <logmsg dest="logndisplay">
+            %service% outage identified on interface %interface%.
+        </logmsg>
+      <severity>Critical</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>service</mename>
+            <mevalue>RFINTEG-logcall_prelim</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/nodes/nodeLostService</uei>
+      <event-label>OpenNMS-defined node event: ABBCS nodeLostService</event-label>
+      <descr>&lt;p>A %service% outage was identified on interface
+            %interface% because of the following condition: %parm[eventReason]%.&lt;/p> &lt;p>
+            A new Outage record has been created and service level
+            availability calculations will be impacted until this outage is
+            resolved.&lt;/p></descr>
+      <logmsg dest="logndisplay">
+            %service% outage identified on interface %interface%.
+        </logmsg>
+      <severity>Minor</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>service</mename>
+            <mevalue>RFINTEG-logcall_fqdn_prelim</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/nodes/nodeLostService</uei>
+      <event-label>OpenNMS-defined node event: ABBCS nodeLostService</event-label>
+      <descr>&lt;p>A %service% outage was identified on interface
+            %interface% because of the following condition: %parm[eventReason]%.&lt;/p> &lt;p>
+            A new Outage record has been created and service level
+            availability calculations will be impacted until this outage is
+            resolved.&lt;/p></descr>
+      <logmsg dest="logndisplay">
+            %service% outage identified on interface %interface%.
+        </logmsg>
+      <severity>Minor</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>service</mename>
+            <mevalue>ABBCS-VIPHttp</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/nodes/nodeLostService</uei>
+      <event-label>OpenNMS-defined node event: ABBCS nodeLostService</event-label>
+      <descr>&lt;p>A %service% outage was identified on interface
+            %interface% because of the following condition: %parm[eventReason]%.&lt;/p> &lt;p>
+            A new Outage record has been created and service level
+            availability calculations will be impacted until this outage is
+            resolved.&lt;/p></descr>
+      <logmsg dest="logndisplay">
+            %service% outage identified on interface %interface%.
+        </logmsg>
+      <severity>Critical</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>service</mename>
+            <mevalue>ABBCS-JbossManagement</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/nodes/nodeLostService</uei>
+      <event-label>OpenNMS-defined node event: ABBCS nodeLostService</event-label>
+      <descr>&lt;p>A %service% outage was identified on interface
+            %interface% because of the following condition: %parm[eventReason]%.&lt;/p> &lt;p>
+            A new Outage record has been created and service level
+            availability calculations will be impacted until this outage is
+            resolved.&lt;/p></descr>
+      <logmsg dest="logndisplay">
+            %service% outage identified on interface %interface%.
+        </logmsg>
+      <severity>Critical</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>service</mename>
+            <mevalue>ABBCS-EllipseHttp</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/nodes/nodeLostService</uei>
+      <event-label>OpenNMS-defined node event: ABBCS nodeLostService</event-label>
+      <descr>&lt;p>A %service% outage was identified on interface
+            %interface% because of the following condition: %parm[eventReason]%.&lt;/p> &lt;p>
+            A new Outage record has been created and service level
+            availability calculations will be impacted until this outage is
+            resolved.&lt;/p></descr>
+      <logmsg dest="logndisplay">
+            %service% outage identified on interface %interface%.
+        </logmsg>
+      <severity>Critical</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>service</mename>
+            <mevalue>ABBCS-AssetSuiteHttp</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/nodes/nodeLostService</uei>
+      <event-label>OpenNMS-defined node event: ABBCS nodeLostService</event-label>
+      <descr>&lt;p>A %service% outage was identified on interface
+            %interface% because of the following condition: %parm[eventReason]%.&lt;/p> &lt;p>
+            A new Outage record has been created and service level
+            availability calculations will be impacted until this outage is
+            resolved.&lt;/p></descr>
+      <logmsg dest="logndisplay">
+            %service% outage identified on interface %interface%.
+        </logmsg>
+      <severity>Critical</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%service%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/nodes/dataCollectionFailed</uei>
+      <event-label>OpenNMS-defined node event: ABBCS dataCollectionFailed</event-label>
+      <descr>&lt;p>%service% data collection on interface %interface%
+            failed because of the following condition: '%parm[reason]%'.&lt;/p></descr>
+      <logmsg dest="logndisplay">
+            %service% data collection on interface %interface% failed.
+        </logmsg>
+      <severity>Minor</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/nodes/dataCollectionSucceeded</uei>
+      <event-label>OpenNMS-defined node event: ABBCS dataCollectionSucceeded</event-label>
+      <descr>&lt;p>%service% data collection on interface %interface%
+            previously failed and has been restored.&lt;/p></descr>
+      <logmsg dest="logndisplay">
+            %service% data collection on interface %interface% previously
+            failed and has been restored.
+        </logmsg>
+      <severity>Normal</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%" alarm-type="2" clear-key="uei.opennms.org/nodes/dataCollectionFailed:%dpname%:%nodeid%" auto-clean="true"/>
+   </event>
+</events>

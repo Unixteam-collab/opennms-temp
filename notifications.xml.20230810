@@ -1,0 +1,2086 @@
+<notifications xmlns="http://xmlns.opennms.org/xsd/notifications">
+   <header>
+      <rev>1.2</rev>
+      <created>2020-02-27T08:25:43.272+10:00</created>
+      <mstation>localhost</mstation>
+   </header>
+   <notification name="ABBCS-EIP" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/EIP-trigger</uei>
+      <description>ABBCS-EIP rowcount exceeded threshold</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Ellipse&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='%parm[description]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: %parm[description]% </subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-Stethoscope" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/heartbeat-failure</uei>
+      <description>Notification when heartbeat is older than 15 minutes</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='Operating System'&#xd;
+RESOURCEID='Heartbeat'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='URGENT - MONITORING FROM %nodelabel% IS DOWN - ALERTS FOR THIS CUSTOMER WILL BE IMPACTED UNTIL THIS ISSUE IS RESOLVED&#xd;
+&#xd;
+Failed to receive heartbeat for OpenNMS server %nodelabel%. %parm[description]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: Heartbeat failure event for node %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCSTest" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/testevent</uei>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='%parm[category]%'&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='ABBCS Test event for %nodelabel%.&#xd;
+Please close&#xd;
+%parm[description]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+        </text-message>
+      <subject>Notice #%noticeid%: Test event for node %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCSEvent" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/event</uei>
+      <rule>(IPADDR != '0.0.0.0') </rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%parm[service]%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='%parm[category]%'&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Event raised for %nodelabel%.&#xd;
+%parm[message]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+        </text-message>
+      <subject>Notice #%noticeid%: Event for node %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCSElkEvent" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/elk/event</uei>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification) </rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%parm[service]%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='%parm[category]%'&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Event raised for %nodelabel%.&#xd;
+%parm[message]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+        </text-message>
+      <subject>Notice #%noticeid%: Event for node %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCSBackupEvent" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/backup/event</uei>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification) </rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%parm[backupnode]%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%parm[service]%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='%parm[group]%'&#xd;
+RESOURCEID='%parm[backupSpec]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Backup event raised by %nodelabel%.&#xd;
+%parm[message]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+        </text-message>
+      <subject>Notice #%noticeid%: Backup event raised by node %nodelabel% for %parm[backupnode]% in backup spec %parm[backupSpec]%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="interfaceDown" status="on" writeable="yes">
+      <uei>uei.opennms.org/nodes/interfaceDown</uei>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=%parm[ds]%&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='All services are down on interface %interfaceresolve% (%interface%) &#xd;
+on node %nodelabel%.  New Outage records have been created &#xd;
+and service level availability calculations will be impacted &#xd;
+until this outage is resolved.  '&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+        </text-message>
+      <subject>Notice #%noticeid%: %interfaceresolve% (%interface%) on node %nodelabel% down.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="nodeDown" status="on" writeable="yes">
+      <uei>uei.opennms.org/nodes/nodeDown</uei>
+      <rule>(IPADDR != '0.0.0.0') &amp; !(catincDatabases) &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='Operating System'&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='All services are down on node %nodelabel%.  New Outage records have &#xd;
+been created and service level availability calculations will &#xd;
+be impacted until this outage is resolved.  '&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+        </text-message>
+      <subject>Notice #%noticeid%: node %nodelabel% down.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="nodeDown" status="off" writeable="yes">
+      <uei>uei.opennms.org/nodes/nodeDown</uei>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincDatabases) &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+# DISABLED because this event raises too many DB down alerts.  This condition is detected more accurately&#xd;
+#          with server monitoring.  Please ensure server monitoring is correctly configured&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='Database'&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='All services are down on Database %nodelabel%.  New Outage records have &#xd;
+been created and service level availability calculations will &#xd;
+be impacted until this outage is resolved.  '&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+        </text-message>
+      <subject>Notice #%noticeid%: node %nodelabel% down.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-KernelMon" status="on" writeable="yes">
+      <uei>uei.opennms.org/nodes/nodeLostService</uei>
+      <description>Kernel reboot required</description>
+      <rule>(IPADDR IPLIKE *.*.*.*) &amp; (catincRFNotification) &amp;  (isABBCS-KernelMon )</rule>
+      <destinationPath>EventCapture5mDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=%service%&#xd;
+RESOURCEID='%service%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Server %nodelabel% has not been rebooted since kernel update. &#xd;
+%parm[eventReason]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+        </text-message>
+      <subject>Notice #%noticeid%: Kernel update requiring reboot on node %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="nodeLostService" status="on" writeable="yes">
+      <uei>uei.opennms.org/nodes/nodeLostService</uei>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification) &amp;  (!isABBCS-KernelMon )</rule>
+      <destinationPath>EventCapture5mDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=%service%&#xd;
+RESOURCEID='%service%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='The %service% poll on %nodelabel% - %interface% failed at %time%.  Reason: %parm[eventReason]% '&#xd;
+eventReason="%parm[eventReason]%"&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+        </text-message>
+      <subject>Notice #%noticeid%: %service% down on node %nodelabel% on %interfaceresolve% (%interface%).</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="nodeRegainedService" status="on" writeable="yes">
+      <uei>uei.opennms.org/nodes/nodeRegainedService</uei>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture5mDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=Cleared&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=%service%&#xd;
+RESOURCEID='%service%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='The %service% service poll on node %nodelabel% - interface %interfaceresolve% (%interface%) &#xd;
+restored at %time%. '&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+        </text-message>
+      <subject>Notice #%noticeid%: %service% restored on node %nodelabel% on %interfaceresolve% (%interface%).</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="nodeAdded" status="on" writeable="yes">
+      <uei>uei.opennms.org/nodes/nodeAdded</uei>
+      <rule>IPADDR != '0.0.0.0'</rule>
+      <destinationPath>Email-Admin</destinationPath>
+      <text-message>OpenNMS has discovered a new node named
+%parm[nodelabel]%. Please be advised.</text-message>
+      <subject>Notice #%noticeid%: %parm[nodelabel]% discovered.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="interfaceDeleted" status="on" writeable="yes">
+      <uei>uei.opennms.org/nodes/interfaceDeleted</uei>
+      <rule>IPADDR != '0.0.0.0'</rule>
+      <destinationPath>Email-Admin</destinationPath>
+      <text-message>Due to extended downtime or operator action, the interface %interfaceresolve% (%interface%)
+on node %nodelabel% has been deleted from OpenNMS's polling database.</text-message>
+      <subject>Notice #%noticeid%: [OpenNMS] %interfaceresolve% (%interface%) on node %nodelabel% deleted.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="High Threshold" status="on" writeable="yes">
+      <uei>uei.opennms.org/threshold/highThresholdExceeded</uei>
+      <description>A monitored device has hit a high threshold</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>Email-Admin</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=%parm[ds]%&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+MESSAGE='A Threshold has been exceeded on node: %nodelabel%, interface:%interface%. The parameter %parm[ds]% reached a value of %parm[value]% while the threshold is %parm[threshold]%. This alert will be rearmed when %parm[ds]% reaches %parm[rearm]%. %eventdescr% %parm[all]% '&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+        </text-message>
+      <subject>Notice #%noticeid%: High Threshold for %parm[ds]% on node %nodelabel%.</subject>
+      <numeric-message>Test</numeric-message>
+   </notification>
+   <notification name="Low Threshold" status="on" writeable="yes">
+      <uei>uei.opennms.org/threshold/lowThresholdExceeded</uei>
+      <description>A monitored device has hit a low threshold</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=%parm[ds]%&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Threshold has been exceeded on node: %nodelabel%, interface:%interface%. The parameter %parm[ds]% reached a value of %parm[value]% while the threshold is %parm[threshold]%. This alert will be rearmed when %parm[ds]% reaches %parm[rearm]%. %eventdescr%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: Low Threshold for %parm[ds]% on node %nodelabel%.</subject>
+   </notification>
+   <notification name="Low Threshold Rearmed" status="on" writeable="yes">
+      <uei>uei.opennms.org/threshold/lowThresholdRearmed</uei>
+      <description>A monitored device has recovered from a low threshold</description>
+      <rule>IPADDR != '0.0.0.0'</rule>
+      <destinationPath>Email-Admin</destinationPath>
+      <text-message>A Threshold has returned to normal on node: %nodelabel%, interface:%interface%. The parameter %parm[ds]% reached a value of %parm[value]% with a rearm threshold of %parm[rearm]%. This threshold for this alert was %parm[threshold]%.</text-message>
+      <subject>Notice #%noticeid%: Low Threshold Rearmed for %parm[ds]% on node %nodelabel%.</subject>
+   </notification>
+   <notification name="High Threshold Rearmed" status="on" writeable="yes">
+      <uei>uei.opennms.org/threshold/highThresholdRearmed</uei>
+      <description>A monitored device has recovered from a high threshold</description>
+      <rule>(IPADDR != '0.0.0.0')</rule>
+      <destinationPath>Email-Admin</destinationPath>
+      <text-message>A Threshold has returned to normal on node: %nodelabel%, interface:%interface%. The parameter %parm[ds]% reached a value of %parm[value]% with a rearm threshold of %parm[rearm]%. This threshold for this alert was %parm[threshold]%.</text-message>
+      <subject>Notice #%noticeid%: High Threshold Rearmed for %parm[ds]% on node %nodelabel%.</subject>
+   </notification>
+   <notification name="SNMP Minor" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/SNMP-minor</uei>
+      <description>%eventdescr%</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=%parm[ds]%&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='%parm[description]%: %nodelabel%, interface:%interface%.'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%:</subject>
+   </notification>
+   <notification name="SNMP Warn" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/SNMP-warn</uei>
+      <description>%eventdescr%</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=%parm[ds]%&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='%parm[description]%: %nodelabel%, interface:%interface%.'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%:</subject>
+   </notification>
+   <notification name="SNMP Major" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/SNMP-major</uei>
+      <description>%eventdescr%</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=%parm[ds]%&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='%parm[description]%: %nodelabel%, interface:%interface%.'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%:</subject>
+   </notification>
+   <notification name="SNMP Critical" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/SNMP-critical</uei>
+      <description>%eventdescr%</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=%parm[ds]%&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='%parm[description]%: %nodelabel%, interface:%interface%.'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%:</subject>
+   </notification>
+   <notification name="Catchall" status="off" writeable="yes">
+      <uei>MATCH-ANY-UEI</uei>
+      <description>Catchall</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=%parm[ds]%&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Generic Catchall: %nodelabel%, interface:%interface%.'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="Test_script" status="on" writeable="yes">
+      <uei>uei.opennms.org/generic/traps/EnterpriseDefault</uei>
+      <description>Test script</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&amp;#xd;&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=%parm[ds]%&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Trap Catchall: %nodelabel%, interface:%interface%.'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="Relative change exceeded" status="off" writeable="yes">
+      <uei>uei.opennms.org/threshold/relativeChangeExceeded</uei>
+      <description>Relative rate of change too high</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=%parm[ds]%&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='A monitored parameter has exceeded a relative rate of change on node: %nodelabel%, interface:%interface%. The parameter %parm[ds]% reached a value of %parm[value]%. previous value: %parm[previousValue]%. %parm[label]% %parm[description]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="Disk Threshold Exceeded - P4 Warning" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/highdiskP4-trigger</uei>
+      <description>A filesystem has hit a high threshold</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='%parm[ds]%'&#xd;
+RESOURCEID='%parm[resourceId]%:P4'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Filesystem %parm[label]% on %nodelabel% has reached %parm[value]% % which is over the threshold of %parm[threshold]%.  %fsPctUsed% This alert will be rearmed when %parm[ds]% reaches %parm[rearm]%. %parm[description]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: High Threshold for %parm[ds]% on node %nodelabel%.</subject>
+      <numeric-message>112-%noticeid%</numeric-message>
+   </notification>
+   <notification name="Disk Threshold Exceeded - Warning" status="off" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/highdiskWarn-trigger</uei>
+      <description>A filesystem has hit a high threshold</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification) &amp; (NOT catincJboss7)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='%parm[ds]%'&#xd;
+RESOURCEID='%parm[resourceId]%:WARNING'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Filesystem %parm[label]% on %nodelabel% has reached %parm[value]% % which is over the threshold of %parm[threshold]%.  This alert will be rearmed when %parm[ds]% reaches %parm[rearm]%. %parm[description]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: High Threshold for %parm[ds]% on node %nodelabel%.</subject>
+      <numeric-message>112-%noticeid%</numeric-message>
+   </notification>
+   <notification name="Disk Threshold Exceeded - JBoss Warning" status="off" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/highdiskWarn-trigger</uei>
+      <description>A filesystem has hit a high threshold</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification) &amp; (catincJboss7)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Ellipse&#xd;
+RESOURCEID='%parm[resourceId]%:WARNING'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Filesystem %parm[label]% on %nodelabel% has reached %parm[value]% % which is over the threshold of %parm[threshold]%.  This alert will be rearmed when %parm[ds]% reaches %parm[rearm]%. %parm[description]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: High Threshold for %parm[ds]% on node %nodelabel%.</subject>
+      <numeric-message>112-%noticeid%</numeric-message>
+   </notification>
+   <notification name="Disk Threshold Exceeded - P3 Minor" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/highdiskP3-trigger</uei>
+      <description>A filesystem has hit a high threshold</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='%parm[ds]%'&#xd;
+RESOURCEID='%parm[resourceId]%:P3'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Filesystem %parm[label]% on %nodelabel% has reached %parm[value]% % which is over the threshold of %parm[threshold]%.  %fsPctUsed% This alert will be rearmed when %parm[ds]% reaches %parm[rearm]%. %parm[description]%' &#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: High Threshold for %parm[ds]% on node %nodelabel%.</subject>
+      <numeric-message>112-%noticeid%</numeric-message>
+   </notification>
+   <notification name="Disk Threshold Exceeded - Minor" status="off" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/highdiskMinor-trigger</uei>
+      <description>A filesystem has hit a high threshold</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification) &amp; (NOT catincJboss7)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='%parm[ds]%'&#xd;
+RESOURCEID='%parm[resourceId]%:MINOR'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Filesystem %parm[label]% on %nodelabel% has reached %parm[value]% % which is over the threshold of %parm[threshold]%.  This alert will be rearmed when %parm[ds]% reaches %parm[rearm]%. %parm[description]%' &#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: High Threshold for %parm[ds]% on node %nodelabel%.</subject>
+      <numeric-message>112-%noticeid%</numeric-message>
+   </notification>
+   <notification name="Disk Threshold Exceeded - Jboss Minor" status="off" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/highdiskMinor-trigger</uei>
+      <description>A filesystem has hit a high threshold</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification) &amp; (catincJboss7)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Ellipse&#xd;
+RESOURCEID='%parm[resourceId]%:MINOR'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Filesystem %parm[label]% on %nodelabel% has reached %parm[value]% % which is over the threshold of %parm[threshold]%.  This alert will be rearmed when %parm[ds]% reaches %parm[rearm]%. %parm[description]%' &#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: High Threshold for %parm[ds]% on node %nodelabel%.</subject>
+      <numeric-message>112-%noticeid%</numeric-message>
+   </notification>
+   <notification name="Disk Threshold Exceeded - P2 Major" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/highdiskP2-trigger</uei>
+      <description>A filesystem has hit a high threshold</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='%parm[ds]%'&#xd;
+RESOURCEID='%parm[resourceId]%:P2'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Filesystem %parm[label]% on %nodelabel% has reached %parm[value]% % which is over the threshold of %parm[threshold]%.  %fsPctUsed% This alert will be rearmed when %parm[ds]% reaches %parm[rearm]%. %parm[description]%' &#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: High Threshold for %parm[ds]% on node %nodelabel%.</subject>
+      <numeric-message>112-%noticeid%</numeric-message>
+   </notification>
+   <notification name="Disk Threshold Exceeded - Major" status="off" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/highdiskMajor-trigger</uei>
+      <description>A filesystem has hit a high threshold</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification) &amp; (NOT catincJboss7)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='%parm[ds]%'&#xd;
+RESOURCEID='%parm[resourceId]%:MAJOR'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Filesystem %parm[label]% on %nodelabel% has reached %parm[value]% % which is over the threshold of %parm[threshold]%.  This alert will be rearmed when %parm[ds]% reaches %parm[rearm]%. %parm[description]%' &#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: High Threshold for %parm[ds]% on node %nodelabel%.</subject>
+      <numeric-message>112-%noticeid%</numeric-message>
+   </notification>
+   <notification name="Disk Threshold Exceeded - Jboss Major" status="off" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/highdiskMajor-trigger</uei>
+      <description>A filesystem has hit a high threshold</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification) &amp; (catincJboss7)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Ellipse&#xd;
+RESOURCEID='%parm[resourceId]%:MAJOR'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Filesystem %parm[label]% on %nodelabel% has reached %parm[value]% % which is over the threshold of %parm[threshold]%.  This alert will be rearmed when %parm[ds]% reaches %parm[rearm]%. %parm[description]%' &#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: High Threshold for %parm[ds]% on node %nodelabel%.</subject>
+      <numeric-message>112-%noticeid%</numeric-message>
+   </notification>
+   <notification name="Disk Threshold Exceeded - P1 Critical" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/highdiskP1-trigger</uei>
+      <description>A filesystem has hit a high threshold</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='%parm[ds]%'&#xd;
+RESOURCEID='%parm[resourceId]%:P1'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Filesystem %parm[label]% on %nodelabel% has reached %parm[value]% % which is over the threshold of %parm[threshold]%.  %fsPctUsed% This alert will be rearmed when %parm[ds]% reaches %parm[rearm]%. %parm[description]%' &#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: High Threshold for %parm[ds]% on node %nodelabel%.</subject>
+      <numeric-message>112-%noticeid%</numeric-message>
+   </notification>
+   <notification name="Disk Threshold Exceeded - Critical" status="off" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/highdiskCritical-trigger</uei>
+      <description>A filesystem has hit a high threshold</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification) &amp; (NOT catincJboss7)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='%parm[ds]%'&#xd;
+RESOURCEID='%parm[resourceId]%:CRITICAL'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Filesystem %parm[label]% on %nodelabel% has reached %parm[value]% % which is over the threshold of %parm[threshold]%.  This alert will be rearmed when %parm[ds]% reaches %parm[rearm]%. %parm[description]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: High Threshold for %parm[ds]% on node %nodelabel%.</subject>
+      <numeric-message>112-%noticeid%</numeric-message>
+   </notification>
+   <notification name="Disk Threshold Exceeded - Jboss Critical" status="off" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/highdiskCritical-trigger</uei>
+      <description>A filesystem has hit a high threshold</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification) &amp; (catincJboss7)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Ellipse&#xd;
+RESOURCEID='%parm[resourceId]%:CRITICAL'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Filesystem %parm[label]% on %nodelabel% has reached %parm[value]% % which is over the threshold of %parm[threshold]%.  This alert will be rearmed when %parm[ds]% reaches %parm[rearm]%. %parm[description]%' &#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: High Threshold for %parm[ds]% on node %nodelabel%.</subject>
+      <numeric-message>112-%noticeid%</numeric-message>
+   </notification>
+   <notification name="Disk Threshold Warning P4  Rearmed" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/highdiskP4-rearm</uei>
+      <description>A monitored device has recovered from a high threshold</description>
+      <rule>(IPADDR != '0.0.0.0')</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Ellipse&#xd;
+RESOURCEID='%parm[resourceId]%:P4'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Filesystem %parm[label]% on %nodelabel% has returned to normal' &#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: High Threshold Rearmed for %parm[ds]% on node %nodelabel%.</subject>
+   </notification>
+   <notification name="Disk Threshold Minor P3 Rearmed" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/highdiskP3-rearm</uei>
+      <description>A monitored device has recovered from a high threshold</description>
+      <rule>(IPADDR != '0.0.0.0')</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Ellipse&#xd;
+RESOURCEID='%parm[resourceId]%:P3'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Filesystem %parm[label]% on %nodelabel% has returned to below Minor threshold.'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: High Threshold Rearmed for %parm[ds]% on node %nodelabel%.</subject>
+   </notification>
+   <notification name="Disk Threshold Major P2 Rearmed" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/highdiskP2-rearm</uei>
+      <description>A monitored device has recovered from a high threshold</description>
+      <rule>(IPADDR != '0.0.0.0')</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Ellipse&#xd;
+RESOURCEID='%parm[resourceId]%:P2'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Filesystem %parm[label]% on %nodelabel% has returned to below Major threshold.'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: High Threshold Rearmed for %parm[ds]% on node %nodelabel%.</subject>
+   </notification>
+   <notification name="Disk Threshold Critical P1 Rearmed" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/highdiskP1-rearm</uei>
+      <description>A monitored device has recovered from a high threshold</description>
+      <rule>(IPADDR != '0.0.0.0')</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Ellipse&#xd;
+RESOURCEID='%parm[resourceId]%:P1'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Filesystem %parm[label]% on %nodelabel% has returned to below Critical threshold.'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: High Threshold Rearmed for %parm[ds]% on node %nodelabel%.</subject>
+   </notification>
+   <notification name="Disk Threshold Warning Rearmed" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/highdiskWarn-rearm</uei>
+      <description>A monitored device has recovered from a high threshold</description>
+      <rule>(IPADDR != '0.0.0.0')</rule>
+      <destinationPath>Email-Admin</destinationPath>
+      <text-message>A Threshold has returned to normal on node: %nodelabel%, interface:%interface%. The parameter %parm[ds]% reached a value of %parm[value]% with a rearm threshold of %parm[rearm]%. This threshold for this alert was %parm[threshold]%.</text-message>
+      <subject>Notice #%noticeid%: High Threshold Rearmed for %parm[ds]% on node %nodelabel%.</subject>
+   </notification>
+   <notification name="Disk Threshold Minor Rearmed" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/highdiskMinor-rearm</uei>
+      <description>A monitored device has recovered from a high threshold</description>
+      <rule>(IPADDR != '0.0.0.0')</rule>
+      <destinationPath>Email-Admin</destinationPath>
+      <text-message>A Threshold has returned to normal on node: %nodelabel%, interface:%interface%. The parameter %parm[ds]% reached a value of %parm[value]% with a rearm threshold of %parm[rearm]%. This threshold for this alert was %parm[threshold]%.</text-message>
+      <subject>Notice #%noticeid%: High Threshold Rearmed for %parm[ds]% on node %nodelabel%.</subject>
+   </notification>
+   <notification name="Disk Threshold Major Rearmed" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/highdiskMajor-rearm</uei>
+      <description>A monitored device has recovered from a high threshold</description>
+      <rule>(IPADDR != '0.0.0.0')</rule>
+      <destinationPath>Email-Admin</destinationPath>
+      <text-message>A Threshold has returned to normal on node: %nodelabel%, interface:%interface%. The parameter %parm[ds]% reached a value of %parm[value]% with a rearm threshold of %parm[rearm]%. This threshold for this alert was %parm[threshold]%.</text-message>
+      <subject>Notice #%noticeid%: High Threshold Rearmed for %parm[ds]% on node %nodelabel%.</subject>
+   </notification>
+   <notification name="Disk Threshold Critical Rearmed" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/highdiskCritical-rearm</uei>
+      <description>A monitored device has recovered from a high threshold</description>
+      <rule>(IPADDR != '0.0.0.0')</rule>
+      <destinationPath>Email-Admin</destinationPath>
+      <text-message>A Threshold has returned to normal on node: %nodelabel%, interface:%interface%. The parameter %parm[ds]% reached a value of %parm[value]% with a rearm threshold of %parm[rearm]%. This threshold for this alert was %parm[threshold]%.</text-message>
+      <subject>Notice #%noticeid%: High Threshold Rearmed for %parm[ds]% on node %nodelabel%.</subject>
+   </notification>
+   <notification name="Disk Threshold Exceeded - Warning" status="off" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/lowdiskWarn-trigger</uei>
+      <description>A filesystem has hit a low threshold</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='%parm[ds]%'&#xd;
+RESOURCEID='%parm[resourceId]%:WARNING'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Filesystem %parm[label]% on %nodelabel% has reached %parm[value]% % which is below the threshold of %parm[threshold]%.  This alert will be rearmed when %parm[ds]% reaches %parm[rearm]%. %parm[description]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: Low Threshold for %parm[ds]% on node %nodelabel%.</subject>
+      <numeric-message>112-%noticeid%</numeric-message>
+   </notification>
+   <notification name="Disk Threshold Exceeded - Minor" status="off" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/lowdiskMinor-trigger</uei>
+      <description>A filesystem has hit a low threshold</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='%parm[ds]%'&#xd;
+RESOURCEID='%parm[resourceId]%:MINOR'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Filesystem %parm[label]% on %nodelabel% has reached %parm[value]% % which is below the threshold of %parm[threshold]%.  This alert will be rearmed when %parm[ds]% reaches %parm[rearm]%. %parm[description]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: Low Threshold for %parm[ds]% on node %nodelabel%.</subject>
+      <numeric-message>112-%noticeid%</numeric-message>
+   </notification>
+   <notification name="Disk Threshold Exceeded - Major" status="off" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/lowdiskMajor-trigger</uei>
+      <description>A filesystem has hit a low threshold</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='%parm[ds]%'&#xd;
+RESOURCEID='%parm[resourceId]%:MAJOR'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Filesystem %parm[label]% on %nodelabel% has reached %parm[value]% % which is below the threshold of %parm[threshold]%.  This alert will be rearmed when %parm[ds]% reaches %parm[rearm]%. %parm[description]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: Low Threshold for %parm[ds]% on node %nodelabel%.</subject>
+      <numeric-message>112-%noticeid%</numeric-message>
+   </notification>
+   <notification name="Disk Threshold Exceeded - Major" status="off" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/lowdiskCritical-trigger</uei>
+      <description>A filesystem has hit a low threshold</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='%parm[ds]%'&#xd;
+RESOURCEID='%parm[resourceId]%:CRITICAL'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Filesystem %parm[label]% on %nodelabel% has reached %parm[value]% % which is below the threshold of %parm[threshold]%.  This alert will be rearmed when %parm[ds]% reaches %parm[rearm]%. %parm[description]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: Low Threshold for %parm[ds]% on node %nodelabel%.</subject>
+      <numeric-message>112-%noticeid%</numeric-message>
+   </notification>
+   <notification name="High CPU Load" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/highcpuload-trigger</uei>
+      <description>CPU load average on server has exceeded %parm[threshold] for %parm[trigger]% consecutive checks</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=%parm[ds]%&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='CPU load average on %nodelabel% is %parm[value]% which is over the threshold of %parm[threshold]%.  This alert will be rearmed when %parm[ds]% reaches %parm[rearm]%. %parm[description]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: High Threshold for %parm[ds]% on node %nodelabel%.</subject>
+      <numeric-message>112-%noticeid%</numeric-message>
+   </notification>
+   <notification name="High CPU Load Rearmed" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/highcpuload-rearm</uei>
+      <description>A monitored device has recovered from a high threshold</description>
+      <rule>(IPADDR != '0.0.0.0')</rule>
+      <destinationPath>Email-Admin</destinationPath>
+      <text-message>A Threshold has returned to normal on node: %nodelabel%, interface:%interface%. The parameter %parm[ds]% reached a value of %parm[value]% with a rearm threshold of %parm[rearm]%. This threshold for this alert was %parm[threshold]%.</text-message>
+      <subject>Notice #%noticeid%: High Threshold Rearmed for %parm[ds]% on node %nodelabel%.</subject>
+   </notification>
+   <notification name="High swap utilisation" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/highswap-trigger</uei>
+      <description>swap utilisation exceeded threshold</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=%parm[ds]%&#xd;
+RESOURCEID='SWAP'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='SWAP utilisation on %nodelabel% is %parm[value]% which is below the threshold of %parm[threshold]%.  This alert will be rearmed when %parm[ds]% reaches %parm[rearm]%. %parm[description]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: Low Threshold for %parm[ds]% on node %nodelabel%.</subject>
+      <numeric-message>112-%noticeid%</numeric-message>
+   </notification>
+   <notification name="High CPU Load Rearmed" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/highswap-rearm</uei>
+      <description>A monitored device has recovered from a high threshold</description>
+      <rule>(IPADDR != '0.0.0.0')</rule>
+      <destinationPath>Email-Admin</destinationPath>
+      <text-message>A Threshold has returned to normal on node: %nodelabel%, interface:%interface%. The parameter %parm[ds]% reached a value of %parm[value]% with a rearm threshold of %parm[rearm]%. This threshold for this alert was %parm[threshold]%.</text-message>
+      <subject>Notice #%noticeid%: Low Threshold Rearmed for %parm[ds]% on node %nodelabel%.</subject>
+   </notification>
+   <notification name="SyslogEvent" status="on" writeable="yes">
+      <uei>uei.opennms.org/syslogd/auth/Warning</uei>
+      <description>SyslogEvent</description>
+      <rule>(IPADDR IPLIKE *.*.*.*)</rule>
+      <destinationPath>Email-Admin</destinationPath>
+      <text-message>Test</text-message>
+      <subject>Notice #%noticeid%</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-Oracle-event-warning" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/oracle/Warning</uei>
+      <description>Oracle event - Warning</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%:%parm[ds]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Oracle database %nodelabel% %parm[description]%, value: %parm[value]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: Oracle database %nodelabel% %parm[value]% </subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-Oracle-event-minor" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/oracle/Minor</uei>
+      <description>Oracle event - Warning</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%:%parm[ds]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Oracle database %nodelabel% %parm[description]%, value: %parm[value]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: Oracle database %nodelabel% %parm[value]% </subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-Oracle-event-error" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/oracle/Error</uei>
+      <description>Oracle event - Error</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%:%parm[ds]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Oracle database %nodelabel% %parm[description]%, value: %parm[value]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: Oracle database %nodelabel% %parm[value]% </subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-Oracle-event-major" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/oracle/Major</uei>
+      <description>Oracle event - Major</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%:%parm[ds]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Oracle database %nodelabel% %parm[description]%, %parm[value]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: Oracle database %nodelabel% %parm[value]% </subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-Oracle-event-critical" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/oracle/Critical</uei>
+      <description>Oracle Syslog event - Critical</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%:%parm[ds]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Oracle database %nodelabel% %parm[description]%, value: %parm[value]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: Oracle database %nodelabel% %parm[value]% </subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-Oracle-syslog-warning" status="on" writeable="yes">
+      <uei>uei.opennms.org/vendor/ABBCS/oracle/Warning</uei>
+      <description>Oracle Syslog event - Warning</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='%parm[MESSAGE]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: Warning Oracle syslog event %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-Oracle-syslog-minor" status="on" writeable="yes">
+      <uei>uei.opennms.org/vendor/ABBCS/oracle/Minor</uei>
+      <description>Oracle Syslog event - Warning</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='%parm[MESSAGE]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: Warning Oracle syslog event %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-Oracle-syslog-error" status="on" writeable="yes">
+      <uei>uei.opennms.org/vendor/ABBCS/oracle/Error</uei>
+      <description>Oracle Syslog event - Error</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='%parm[MESSAGE]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: Error Oracle syslog event %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-Oracle-syslog-critical" status="on" writeable="yes">
+      <uei>uei.opennms.org/vendor/ABBCS/oracle/Critical</uei>
+      <description>Oracle Syslog event - Critical</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='%parm[MESSAGE]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: Critical  Oracle syslog event %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-jdbc-MSSQL-DaysSinceLastBackedUp" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/jdbc/MSSQL/DaysSinceLastBackedUp-trigger</uei>
+      <description>ABBCS-MSSQL Days since last backed up</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Database %parm[label]% on %nodelabel% has not been backed up in %parm[value]% days.'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: MSSQL database %parm[label]% on %nodelabel% not backed up in %parm[value]% days.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-jdbc-MSSQL-HoursSinceLastBackedUp" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/jdbc/MSSQL/HoursSinceLastBackedUp-trigger</uei>
+      <description>ABBCS-MSSQL Hours since last Transaction Log back up</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Database %parm[label]% on %nodelabel% has not had a transaction log backup in %parm[value]% hours.'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: MSSQL database %parm[label]% on %nodelabel% no transaction log backup in %parm[value]% hours.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-jdbc-MSSQL-bcacheHitRatio" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/jdbc/MSSQL/BufferCacheHitRatio-trigger</uei>
+      <description>ABBCS-MSSQL BCache Hitratio</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Database on %nodelabel% has buffer cache hit ratio below threshold.'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: MSSQL database on %nodelabel% has buffer cache hit ratio below threshold.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+      <notification name="ABBCS-jdbc-MSSQL-DailyAnalyticRefreshJobFailed" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/jdbc/MSSQL/DailyAnalyticRefreshJobFailed-trigger</uei>
+      <description>ABBCS-MSSQL Daily Analytic refresh job failed to complete</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Ellipse&#xd;
+RESOURCEID='DailyAnalyticRefreshJobFailed'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Database %nodelabel% failed to complete the daily refresh job, please check.'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: MSSQL database %nodelabel% failed to complete the daily refresh job, please check.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+      <notification name="ABBCS-jdbc-MSSQL-DailyAnalyticRefreshJobRunmorethan24hrs" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/jdbc/MSSQL/DailyAnalyticRefreshJobRunmorethan24hrs-trigger</uei>
+      <description>ABBCS-MSSQL Daily Analytic refresh job did not start as scheduled since the last 24 hours</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Ellipse&#xd;
+RESOURCEID='DailyAnalyticRefreshJobRunmorethan24hrs'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Database %nodelabel% daily Analytic refresh job did not start as scheduled since the last 24 hours, the last run was %parm[value]% hours ago.'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: MSSQL database %nodelabel% daily Analytic refresh job did not start as scheduled since the last 24 hours, the last run was %parm[value]% hours ago.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+      <notification name="ABBCS-jdbc-MSSQL-DailyNRTAnalyticRefreshJobHung" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/jdbc/MSSQL/DailyNRTAnalyticRefreshJobHung-trigger</uei>
+      <description>ABBCS-MSSQL Daily NRT Analytic refresh job has hung</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Ellipse&#xd;
+RESOURCEID='DailyNRTAnalyticRefreshJobHung'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Database %nodelabel% daily NRT Analytic refresh job has hung, please check.'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: MSSQL database %nodelabel% daily NRT Analytic refresh job has hung</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+      <notification name="ABBCS-jdbc-MSSQL-DailyNRTAnalyticRefreshScheduleNotWorking" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/jdbc/MSSQL/DailyNRTAnalyticRefreshScheduleNotWorking-trigger</uei>
+      <description>ABBCS-MSSQL Daily NRT Analytic refresh job schedule is not working</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Ellipse&#xd;
+RESOURCEID='DailyNRTAnalyticRefreshScheduleNotWorking'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Database %nodelabel% daily NRT Analytic refresh job schedule is not working, please check.'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: MSSQL database %nodelabel% daily NRT Analytic refresh job schedule is not working</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+      <notification name="ABBCS-jdbc-MSSQL-DailyNRTAnalyticRefreshJobHasError" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/jdbc/MSSQL/DailyNRTAnalyticRefreshJobHasError-trigger</uei>
+      <description>ABBCS-MSSQL Daily NRT Analytic refresh job has error</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Ellipse&#xd;
+RESOURCEID='DailyNRTAnalyticRefreshJobHasError'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Database %nodelabel% daily NRT Analytic refresh job has errors, please check.'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: MSSQL database %nodelabel% daily NRT Analytic refresh job has error</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-jdbc-Oracle-DaysSinceLastBackedUp" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/DaysSinceLastBackedUp-trigger</uei>
+      <description>ABBCS-Oracle Days since last backed up</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%:%parm[ds]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Database %parm[label]% on %nodelabel% has not been backed up in %parm[value]% days.'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: Oracle database %parm[label]% on %nodelabel% not backed up in %parm[value]% days.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-jdbc-Oracle-DRlag" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/DRlag-trigger</uei>
+      <description>ABBCS-Oracle-DR DR DB minutes lag</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%:%parm[ds]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='DR Database %nodelabel% has lag of %parm[value]% minutes.'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: Oracle DR database %nodelabel% has lag of %parm[value]% minutes.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-jdbc-Oracle-AlertLog" status="on" writeable="yes">
+      <uei>uei.opennms.org/vendor/ABBCS/oracle/Major</uei>
+      <description>ABBCS-Oracle-AlertLog</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%:%parm[ds]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Oracle database %nodelabel% Alert Log %parm[value]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: Oracle database %nodelabel% Alert Log %parm[value]% </subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-jdbc-Oracle-InvalidObjects" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/InvalidObjects-trigger</uei>
+      <description>ABBCS-Oracle Invalid Objects</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%:%parm[ds]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Database on %nodelabel% has %parm[value]% invalid Objects above threshold.'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: Oracle database on %nodelabel% has %parm[value]% invalid objects above threshold.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-jdbc-Oracle-bcacheHitRatio" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/BcacheHitRatio-trigger</uei>
+      <description>ABBCS-Oracle BCache Hitratio</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%:%parm[ds]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Database on %nodelabel% has bcache hit ratio below threshold.'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: Oracle database on %nodelabel% has bcache hit ratio below threshold.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-jdbc-Oracle-ForceLogging" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/ForceLogging-trigger</uei>
+      <description>ABBCS-Oracle Force Logging</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%:%parm[ds]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Database on %nodelabel% has %parm[value]% Force Logging.'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: Oracle database on %nodelabel% has %parm[value]% Forced Logging.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-jdbc-Oracle-CorruptBlocks" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/CorruptBlocks-trigger</uei>
+      <description>ABBCS-Oracle Forced Logging</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%:%parm[ds]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Database on %nodelabel% has %parm[value]% Corrupt Blocks.' &#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: Oracle database on %nodelabel% has %parm[value]% Corrupt Blocks.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-jdbc-Oracle-TempSpaceUsed" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/TempSpaceUsed-trigger</uei>
+      <description>ABBCS-Oracle Temp Space Used</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%:%parm[ds]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Database on %nodelabel% has %parm[value]% percent Temp Space Used.' &#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: Oracle database on %nodelabel% has %parm[value]% percent Temp Space Used.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-jdbc-Oracle-CursorsUsed" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/CursorsUsed-trigger</uei>
+      <description>ABBCS-Oracle Cursors Used</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%:%parm[ds]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Database on %nodelabel% has %parm[value]% percent Cursors Used.'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: Oracle database on %nodelabel% has %parm[value]% percent Cursors Used.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-jdbc-Oracle-TablespaceUsageHigh" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/jdbc/oracle/TablespaceUsageHigh-trigger</uei>
+      <description>ABBCS-Oracle Forced Logging</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%:%parm[ds]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Tablespace %parm[label]% utilisation has reached %parm[value]% % which is over the threshold of %parm[threshold]%. This alert will be rearmed when %parm[ds]% reaches %parm[rearm]%. %parm[description]%' &#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: High Threshold for %parm[ds]% on node %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-Ellipse-Batchfailure-warn" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/Batch/failure-warn</uei>
+      <description>ABBCS-Ellipse-Batchfailure-warn</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Ellipse&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='%parm[description]% on %nodelabel% program=&quot;%parm[resourceId]%&quot;'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: Batch Failure for %parm[resourceId]% on node %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-Ellipse-Batchfailure-err" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/Batch/failure-err</uei>
+      <description>ABBCS-Ellipse-Batchfailure-err</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Ellipse&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='%parm[description]% on %nodelabel% program=&quot;%parm[resourceId]%&quot;'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: Batch Failure for %parm[resourceId]% on node %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-Ellipse-Batchfailure-crit" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/Batch/failure-crit</uei>
+      <description>ABBCS-Ellipse-Batchfailure-crit</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCaptureNoDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Ellipse&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='%parm[description]% on %nodelabel% program=&quot;%parm[resourceId]%&quot;'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: Batch Failure for %parm[resourceId]% on node %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-MSSQL-blocker-warn" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/MSSQL/blocker-warn</uei>
+      <description>ABBCS-MSSQL-blocker-warn</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='%parm[description]% on %nodelabel%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: MSSQL Blocking process for %parm[resourceId]% on node %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-MSSQL-blocker-err" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/MSSQL/blocker-err</uei>
+      <description>ABBCS-MSSQL-blocker-err</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='%parm[description]% on %nodelabel%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+       </text-message>
+      <subject>Notice #%noticeid%: MSSQL Blocking process for %parm[resourceId]% on node %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-MSSQL-blocker-crit" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/MSSQL/blocker-crit</uei>
+      <description>ABBCS-MSSQL-blocker-crit</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='%parm[description]% on %nodelabel%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: MSSQL Blocking process for %parm[resourceId]% on node %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-MSSQL-replication" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/MSSQL/replication-failure</uei>
+      <description>ABBCS-MSSQL-replication-failure</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='%parm[description]% on %nodelabel%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: MSSQL Failure for %parm[resourceId]% on node %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-MSSQL-failure-warn" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/MSSQL/failure-warn</uei>
+      <description>ABBCS-MSSQL-failure-warn</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='%parm[description]% on %nodelabel% program=&quot;%parm[resourceId]%&quot;'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: MSSQL Failure for %parm[resourceId]% on node %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-MSSQL-failure-err" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/MSSQL/failure-err</uei>
+      <description>ABBCS-MSSQL-failure-err</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='%parm[description]% on %nodelabel% program=&quot;%parm[resourceId]%&quot;'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: MSSQL Failure for %parm[resourceId]% on node %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-MSSQL-failure-crit" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/MSSQL/failure-crit</uei>
+      <description>ABBCS-MSSQL-failure-crit</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Oracle&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='%parm[description]% on %nodelabel% program=&quot;%parm[resourceId]%&quot;'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: MSSQL Failure for %parm[resourceId]% on node %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-Ellipse-Batchnotrunning-warn" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/Batch/notrunning-warn</uei>
+      <description>ABBCS-Ellipse-Batchnotrunning-warn</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Ellipse&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='%parm[description]% on %nodelabel% program=&quot;%parm[resourceId]%&quot;'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: Batch notrunning for %parm[resourceId]% on node %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-Ellipse-Batchnotrunning-err" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/Batch/notrunning-err</uei>
+      <description>ABBCS-Ellipse-Batchnotrunning-err</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Ellipse&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='%parm[description]% on %nodelabel% program=&quot;%parm[resourceId]%&quot;'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: Batch notrunning for %parm[resourceId]% on node %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-Ellipse-Batchnotrunning-crit" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/Batch/notrunning-crit</uei>
+      <description>ABBCS-Ellipse-Batchnotrunning-crit</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Ellipse&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='%parm[description]% on %nodelabel% program=&quot;%parm[resourceId]%&quot;'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: Batch notrunning for %parm[resourceId]% on node %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-Ellipse-OnlineCPU-High" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/Ellipse/OnlineCPUHigh-trigger</uei>
+      <description>ABBCS-Ellipse-Online-high</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Ellipse&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='%parm[description]% on %nodelabel% program=&quot;%parm[resourceId]%&quot;'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: Ellipse online server with High CPU:  %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-Ellipse-EWSCPUP4-High" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/Ellipse/EWSCPUHighP4-trigger</uei>
+      <description>ABBCS-Ellipse-EWSCPUP4-high</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Ellipse&#xd;
+RESOURCEID='EWSCPUP4'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='%parm[description]% on %nodelabel% program=&quot;%parm[resourceId]%&quot;'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: Ellipse EWS server with High CPU:  %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-Ellipse-EWSCPUP3-High" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/Ellipse/EWSCPUHighP3-trigger</uei>
+      <description>ABBCS-Ellipse-EWSCPUP3-high</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Ellipse&#xd;
+RESOURCEID='EWSCPUP3'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='%parm[description]% on %nodelabel% program=&quot;%parm[resourceId]%&quot;'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: Ellipse EWS server with High CPU:  %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-Ellipse-EWSCPUP2-High" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/Ellipse/EWSCPUHighP2-trigger</uei>
+      <description>ABBCS-Ellipse-EWSCPUP2-high</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Ellipse&#xd;
+RESOURCEID='EWSCPUP2'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='%parm[description]% on %nodelabel% program=&quot;%parm[resourceId]%&quot;'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: Ellipse EWS server with High CPU:  %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-Ellipse-EWSCPUP1-High" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/Ellipse/EWSCPUHighP1-trigger</uei>
+      <description>ABBCS-Ellipse-EWSCPUP1-high</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Ellipse&#xd;
+RESOURCEID='EWSCPUP1'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='%parm[description]% on %nodelabel% program=&quot;%parm[resourceId]%&quot;'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: Ellipse EWS server with High CPU:  %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-URL-Ellipse-Login" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS-Ellipse/login</uei>
+      <description>ABBCS-URL-Ellipse-Login</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY=Ellipse&#xd;
+RESOURCEID='%parm[resourceId]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='%parm[description]% on %nodelabel%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: Ellipse Login URL failure:  %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-CUPS-Queue" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/cupsqueuehigh-trigger</uei>
+      <description>ABBCS-CUPS-Queue</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='Operating System'&#xd;
+RESOURCEID='%parm[instance]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='Printer queue %parm[instance]% on %nodelabel% is %parm[value]% over its threshold. '&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: Printer Queue %parm[instance]% on node %nodelabel% exceeded threshold.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-VPNCheck" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/VPNCheck-trigger</uei>
+      <description>ABBCS-VPNCheck</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='Operating System'&#xd;
+RESOURCEID='%parm[label]%'&#xd;
+THRESHOLD='%parm[threshold]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='%parm[label]%'&#xd;
+OTHERPARAMS='%parm[all]% notify %vpnNotify%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: VPN %parm[instance]% on node %nodelabel% exceeded threshold.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-VPNCheck-rearm" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/VPNCheck-rearm</uei>
+      <description>ABBCS-VPNCheck</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='Operating System'&#xd;
+RESOURCEID='%parm[label]%'&#xd;
+THRESHOLD='%parm[threshold]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='Rearmed: %parm[label]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: VPN %parm[instance]% on node %nodelabel% exceeded threshold.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-RSYNC-check" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/RSYNCCheck-trigger</uei>
+      <description>ABBCS-RSYNC-Check</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='Operating System'&#xd;
+RESOURCEID='%parm[ds]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='Rsync execution exceeds threshold for %parm[label]% on %nodelabel%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: RSYNC over threshold %parm[label]% on node %nodelabel% exceeded threshold.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-Azure-CPUCredit" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/AzureCPUCredits-trigger</uei>
+      <description>ABBCS-Azure-CPUCredit</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture5mDelay</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='Operating System'&#xd;
+RESOURCEID='%parm[instance]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='%parm[instance]% on %nodelabel% is %parm[value]%. Please check there is no Run-away processes using CPU.  If this node continues to run out of CPU credits, then review if B-series server is still a suitable size.'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: %parm[instance]% on node %nodelabel% exceeded threshold.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-Azure-failure" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/Azure/failure</uei>
+      <description>ABBCS-Azure-failure</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='Operating System'&#xd;
+RESOURCEID='%parm[instance]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='Error with Azure Metric Collection: %parm[description]%. Please check Azure metric collection on %nodelabel% - has there been a password update that contains a character that needs to be escaped in /opt/opennms/scripts/refresh-azure-fields.sh script?'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: %parm[instance]% on node %nodelabel% exceeded threshold.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-data-collection-failed" status="on">
+      <uei>uei.opennms.org/nodes/dataCollectionFailed</uei>
+      <description>ABBCS-data-collection-failed</description>
+      <rule>(IPADDR IPLIKE *.*.*.*) &amp; (catincRFNotification) &amp; (catincDatabases)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='Operating System'&#xd;
+RESOURCEID='%service%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='Data collection has failed on %nodelabel% for service %service%. Reason: %parm[reason]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: Data collection failed on node %nodelabel% for service %service%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-VMware" status="on">
+      <uei>uei.opennms.org/vendor/vmware/traps/vpxdAlarmInfo</uei>
+      <description>Notification for VMWare Traps</description>
+      <rule>(IPADDR IPLIKE *.*.*.*)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%parm[.1.3.6.1.4.1.6876.4.3.305.0]%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='Operating System'&#xd;
+RESOURCEID='%parm[.1.3.6.1.4.1.6876.4.3.307.0]%:%parm[.1.3.6.1.4.1.6876.4.3.308.0]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinstruct%'&#xd;
+MESSAGE='VMware trap from %nodelabel%&#xd;
+&#xd;
+Target Object: %parm[.1.3.6.1.4.1.6876.4.3.307.0]%&#xd;
+Condition: %parm[.1.3.6.1.4.1.6876.4.3.305.0]%&#xd;
+&#xd;
+%parm[.1.3.6.1.4.1.6876.4.3.306.0]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+   <notification name="ABBCS-OpenFiles-check" status="on" writeable="yes">
+      <uei>uei.opennms.org/ABBCS/OpenFiles-trigger</uei>
+      <description>ABBCS-OpenFiles-check</description>
+      <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule>
+      <destinationPath>EventCapture</destinationPath>
+      <text-message>NODE=%nodelabel%&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='Ellipse'&#xd;
+RESOURCEID='%parm[ds]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='Jboss file handle count of %parm[value]% is over the threshold of %parm[threshold]% on %nodelabel%'&#xd;
+OTHERPARAMS=''&#xd;
+      </text-message>
+      <subject>Notice #%noticeid%: Jboss file handles over threshold on %nodelabel%.</subject>
+      <numeric-message>111-%noticeid%</numeric-message>
+   </notification>
+<notification name="ABBCS-SAN-failure" status="on" writeable="yes">
+  <uei>uei.opennms.org/ABBCS/traps/IBMSAN/storageArrayCritical</uei>
+  <description>ABBCS-SAN-failure</description>
+  <rule>(IPADDR != '0.0.0.0') &amp; (catincRFNotification)</rule> 
+  <destinationPath>EventCaptureNoDelay</destinationPath>
+  <text-message>NODE='%parm[#4]%'&#xd;
+NOTICEID=%noticeid%&#xd;
+SEVERITY=%severity%&#xd;
+SERVICE=%service%&#xd;
+EVENTID=%eventid%&#xd;
+CATEGORY='%parm[instance]%'&#xd;
+RESOURCEID='%parm[instance]%'&#xd;
+LABEL='%parm[label]%'&#xd;
+OPERATORINSTRUCT='%operatorinsruct%'&#xd;
+MESSAGE='%parm[.1.3.6.1.4.1.789.1123.1.500.1.1.7]% on %parm[#9]%'&#xd;
+OTHERPARAMS='%parm[all]%'&#xd;
+   </text-message>
+   <subject>Notice #%noticeid%: %parm[description]%</subject>
+   <numeric-message>111-%noticeid%</numeric-message>
+</notification>
+</notifications>

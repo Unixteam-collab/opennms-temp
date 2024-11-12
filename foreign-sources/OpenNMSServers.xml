@@ -1,0 +1,15 @@
+<foreign-source xmlns="http://xmlns.opennms.org/xsd/config/foreign-source" name="OpenNMSServers" date-stamp="2017-03-08T15:14:55.608+10:00">
+   <scan-interval>1d</scan-interval>
+   <detectors/>
+   <policies>
+      <policy name="RFNotification" class="org.opennms.netmgt.provision.persist.policies.NodeCategorySettingPolicy">
+         <parameter key="category" value="RFNotification"/>
+         <parameter key="matchBehavior" value="ALL_PARAMETERS"/>
+      </policy>
+      <policy name="ignore Virtual Bridge" class="org.opennms.netmgt.provision.persist.policies.MatchingIpInterfacePolicy">
+         <parameter key="action" value="DO_NOT_PERSIST"/>
+         <parameter key="ipAddress" value="~192\.168\.122\.1"/>
+         <parameter key="matchBehavior" value="ALL_PARAMETERS"/>
+      </policy>
+   </policies>
+</foreign-source>

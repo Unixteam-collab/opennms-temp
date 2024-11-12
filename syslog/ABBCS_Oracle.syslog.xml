@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<!-- Syslog message match definitions for Oracle Monitoring -->
+
+<syslogd-configuration-group>
+    <ueiList>
+        <ueiMatch>
+            <facility>user</facility>
+            <severity>warning</severity>
+            <match type="regex" expression="^ABBCS-ORACLE: host=(.+?) SID=(.+?) METRIC=(.+?) VALUE=(\d+) (.+)$" />
+            <uei>uei.opennms.org/vendor/ABBCS/oracle/warning</uei>
+            <parameter-assignment matching-group="1" parameter-name="HOSTNAME" />
+            <parameter-assignment matching-group="2" parameter-name="SID" />
+            <parameter-assignment matching-group="3" parameter-name="METRIC" />
+            <parameter-assignment matching-group="4" parameter-name="VALUE" />
+            <parameter-assignment matching-group="5" parameter-name="MESSAGE" />
+        </ueiMatch>
+        <ueiMatch>
+            <facility>user</facility>
+            <severity>error</severity>
+            <match type="regex" expression="^ABBCS-ORACLE: host=(.+?) SID=(.+?) METRIC=(.+?) VALUE=(\d+) (.+)$" />
+            <uei>uei.opennms.org/vendor/ABBCS/oracle/error</uei>
+            <parameter-assignment matching-group="1" parameter-name="HOSTNAME" />
+            <parameter-assignment matching-group="2" parameter-name="SID" />
+            <parameter-assignment matching-group="3" parameter-name="METRIC" />
+            <parameter-assignment matching-group="4" parameter-name="VALUE" />
+            <parameter-assignment matching-group="5" parameter-name="MESSAGE" />
+        </ueiMatch>
+        <ueiMatch>
+            <facility>user</facility>
+            <severity>critical</severity>
+            <match type="regex" expression="^ABBCS-ORACLE: host=(.*?) SID=(.*?) METRIC=(.*?) VALUE=(\d+) (.*)$" />
+            <uei>uei.opennms.org/vendor/ABBCS/oracle/critical</uei>
+            <parameter-assignment matching-group="1" parameter-name="HOSTNAME" />
+            <parameter-assignment matching-group="2" parameter-name="SID" />
+            <parameter-assignment matching-group="3" parameter-name="METRIC" />
+            <parameter-assignment matching-group="4" parameter-name="VALUE" />
+            <parameter-assignment matching-group="5" parameter-name="MESSAGE" />
+        </ueiMatch>
+    </ueiList>
+</syslogd-configuration-group>

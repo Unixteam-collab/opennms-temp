@@ -1,0 +1,10 @@
+<datacollection-group name="ABBCS-CUPSPrinters">
+  <resourceType name="CUPSPrinters" label="CUPS Printers"
+   resourceLabel="Printer ${printerName}" >
+     <persistenceSelectorStrategy
+          class="org.opennms.netmgt.collection.support.PersistAllSelectorStrategy"/>
+     <storageStrategy
+          class="org.opennms.netmgt.collection.support.IndexStorageStrategy"/>
+  </resourceType>
+</datacollection-group>
+

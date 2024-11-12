@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<!-- Syslog message match definitions for POSIX utilities -->
+
+<syslogd-configuration-group>
+    <ueiList>
+         <ueiMatch>
+            <facility>user</facility>
+            <severity>warning</severity>
+            <match type="regex" expression="^ABBCS: (.*)$" />
+            <uei>uei.opennms.org/ABBCS/syslog/testevent</uei>
+            <parameter-assignment matching-group="1" parameter-name="ABBCS_Message" />
+        </ueiMatch>
+
+        <ueiMatch>
+            <process-match expression="^ABBCS$" />
+            <match type="regex" expression="ABBCS:.*?:\s+authentication failure; logname=(.*?) uid=(\d+) euid=(\d+) tty=(.*?) ruser=.*? rhost=.*? user=(.*?)$" />
+            <uei>uei.opennms.org/vendor/ABBCS/test/testq</uei>
+        </ueiMatch>
+    </ueiList>
+</syslogd-configuration-group>

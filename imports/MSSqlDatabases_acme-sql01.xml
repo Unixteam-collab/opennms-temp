@@ -1,0 +1,7 @@
+<model-import xmlns="http://xmlns.opennms.org/xsd/config/model-import" date-stamp="2018-09-05T13:48:40.514+10:00" foreign-source="MSSqlDatabases_acme-sql01" last-import="2018-09-05T13:49:10.505+10:00">
+   <node foreign-id="acme-sql01" node-label="acme-sql01">
+      <interface ip-addr="10.165.9.7" status="1" snmp-primary="P">
+         <monitored-service service-name="ABBCS-MSSQL-acme-sql01"/>
+      </interface>
+   </node>
+</model-import>

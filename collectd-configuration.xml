@@ -1,0 +1,1996 @@
+<collectd-configuration xmlns="http://xmlns.opennms.org/xsd/config/collectd" threads="50">
+   <package name="cassandra-via-jmx" remote="false">
+      <filter>IPADDR != '0.0.0.0'</filter>
+      <service name="JMX-Cassandra" interval="300000" user-defined="false" status="on">
+         <parameter key="port" value="${requisition:port|detector:port|7199}" />
+         <parameter key="retry" value="${requisition:collector-retry|requisition:retry|detector:retry|2}" />
+         <parameter key="timeout" value="${requisition:collector-timeout|requisition:timeout|detector:timeout|3000}" />
+         <parameter key="protocol" value="${requisition:protocol|detector:protocol|rmi}" />
+         <parameter key="urlPath" value="${requisition:urlPath|detector:urlPath|/jmxrmi}" />
+         <parameter key="collection" value="${requisition:collection|detector:collection|jmx-cassandra30x}" />
+         <parameter key="friendly-name" value="${requisition:friendly-name|detector:friendly-name|cassandra}" />
+         <parameter key="thresholding-enabled" value="true" />
+         <parameter key="factory" value="${requisition:factory|detector:factory|PASSWORD_CLEAR}" />
+         <parameter key="username" value="${requisition:cassandra-user|cassandra-username}" />
+         <parameter key="password" value="${requisition:cassandra-pass|cassandra-password}" />
+      </service>
+      <service name="JMX-Cassandra-Newts" interval="300000" user-defined="false" status="on">
+         <parameter key="port" value="${requisition:port|detector:port|7199}" />
+         <parameter key="retry" value="${requisition:collector-retry|requisition:retry|detector:retry|2}" />
+         <parameter key="timeout" value="${requisition:collector-timeout|requisition:timeout|detector:timeout|3000}" />
+         <parameter key="protocol" value="${requisition:protocol|detector:protocol|rmi}" />
+         <parameter key="urlPath" value="${requisition:urlPath|detector:urlPath|/jmxrmi}" />
+         <parameter key="collection" value="${requisition:collection|detector:collection|jmx-cassandra30x-newts}" />
+         <parameter key="friendly-name" value="${requisition:friendly-name|detector:friendly-name|cassandra-newts}" />
+         <parameter key="thresholding-enabled" value="true" />
+         <parameter key="factory" value="${requisition:factory|detector:factory|PASSWORD_CLEAR}" />
+         <parameter key="username" value="${requisition:cassandra-user|cassandra-username}" />
+         <parameter key="password" value="${requisition:cassandra-pass|cassandra-password}" />
+      </service>
+   </package>
+   <package name="vmware6" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (categoryName == 'VMware6')</filter>
+      <service name="VMware-VirtualMachine" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="${requisition:collection|detector:collection|default-VirtualMachine6}" />
+         <parameter key="thresholding-enabled" value="true" />
+      </service>
+      <service name="VMware-HostSystem" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="${requisition:collection|detector:collection|default-HostSystem6}" />
+         <parameter key="thresholding-enabled" value="true" />
+      </service>
+      <service name="VMwareCim-HostSystem" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="${requisition:collection|detector:collection|default-ESX-HostSystem}" />
+         <parameter key="thresholding-enabled" value="true" />
+      </service>
+   </package>
+   <package name="ABBCS-Jboss" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincJboss7)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="SNMP" interval="60000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Jboss"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="port" value="161"/>
+         <parameter key="retry" value="3"/>
+         <parameter key="timeout" value="10000"/>
+         <parameter key="oid" value=".1.3.6.1.4.1.42.2.145.3.163.1.1.4.1"/>
+      </service>
+   </package>
+   <package name="ABBCS-OpenFiles" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincopenfiles)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="SNMP" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-OpenFiles"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="port" value="161"/>
+         <parameter key="retry" value="1"/>
+         <parameter key="timeout" value="30000"/>
+      </service>
+   </package>
+   <package name="ABBCS-CheckRSYNC" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincrsyncmonitor)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="SNMP" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-CheckRSYNC"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="port" value="161"/>
+         <parameter key="retry" value="1"/>
+         <parameter key="timeout" value="30000"/>
+      </service>
+   </package>
+   <package name="ABBCS-CheckVPN" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincvpnmonitor)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-CheckVPN" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-CheckVPN"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="port" value="161"/>
+         <parameter key="retry" value="1"/>
+         <parameter key="timeout" value="30000"/>
+         <parameter key="oid" value=".1.3.6.1.4.1.8072.1.3.2.4.1.2.16.118.112.110.95.109.111.110.105.116.111.114.95.116.101.115.116.1"/>
+      </service>
+   </package>
+   <package name="ABBCS-URL-Mon" remote="false">
+      <filter>(IPADDR != '0.0.0.0')</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-URL-Ellipse-Login" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="xml-ABBCS-Ellipse-Login"/>
+         <parameter key="thresholding-enabled" value="true"/>
+      </service>
+   </package>
+   <package name="ABBCS-Azure" remote="false">
+      <filter>(IPADDR != '0.0.0.0')</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Azure-Metrics" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="xml-ABBCS-Azure-Metrics"/>
+         <parameter key="thresholding-enabled" value="true"/>
+      </service>
+   </package>
+   <package name="ABBCS-cpu-90" remote="false">
+      <filter>(IPADDR != '0.0.0.0')</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-cpu-90" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="xml-ABBCS-cpu-90"/>
+         <parameter key="thresholding-enabled" value="true"/>
+      </service>
+   </package>
+   <package name="ABBCS-latency" remote="false">
+      <filter>(IPADDR != '0.0.0.0')</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="SNMP" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-latency"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="port" value="161"/>
+         <parameter key="retry" value="1"/>
+         <parameter key="timeout" value="30000"/>
+         <parameter key="oid" value=".1.3.6.1.4.1.8072.1.3.2.4.1.2.7.108.97.116.101.110.99.121.1"/>
+      </service>
+   </package>
+   <package name="ABBCS-logmatch" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincRFIntegration | catincBatchFailures )</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="SNMP" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-logmatch"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="port" value="161"/>
+         <parameter key="retry" value="1"/>
+         <parameter key="timeout" value="30000"/>
+         <parameter key="oid" value=".1.3.6.1.4.1.2021.16.2.1.1.1"/>
+      </service>
+   </package>
+   <package name="ABBCS-Http" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (categoryName == 'Http')</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-EllipseHttp" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-EllipseHttp"/>
+         <parameter key="retry" value="1"/>
+         <parameter key="timeout" value="4000"/>
+         <parameter key="port" value="8080"/>
+         <parameter key="url" value="/ria/ui.html"/>
+      </service>
+      <service name="ABBCS-AssetSuiteHttp" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-AssetSuiteHttp"/>
+         <parameter key="retry" value="1"/>
+         <parameter key="timeout" value="4000"/>
+         <parameter key="port" value="8080"/>
+         <parameter key="url" value="/as/ui/"/>
+      </service>
+      <service name="ABBCS-VIPHttp" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-VIPHttp"/>
+         <parameter key="retry" value="1"/>
+         <parameter key="timeout" value="4000"/>
+         <parameter key="port" value="8080"/>
+         <parameter key="url" value="/vip"/>
+      </service>
+      <service name="ABBCS-JbossManagement" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-JbossManagement"/>
+         <parameter key="retry" value="1"/>
+         <parameter key="timeout" value="4000"/>
+         <parameter key="port" value="10090"/>
+         <parameter key="url" value="/console/App.html"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1522" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1522" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1522"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1522-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1522-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1522"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521a" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521a" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521a"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521a-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521a-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521a"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521b" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521b" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521b"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521b-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521b-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521b"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521c" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521c" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521c"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521c-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521c-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521c"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521d" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521d" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521d"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521d-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521d-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521d"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521e" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521e" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521e"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521e-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521e-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521e"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521f" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521f" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521f"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521f-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521f-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521f"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521g" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521g" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521g"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521g-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521g-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521g"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521h" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521h" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521h"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521h-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521h-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521h"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521i" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521i" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521i"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521i-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521i-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521i"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521j" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521j" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521j"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521j-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521j-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521j"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521k" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521k" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521k"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521k-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521k-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521k"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521l" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521l" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521l"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521l-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521l-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521l"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521m" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521m" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521m"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1521m-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1521m-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1521m"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1558" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1558" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1558"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1558-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1558-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1558"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1559" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1559" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1559"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1559-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1559-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1559"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1560" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1560" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1560"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1560-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1560-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1560"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1561" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1561" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1561"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1561-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1561-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1561"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1900" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1900" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1900"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1900-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1900-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1900"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1901" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1901" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1901"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1901-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1901-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1901"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1901a" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1901a" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1901a"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1901a-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1901a-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1901a"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1902" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1902" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1902"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1902-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1902-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1902"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1903" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1903" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1903"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1903-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1903-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1903"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1904" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1904" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1904"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1904-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1904-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1904"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1905" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1905" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1905"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1905-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1905-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1905"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1906" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1906" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1906"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1906-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1906-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1906"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1906a" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1906a" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1906a"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1906a-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1906a-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1906a"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1907" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1907" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1907"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1907-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1907-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1907"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1908" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1908" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1908"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1908-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1908-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1908"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1909" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1909" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1909"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1909-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1909-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1909"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1910" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1910" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1910"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1910-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1910-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1910"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1910a" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1910a" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1910a"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1910a-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1910a-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1910a"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1910b" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1910b" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1910b"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1910b-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1910b-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1910b"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1910c" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1910c" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1910c"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1910c-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1910c-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1910c"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1912" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1912" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1912"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-1912-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_oracle)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-1912-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="Oracle1912"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-artelprd" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_artelprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-artelprd" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1900))(CONNECT_DATA=(SERVICE_NAME=artelprd)))"/>
+         <parameter key="port" value="1900"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-artelprd-1hr" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_artelprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-artelprd-1hr" interval="3600000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle-1hr"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1900))(CONNECT_DATA=(SERVICE_NAME=artelprd)))"/>
+         <parameter key="port" value="1900"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-artelcfg" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_artelcfg)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-artelcfg" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1902))(CONNECT_DATA=(SERVICE_NAME=artelcfg)))"/>
+         <parameter key="port" value="1902"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-arteltst" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_arteltst)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-arteltst" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1908))(CONNECT_DATA=(SERVICE_NAME=arteltst)))"/>
+         <parameter key="port" value="1908"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-arteltrn" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_arteltrn)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-arteltrn" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1906))(CONNECT_DATA=(SERVICE_NAME=arteltrn)))"/>
+         <parameter key="port" value="1906"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-geqelprd" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_geqelprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-geqelprd" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1900))(CONNECT_DATA=(SERVICE_NAME=geqelprd)))"/>
+         <parameter key="port" value="1900"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-geqelcfg" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_geqelcfg)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-geqelcfg" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1902))(CONNECT_DATA=(SERVICE_NAME=geqelcfg)))"/>
+         <parameter key="port" value="1902"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-geqeltst" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_geqeltst)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-geqeltst" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1904))(CONNECT_DATA=(SERVICE_NAME=geqeltst)))"/>
+         <parameter key="port" value="1904"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-geqeltrn" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_geqeltrn)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-geqeltrn" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1906))(CONNECT_DATA=(SERVICE_NAME=geqeltrn)))"/>
+         <parameter key="port" value="1906"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-orielprd" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_orielprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-orielprd" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1900))(CONNECT_DATA=(SERVICE_NAME=orielprd)))"/>
+         <parameter key="port" value="1900"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-orieldev" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_orieldev)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-orieldev" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1902))(CONNECT_DATA=(SERVICE_NAME=orieldev)))"/>
+         <parameter key="port" value="1902"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-orieltst" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_orieltst)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-orieltst" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1904))(CONNECT_DATA=(SERVICE_NAME=orieltst)))"/>
+         <parameter key="port" value="1904"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-orieltrn" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_orieltrn)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-orieltrn" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1906))(CONNECT_DATA=(SERVICE_NAME=orieltrn)))"/>
+         <parameter key="port" value="1906"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-minccprd" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_minccprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-minccprd" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1900))(CONNECT_DATA=(SERVICE_NAME=minccprd)))"/>
+         <parameter key="port" value="1900"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-lsgasprd" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_lsgasprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-lsgasprd" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1900))(CONNECT_DATA=(SERVICE_NAME=lsgasprd)))"/>
+         <parameter key="port" value="1900"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-lsgasdev" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_lsgasdev)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-lsgasdev" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1903))(CONNECT_DATA=(SERVICE_NAME=lsgasdev)))"/>
+         <parameter key="port" value="1903"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-lsgastst" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_lsgastst)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-lsgastst" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1901))(CONNECT_DATA=(SERVICE_NAME=lsgastst)))"/>
+         <parameter key="port" value="1901"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-bepasprd" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_bepasprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-bepasprd" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1906))(CONNECT_DATA=(SERVICE_NAME=bepasprd)))"/>
+         <parameter key="port" value="1906"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-bepasdev" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_bepasdev)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-bepasdev" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1903))(CONNECT_DATA=(SERVICE_NAME=bepasdev)))"/>
+         <parameter key="port" value="1903"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-bepastst" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_bepastst)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-bepastst" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1904))(CONNECT_DATA=(SERVICE_NAME=bepastst)))"/>
+         <parameter key="port" value="1904"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-bepemprd" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_bepemprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-bepemprd" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1907))(CONNECT_DATA=(SERVICE_NAME=bepemprd)))"/>
+         <parameter key="port" value="1907"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-bepemdev" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_bepemdev)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-bepemdev" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1908))(CONNECT_DATA=(SERVICE_NAME=bepemdev)))"/>
+         <parameter key="port" value="1908"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-bepemtst" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_bepemtst)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-bepemtst" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1907))(CONNECT_DATA=(SERVICE_NAME=bepemtst)))"/>
+         <parameter key="port" value="1907"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-alielprd" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_alielprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-alielprd" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1900))(CONNECT_DATA=(SERVICE_NAME=alielprd)))"/>
+         <parameter key="port" value="1900"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-alieldev" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_alieldev)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-alieldev" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1902))(CONNECT_DATA=(SERVICE_NAME=alieldev)))"/>
+         <parameter key="port" value="1902"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-alieltst" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_alieltst)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-alieltst" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1904))(CONNECT_DATA=(SERVICE_NAME=alieltst)))"/>
+         <parameter key="port" value="1904"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-alieltrn" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_alieltrn)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-alieltrn" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1906))(CONNECT_DATA=(SERVICE_NAME=alieltrn)))"/>
+         <parameter key="port" value="1906"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-kumeltst" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_kumeltst)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-kumeltst" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1904))(CONNECT_DATA=(SERVICE_NAME=kumeltst)))"/>
+         <parameter key="port" value="1904"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-kumeltrn" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_kumeltrn)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-kumeltrn" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1906))(CONNECT_DATA=(SERVICE_NAME=kumeltrn)))"/>
+         <parameter key="port" value="1906"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-kumeldev" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_kumeldev)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-kumeldev" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1902))(CONNECT_DATA=(SERVICE_NAME=kumeldev)))"/>
+         <parameter key="port" value="1902"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-recman" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_recman)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-recman" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1910))(CONNECT_DATA=(SERVICE_NAME=recman)))"/>
+         <parameter key="port" value="1910"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-kumelprd" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_kumelprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-kumelprd" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1900))(CONNECT_DATA=(SERVICE_NAME=kumelprd)))"/>
+         <parameter key="port" value="1900"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-skyccprd" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_skyccprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-skyccprd" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1900))(CONNECT_DATA=(SERVICE_NAME=skyccprd)))"/>
+         <parameter key="port" value="1900"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-eaueldev" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_eaueldev)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-eaueldev" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1902))(CONNECT_DATA=(SERVICE_NAME=eaueldev)))"/>
+         <parameter key="port" value="1902"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-eaueltst" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_eaueltst)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-eaueltst" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1904))(CONNECT_DATA=(SERVICE_NAME=eaueltst)))"/>
+         <parameter key="port" value="1904"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-eaueltrn" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_eaueltrn)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-eaueltrn" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1906))(CONNECT_DATA=(SERVICE_NAME=eaueltrn)))"/>
+         <parameter key="port" value="1906"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-eauelprd" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_eauelprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-eauelprd" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1900))(CONNECT_DATA=(SERVICE_NAME=eauelprd)))"/>
+         <parameter key="port" value="1900"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-octelprd" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_octelprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-octelprd" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1900))(CONNECT_DATA=(SERVICE_NAME=octelprd)))"/>
+         <parameter key="port" value="1900"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-octeltst" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_octeltst)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-octeltst" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1902))(CONNECT_DATA=(SERVICE_NAME=octeltst)))"/>
+         <parameter key="port" value="1902"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-octeluat" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_octeluat)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-octeluat" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1903))(CONNECT_DATA=(SERVICE_NAME=octeluat)))"/>
+         <parameter key="port" value="1903"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-viceldev" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_viceldev)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-viceldev" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1902))(CONNECT_DATA=(SERVICE_NAME=viceldev)))"/>
+         <parameter key="port" value="1902"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-viceltst" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_viceltst)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-viceltst" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1904))(CONNECT_DATA=(SERVICE_NAME=viceltst)))"/>
+         <parameter key="port" value="1904"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-viceltrn" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_viceltrn)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-viceltrn" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1906))(CONNECT_DATA=(SERVICE_NAME=viceltrn)))"/>
+         <parameter key="port" value="1906"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-vicelprd" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_vicelprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-vicelprd" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1900))(CONNECT_DATA=(SERVICE_NAME=vicelprd)))"/>
+         <parameter key="port" value="1900"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-quueldev" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_quueldev)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-quueldev" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1902))(CONNECT_DATA=(SERVICE_NAME=quueldev)))"/>
+         <parameter key="port" value="1902"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-quueltst" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_quueltst)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-quueltst" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1904))(CONNECT_DATA=(SERVICE_NAME=quueltst)))"/>
+         <parameter key="port" value="1904"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-quueltrn" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_quueltrn)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-quueltrn" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1906))(CONNECT_DATA=(SERVICE_NAME=quueltrn)))"/>
+         <parameter key="port" value="1906"/>
+      </service>
+   </package>
+   <package name="ABBCS-Oracle-quuelprd" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_quuelprd)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-Oracle-quuelprd" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-Oracle"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="oracle.jdbc.driver.OracleDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="url" value="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=OPENNMS_JDBC_HOSTNAME)(PORT=1900))(CONNECT_DATA=(SERVICE_NAME=quuelprd)))"/>
+         <parameter key="port" value="1900"/>
+      </service>
+   </package>
+   <package name="ABBCS-MSSQL-acmetest" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_acmetest)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-MSSQL-acmetest" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-SQLServer"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+         <parameter key="user" value="csadmin@sec-test"/>
+         <parameter key="password" value="Mincom2018!!"/>
+         <parameter key="timeout" value="120000"/>
+         <parameter key="url" value="jdbc:sqlserver://sec-test.database.windows.net:1433;databaseName=sec-test;"/>
+      </service>
+   </package>
+   <package name="ABBCS-MSSQL-acme-sql01" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_acme-sql01)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-MSSQL-acme-sql01" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-SQLServer"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon2018"/>
+         <parameter key="timeout" value="300000"/>
+         <parameter key="url" value="jdbc:sqlserver://OPENNMS_JDBC_HOSTNAME:1433;databaseName=montest;"/>
+      </service>
+   </package>
+   <package name="ABBCS-MSSQL-ali-sasn" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_ali-sasn)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-MSSQL-ali-sasn" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-SQLServer"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+         <parameter key="user" value="abbmon"/>
+         <parameter key="password" value="abbmon"/>
+         <parameter key="timeout" value="300000"/>
+         <parameter key="url" value="jdbc:sqlserver://OPENNMS_JDBC_HOSTNAME:1433;databaseName=alisasn;"/>
+      </service>
+   </package>
+   <package name="ABBCS-MSSQL" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_MSSQL)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-MSSQL" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-SQLServer"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="MSSQL"/>
+      </service>
+   </package>
+   <package name="ABBCS-MSSQL-Analytics" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_MSSQL_Analytics)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-MSSQL-Analytics" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-SQLServer-Analytics"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="MSSQLAnalytics"/>
+      </service>
+   </package>
+   <package name="ABBCS-MSSQL-Analytics-NRT" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (catincDatabases_Analytics_NRT)</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="ABBCS-MSSQL-Analytics-NRT" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="ABBCS-SQLServer-Analytics-NRT"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="data-source" value="MSSQLNRT"/>
+      </service>
+   </package>
+   <package name="ABBCS-Basic" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; ( catincServers )</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254"/>
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"/>
+      <service name="SNMP" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="default"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="retry" value="3"/>
+         <parameter key="timeout" value="120000"/>
+         <parameter key="port" value="161"/>
+      </service>
+      <service name="WMI" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="default"/>
+         <parameter key="thresholding-enabled" value="true"/>
+      </service>
+      <service name="WS-Man" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="default"/>
+         <parameter key="thresholding-enabled" value="true"/>
+      </service>
+      <service name="OpenNMS-JVM" interval="300000" user-defined="false" status="on">
+         <parameter key="port" value="18980"/>
+         <parameter key="retry" value="2"/>
+         <parameter key="timeout" value="30000"/>
+         <parameter key="protocol" value="rmi"/>
+         <parameter key="urlPath" value="/jmxrmi"/>
+         <parameter key="rrd-base-name" value="java"/>
+         <parameter key="collection" value="jsr160"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="ds-name" value="opennms-jvm"/>
+         <parameter key="friendly-name" value="opennms-jvm"/>
+         <parameter key="factory" value="PASSWORD-CLEAR"/>
+         <parameter key="username" value="admin"/>
+         <parameter key="password" value="kntEof3EH6BDgtnPaBNU"/>
+      </service>
+      <service name="OpenNMS-Postgres" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="onms-postgresql"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="driver" value="org.postgresql.Driver"/>
+         <parameter key="user" value="opennms"/>
+         <parameter key="password" value="opennms"/>
+         <parameter key="url" value="jdbc:postgresql://OPENNMS_JDBC_HOSTNAME:5432/opennms"/>
+      </service>
+      <service name="JMX-Minion" interval="300000" user-defined="false" status="on">
+         <parameter key="port" value="1299"/>
+         <parameter key="retry" value="2"/>
+         <parameter key="timeout" value="3000"/>
+         <parameter key="urlPath" value="/karaf-minion"/>
+         <parameter key="factory" value="PASSWORD-CLEAR"/>
+         <parameter key="username" value="admin"/>
+         <parameter key="password" value="admin"/>
+         <parameter key="rrd-base-name" value="java"/>
+         <parameter key="collection" value="jmx-minion"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="ds-name" value="jmx-minion"/>
+         <parameter key="friendly-name" value="jmx-minion"/>
+         <parameter key="use-foreign-id-as-system-id" value="true"/>
+      </service>
+      <service name="JMX-Kafka" interval="300000" user-defined="false" status="on">
+         <parameter key="port" value="9999"/>
+         <parameter key="retry" value="2"/>
+         <parameter key="timeout" value="3000"/>
+         <parameter key="rrd-base-name" value="java"/>
+         <parameter key="collection" value="jmx-kafka"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="ds-name" value="jmx-kafka"/>
+         <parameter key="friendly-name" value="jmx-kafka"/>
+      </service>
+      <service name="PostgreSQL" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="${requisition:collection|detector:collection|PostgreSQL}" />
+         <parameter key="thresholding-enabled" value="true" />
+         <parameter key="driver" value="${requisition:driver|detector:driver|org.postgresql.Driver}" />
+         <parameter key="user" value="${requisition:pg-user|postgres}" />
+         <parameter key="password" value="${requisition:pg-pass|postgres}" />
+         <parameter key="url" value="${requisition:url|detector:url|'jdbc:postgresql://OPENNMS_JDBC_HOSTNAME:5432/opennms'}" />
+      </service>
+      <service name="Elasticsearch" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="${requisition:collection|detector:collection|xml-elasticsearch-cluster-stats}" />
+         <parameter key="handler-class" value="${requisition:handler-class|detector:handler-class|org.opennms.protocols.json.collector.DefaultJsonCollectionHandler}" />
+      </service>
+      <service name="Windows-Exporter" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="${requisition:collection|detector:collection|windows-exporter}" />
+         <parameter key="thresholding-enabled" value="true" />
+         <parameter key="url" value="${requisition:url|detector:url|http://INTERFACE_ADDRESS:9182/metrics}" />
+         <parameter key="timeout" value="${requisition:collector-timeout|requisition:timeout|detector:timeout|3000}" />
+         <parameter key="retry" value="${requisition:collector-retry|requisition:retry|detector:retry|2}" />
+      </service>
+      <service name="Node-Exporter" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="${requisition:collection|detector:collection|node-exporter}" />
+         <parameter key="thresholding-enabled" value="true" />
+         <parameter key="url" value="${requisition:url|detector:url|http://INTERFACE_ADDRESS:9100/metrics}" />
+         <parameter key="timeout" value="${requisition:collector-timeout|requisition:timeout|detector:timeout|3000}" />
+         <parameter key="retry" value="${requisition:collector-retry|requisition:retry|detector:retry|2}" />
+      </service>
+      <service name="ABBCS-CUPS" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="xml-ABBCS-CUPS"/>
+         <parameter key="thresholding-enabled" value="true"/>
+      </service>
+      <service name="ABBCS-EllipseBatch" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="xml-ABBCS-EllipseBatch"/>
+         <parameter key="thresholding-enabled" value="true"/>
+      </service>
+      <service name="ABBCS-FSMon" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="xml-ABBCS-FSMon"/>
+         <parameter key="thresholding-enabled" value="true"/>
+      </service>
+      <service name="ABBCS-HTTPS-Conn" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="xml-ABBCS-TCP"/>
+         <parameter key="thresholding-enabled" value="true"/>
+      </service>
+   </package>
+   <package name="vmware7" remote="false">
+      <filter>(IPADDR != '0.0.0.0') &amp; (categoryName == 'VMware7')</filter>
+      <service name="VMware-VirtualMachine" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="${requisition:collection|detector:collection|default-VirtualMachine7}" />
+         <parameter key="thresholding-enabled" value="true" />
+      </service>
+      <service name="VMware-HostSystem" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="${requisition:collection|detector:collection|default-HostSystem7}" />
+         <parameter key="thresholding-enabled" value="true" />
+      </service>
+      <service name="VMwareCim-HostSystem" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="${requisition:collection|detector:collection|default-ESX-HostSystem}" />
+         <parameter key="thresholding-enabled" value="true" />
+      </service>
+   </package>
+   <package name="opennms" remote="false">
+      <filter>IPADDR != '0.0.0.0'</filter>
+      <include-range begin="1.1.1.1" end="254.254.254.254" />
+      <include-range begin="::1" end="ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff" />
+      <service name="OpenNMS-JVM" interval="300000" user-defined="false" status="on">
+         <parameter key="port" value="${requisition:port|detector:port|18980}" />
+         <parameter key="retry" value="${requisition:collector-retry|requisition:retry|detector:retry|2}" />
+         <parameter key="timeout" value="${requisition:collector-timeout|requisition:timeout|detector:timeout|3000}" />
+         <parameter key="rrd-base-name" value="java" />
+         <parameter key="collection" value="${requisition:collection|detector:collection|jsr160}" />
+         <parameter key="thresholding-enabled" value="true" />
+         <parameter key="ds-name" value="opennms-jvm" />
+         <parameter key="friendly-name" value="${requisition:friendly-name|detector:friendly-name|opennms-jvm}" />
+      </service>
+      <service name="JMX-Minion" interval="300000" user-defined="false" status="on">
+         <parameter key="port" value="${requisition:port|detector:port|18980}" />
+         <parameter key="retry" value="${requisition:collector-retry|requisition:retry|detector:retry|2}" />
+         <parameter key="timeout" value="${requisition:collector-timeout|requisition:timeout|detector:timeout|3000}" />
+         <parameter key="rrd-base-name" value="java" />
+         <parameter key="collection" value="${requisition:collection|detector:collection|jmx-minion}" />
+         <parameter key="thresholding-enabled" value="true" />
+         <parameter key="ds-name" value="jmx-minion" />
+         <parameter key="friendly-name" value="${requisition:friendly-name|detector:friendly-name|jmx-minion}" />
+         <parameter key="use-foreign-id-as-system-id" value="${requisition:use-foreign-id-as-system-id|detector:use-foreign-id-as-system-id|true}" />
+      </service>
+      <service name="JMX-Kafka" interval="300000" user-defined="false" status="on">
+         <parameter key="port" value="${requisition:kafka-port|9999}" />
+         <parameter key="retry" value="${requisition:collector-retry|requisition:retry|detector:retry|2}" />
+         <parameter key="timeout" value="${requisition:collector-timeout|requisition:timeout|detector:timeout|3000}" />
+         <parameter key="rrd-base-name" value="java" />
+         <parameter key="collection" value="${requisition:collection|detector:collection|jmx-kafka}" />
+         <parameter key="thresholding-enabled" value="true" />
+         <parameter key="ds-name" value="jmx-kafka" />
+         <parameter key="friendly-name" value="${requisition:friendly-name|detector:friendly-name|jmx-kafka}" />
+      </service>
+      <service name="OpenNMS-DB" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="${requisition:collection|detector:collection|default}" />
+         <parameter key="thresholding-enabled" value="true" />
+         <parameter key="driver" value="${requisition:driver|detector:driver|org.postgresql.Driver}" />
+         <parameter key="data-source" value="${requisition:data-source|detector:data-source|opennms}" />
+      </service>
+      <service name="OpenNMS-DB-Stats" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="${requisition:collection|detector:collection|PostgreSQL}" />
+         <parameter key="thresholding-enabled" value="true" />
+         <parameter key="driver" value="${requisition:driver|detector:driver|org.postgresql.Driver}" />
+         <parameter key="data-source" value="${requisition:data-source|detector:data-source|opennms-monitor}" />
+      </service>
+   </package>
+   <package name="Jenkins" remote="false">
+      <service name="Jenkins-Metrics" interval="300000" user-defined="false" status="on">
+         <parameter key="collection" value="jenkins_metrics"/>
+         <parameter key="thresholding-enabled" value="true"/>
+         <parameter key="url" value="https://${interface:address}:8080/prometheus"/>
+      </service>
+   </package>
+   <collector service="Jenkins-Metrics" class-name="org.opennms.netmgt.collectd.prometheus.PrometheusCollector"/>
+   <collector service="ABBCS-EllipseHttp" class-name="org.opennms.netmgt.collectd.HttpCollector"/>
+   <collector service="ABBCS-AssetSuiteHttp" class-name="org.opennms.netmgt.collectd.HttpCollector"/>
+   <collector service="ABBCS-VIPHttp" class-name="org.opennms.netmgt.collectd.HttpCollector"/>
+   <collector service="ABBCS-JbossManagement" class-name="org.opennms.netmgt.collectd.HttpCollector"/>
+   <collector service="ABBCS-Oracle-1521" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521a" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521a-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521b" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521b-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521c" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521c-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521d" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521d-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521e" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521e-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521f" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521f-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521g" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521g-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521h" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521h-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521i" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521i-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521j" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521j-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521k" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521k-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521l" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521l-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521m" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1521m-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1522" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1522-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1558" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1558-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1559" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1559-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1560" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1560-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1561" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1561-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1900" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1900-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1901" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1901-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1901a" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1901a-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1902" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1902-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1903" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1903-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1904" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1904-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1905" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1905-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1906" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1906-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1906a" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1906a-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1907" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1907-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1908" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1908-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1909" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1909-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1910" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1910-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1910a" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1910a-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1910b" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1910b-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1910c" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1910c-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1912" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-1912-1hr" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-artelprd" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-artelcfg" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-arteltst" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-arteltrn" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-geqelprd" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-geqelcfg" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-geqeltst" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-geqeltrn" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-orielprd" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-orieldev" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-orieltst" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-orieltrn" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-minccprd" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-lsgasprd" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-lsgasdev" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-lsgastst" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-bepasprd" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-bepasdev" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-bepastst" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-bepemprd" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-bepemdev" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-bepemtst" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-kumeltst" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-kumeltrn" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-kumeldev" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-recman" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-kumelprd" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-skyccprd" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-eaueldev" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-eaueltst" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-eaueltrn" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-eauelprd" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-octelprd" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-octeltst" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-octeluat" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-viceldev" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-viceltst" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-viceltrn" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-vicelprd" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-alielprd" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-alieldev" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-alieltst" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-alieltrn" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-quuelprd" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-quueldev" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-quueltst" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-Oracle-quueltrn" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-MSSQL-acmetest" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-MSSQL-acme-sql01" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-MSSQL-ali-sasn" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-MSSQL" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-CUPS" class-name="org.opennms.protocols.xml.collector.XmlCollector"/>
+   <collector service="ABBCS-MSSQL-Analytics" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-MSSQL-Analytics-NRT" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="ABBCS-EllipseBatch" class-name="org.opennms.protocols.xml.collector.XmlCollector"/>
+   <collector service="ABBCS-URL-Ellipse-Login" class-name="org.opennms.protocols.xml.collector.XmlCollector"/>
+   <collector service="ABBCS-Azure" class-name="org.opennms.protocols.xml.collector.XmlCollector"/>
+   <collector service="ABBCS-Azure-Metrics" class-name="org.opennms.protocols.xml.collector.XmlCollector"/>
+   <collector service="ABBCS-cpu-90" class-name="org.opennms.protocols.xml.collector.XmlCollector"/>
+   <collector service="ABBCS-FSMon" class-name="org.opennms.protocols.xml.collector.XmlCollector"/>
+   <collector service="ABBCS-HTTPS-Conn" class-name="org.opennms.protocols.xml.collector.XmlCollector"/>
+   <collector service="Elasticsearch" class-name="org.opennms.protocols.xml.collector.XmlCollector"/>
+   <collector service="PostgreSQL" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="SNMP" class-name="org.opennms.netmgt.collectd.SnmpCollector"/>
+   <collector service="ABBCS-CheckVPN" class-name="org.opennms.netmgt.collectd.SnmpCollector"/>
+   <collector service="WMI" class-name="org.opennms.netmgt.collectd.WmiCollector"/>
+   <collector service="WS-Man" class-name="org.opennms.netmgt.collectd.WsManCollector"/>
+   <collector service="VMware-VirtualMachine" class-name="org.opennms.netmgt.collectd.VmwareCollector"/>
+   <collector service="VMware-HostSystem" class-name="org.opennms.netmgt.collectd.VmwareCollector"/>
+   <collector service="VMwareCim-HostSystem" class-name="org.opennms.netmgt.collectd.VmwareCimCollector"/>
+   <collector service="OpenNMS-JVM" class-name="org.opennms.netmgt.collectd.Jsr160Collector"/>
+   <collector service="OpenNMS-Postgres" class-name="org.opennms.netmgt.collectd.JdbcCollector"/>
+   <collector service="JMX-Minion" class-name="org.opennms.netmgt.collectd.Jsr160Collector"/>
+   <collector service="JMX-Cassandra" class-name="org.opennms.netmgt.collectd.Jsr160Collector"/>
+   <collector service="JMX-Cassandra-Newts" class-name="org.opennms.netmgt.collectd.Jsr160Collector"/>
+   <collector service="JMX-Kafka" class-name="org.opennms.netmgt.collectd.Jsr160Collector"/>
+   <collector service="Windows-Exporter" class-name="org.opennms.netmgt.collectd.prometheus.PrometheusCollector" />
+   <collector service="Node-Exporter" class-name="org.opennms.netmgt.collectd.prometheus.PrometheusCollector" />
+   <collector service="Elasticsearch" class-name="org.opennms.protocols.xml.collector.XmlCollector" />
+   <collector service="PostgreSQL" class-name="org.opennms.netmgt.collectd.JdbcCollector" />
+   <collector service="SNMP" class-name="org.opennms.netmgt.collectd.SnmpCollector" />
+   <collector service="WMI" class-name="org.opennms.netmgt.collectd.WmiCollector" />
+   <collector service="WS-Man" class-name="org.opennms.netmgt.collectd.WsManCollector" />
+   <collector service="VMware-VirtualMachine" class-name="org.opennms.netmgt.collectd.VmwareCollector" />
+   <collector service="VMware-HostSystem" class-name="org.opennms.netmgt.collectd.VmwareCollector" />
+   <collector service="VMwareCim-HostSystem" class-name="org.opennms.netmgt.collectd.VmwareCimCollector" />
+   <collector service="OpenNMS-JVM" class-name="org.opennms.netmgt.collectd.Jsr160Collector" />
+   <collector service="JMX-Minion" class-name="org.opennms.netmgt.collectd.Jsr160Collector" />
+   <collector service="JMX-Cassandra" class-name="org.opennms.netmgt.collectd.Jsr160Collector" />
+   <collector service="JMX-Cassandra-Newts" class-name="org.opennms.netmgt.collectd.Jsr160Collector" />
+   <collector service="JMX-Kafka" class-name="org.opennms.netmgt.collectd.Jsr160Collector" />
+   <collector service="OpenNMS-DB" class-name="org.opennms.netmgt.collectd.JdbcCollector" />
+   <collector service="OpenNMS-DB-Stats" class-name="org.opennms.netmgt.collectd.JdbcCollector" />
+</collectd-configuration>

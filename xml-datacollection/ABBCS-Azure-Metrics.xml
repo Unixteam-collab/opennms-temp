@@ -1,0 +1,9 @@
+<xml-groups>
+    <xml-group name="ABBCS-Azure-Metrics" resource-type="AzureMetric"
+                resource-xpath="/metrics/metric"
+                key-xpath="@type">
+      <xml-object name="Metric" type="string" xpath="@type" />
+      <xml-object name="value" type="GAUGE" xpath="@value" />
+    </xml-group>
+</xml-groups>
+

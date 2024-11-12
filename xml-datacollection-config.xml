@@ -1,0 +1,91 @@
+<xml-datacollection-config rrdRepository="/opt/opennms/share/rrd/snmp/" xmlns="http://xmlns.opennms.org/xsd/config/xml-datacollection">
+    <!--
+    To understand how the XML Collector works, and how to configure it, please check the following link:
+    http://www.opennms.org/wiki/XML_Collector
+    -->
+
+    <xml-collection name="xml-elasticsearch-cluster-stats">
+        <rrd step="300">
+            <rra>RRA:AVERAGE:0.5:1:2016</rra>
+            <rra>RRA:AVERAGE:0.5:12:1488</rra>
+            <rra>RRA:AVERAGE:0.5:288:366</rra>
+            <rra>RRA:MAX:0.5:288:366</rra>
+            <rra>RRA:MIN:0.5:288:366</rra>
+        </rrd>
+        <xml-source url="http://{ipaddr}:9200/_cluster/stats">
+            <import-groups>xml-datacollection/elasticsearch-cluster-stats.xml</import-groups>
+        </xml-source>
+    </xml-collection>
+    <xml-collection name="xml-ABBCS-CUPS">
+        <rrd step="300">
+            <rra>RRA:AVERAGE:0.5:1:2016</rra>
+            <rra>RRA:AVERAGE:0.5:12:1488</rra>
+            <rra>RRA:AVERAGE:0.5:288:366</rra>
+            <rra>RRA:MAX:0.5:288:366</rra>
+            <rra>RRA:MIN:0.5:288:366</rra>
+        </rrd>
+        <xml-source url="http://{ipaddr}:8000/printers.xml">
+            <import-groups>xml-datacollection/ABBCS-CUPS-Printers.xml</import-groups>
+        </xml-source>
+    </xml-collection>
+    <xml-collection name="xml-ABBCS-EllipseBatch">
+        <rrd step="300">
+            <rra>RRA:AVERAGE:0.5:1:2016</rra>
+            <rra>RRA:AVERAGE:0.5:12:1488</rra>
+            <rra>RRA:AVERAGE:0.5:288:366</rra>
+            <rra>RRA:MAX:0.5:288:366</rra>
+            <rra>RRA:MIN:0.5:288:366</rra>
+        </rrd>
+        <xml-source url="file:///home/opennms/etc/ellipse_{ipaddr}_batch.xml">
+            <import-groups>xml-datacollection/ABBCS-EllipseBatch.xml</import-groups>
+        </xml-source>
+    </xml-collection>
+    <xml-collection name="xml-ABBCS-Ellipse-Login">
+        <rrd step="300">
+            <rra>RRA:AVERAGE:0.5:1:2016</rra>
+            <rra>RRA:AVERAGE:0.5:12:1488</rra>
+            <rra>RRA:AVERAGE:0.5:288:366</rra>
+            <rra>RRA:MAX:0.5:288:366</rra>
+            <rra>RRA:MIN:0.5:288:366</rra>
+        </rrd>
+        <xml-source url="file:///home/opennms/etc/URL_Test_Ellipse_Login_{nodeLabel}.xml">
+            <import-groups>xml-datacollection/ABBCS-Ellipse-Login.xml</import-groups>
+        </xml-source>
+    </xml-collection>
+    <xml-collection name="xml-ABBCS-Azure-Metrics">
+        <rrd step="300">
+            <rra>RRA:AVERAGE:0.5:1:2016</rra>
+            <rra>RRA:AVERAGE:0.5:12:1488</rra>
+            <rra>RRA:AVERAGE:0.5:288:366</rra>
+            <rra>RRA:MAX:0.5:288:366</rra>
+            <rra>RRA:MIN:0.5:288:366</rra>
+        </rrd>
+        <xml-source url="file:///home/opennms/var/metrics/azure_{ipaddr}.xml">
+            <import-groups>xml-datacollection/ABBCS-Azure-Metrics.xml</import-groups>
+        </xml-source>
+    </xml-collection>
+    <xml-collection name="xml-ABBCS-FSMon">
+        <rrd step="300">
+            <rra>RRA:AVERAGE:0.5:1:2016</rra>
+            <rra>RRA:AVERAGE:0.5:12:1488</rra>
+            <rra>RRA:AVERAGE:0.5:288:366</rra>
+            <rra>RRA:MAX:0.5:288:366</rra>
+            <rra>RRA:MIN:0.5:288:366</rra>
+        </rrd>
+        <xml-source url="file:///home/opennms/var/metrics/FSMon/{ipaddr}.xml">
+            <import-groups>xml-datacollection/ABBCS-FSMon.xml</import-groups>
+        </xml-source>
+    </xml-collection>
+    <xml-collection name="xml-ABBCS-TCP">
+        <rrd step="300">
+            <rra>RRA:AVERAGE:0.5:1:2016</rra>
+            <rra>RRA:AVERAGE:0.5:12:1488</rra>
+            <rra>RRA:AVERAGE:0.5:288:366</rra>
+            <rra>RRA:MAX:0.5:288:366</rra>
+            <rra>RRA:MIN:0.5:288:366</rra>
+        </rrd>
+        <xml-source url="file:///home/opennms/var/metrics/tcp_connections_{ipaddr}.xml">
+            <import-groups>xml-datacollection/ABBCS-TCP.xml</import-groups>
+        </xml-source>
+    </xml-collection>
+</xml-datacollection-config>

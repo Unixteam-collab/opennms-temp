@@ -1,0 +1,38 @@
+<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+   <event>
+      <uei>uei.opennms.org/ABBCS/AzureCPUCredits-trigger</uei>
+      <event-label>ABBCS-defined Azure event uei.opennms.org/ABBCS/AzureCPUCredits-trigger</event-label>
+      <descr>CPU Credits running out for %service%  %parm[ds]%  parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">CPU Credits running out for  %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Warning</severity>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/AzureCPUCredits-rearm</uei>
+      <event-label>User-defined LOW threshold event rearmed: uei.opennms.org/ABBCS/AzureCPUCredits-rearm</event-label>
+      <descr>&lt;p>Low threshold has been rearmed for %service% datasource
+            %parm[ds]% on interface %interface%, parms: %parm[all]%.&lt;/p>
+            &lt;p>By default, OpenNMS watches some key parameters
+            on devices in your network and will alert you with
+            an event if certain conditions arise. For example, if
+            the CPU utilization on your Cisco router maintains an
+            inordinately high percentage of utilization for an extended
+            period, an event will be generated. These thresholds are
+            determined and configured based on working experience with
+            real deployments, not vendor recommendation alone.&lt;/p>
+            &lt;p>This specific event indicates that a low threshold
+            was exceeded but then dropped below the rearm threshold.&lt;/p></descr>
+      <logmsg dest="logndisplay">
+            Low threshold rearmed for %service% datasource %parm[ds]% on interface
+            %interface%, parms: %parm[all]%
+        </logmsg>
+      <severity>Cleared</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="2" clear-key="uei.opennms.org/ABBCS/AzureCPUCredits-trigger:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS/Azure/failure</uei>
+      <event-label>ABBCS-defined Azure event uei.opennms.org/ABBCS/Azure/failure</event-label>
+      <descr>Azure Failure for %service% %parm[ds]% on interface %interface%, parms: %parm[all]</descr>
+      <logmsg dest="logndisplay">Azure failure for %service% datasource %parm[ds]% on interface %interface%, parms: %parm[all]%</logmsg>
+      <severity>Major</severity>
+   </event>
+</events>

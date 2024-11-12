@@ -1,0 +1,11 @@
+<model-import xmlns="http://xmlns.opennms.org/xsd/config/model-import" date-stamp="2018-08-21T09:51:41.733+10:00" foreign-source="MSSqlDatabases_SecTest" last-import="2018-08-21T09:51:51.013+10:00">
+   <node foreign-id="Azure.acm-evas02.SqlServer.Sectest" node-label="Azure.acm-evas02.SqlServer.Sectest">
+      <interface ip-addr="13.73.109.251" status="1" snmp-primary="P">
+         <monitored-service service-name="ABBCS-MSSQL-acmetest"/>
+         <monitored-service service-name="ABBCS-MSSQL-sectest"/>
+      </interface>
+      <category name="Databases_acmetest"/>
+      <category name="RFNotification"/>
+      <category name="Databases"/>
+   </node>
+</model-import>

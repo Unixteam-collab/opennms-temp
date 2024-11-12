@@ -1,0 +1,86 @@
+<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.42.2.145.3.163.1.2.2.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>1</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/JVM-MANAGEMENT-MIB/jvmLowMemoryPoolUsageNotif</uei>
+      <event-label>JVM-MANAGEMENT-MIB defined trap event: jvmLowMemoryPoolUsageNotif</event-label>
+      <descr>
+&lt;p>This notification is sent when the memory usage threshold of
+	    a memory pool is exceeded.
+           &lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	jvmMemPoolName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	jvmMemPoolUsed&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	jvmMemPoolThreshdCount&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	jvmLowMemoryPoolUsageNotif trap received
+	jvmMemPoolName=%parm[#1]%
+	jvmMemPoolUsed=%parm[#2]%
+	jvmMemPoolThreshdCount=%parm[#3]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+   <event>
+      <mask>
+         <maskelement>
+            <mename>id</mename>
+            <mevalue>.1.3.6.1.4.1.42.2.145.3.163.1.2.2.1</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>generic</mename>
+            <mevalue>6</mevalue>
+         </maskelement>
+         <maskelement>
+            <mename>specific</mename>
+            <mevalue>2</mevalue>
+         </maskelement>
+      </mask>
+      <uei>uei.opennms.org/traps/JVM-MANAGEMENT-MIB/jvmLowMemoryPoolCollectNotif</uei>
+      <event-label>JVM-MANAGEMENT-MIB defined trap event: jvmLowMemoryPoolCollectNotif</event-label>
+      <descr>
+&lt;p>This notification is sent when the collection memory usage 
+	    threshold of a memory pool is exceeded.
+           &lt;/p>&lt;table>
+	&lt;tr>&lt;td>&lt;b>
+
+	jvmMemPoolName&lt;/b>&lt;/td>&lt;td>
+	%parm[#1]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	jvmMemPoolCollectUsed&lt;/b>&lt;/td>&lt;td>
+	%parm[#2]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>
+	&lt;tr>&lt;td>&lt;b>
+
+	jvmMemPoolCollectThreshdCount&lt;/b>&lt;/td>&lt;td>
+	%parm[#3]%;&lt;/td>&lt;td>&lt;p>&lt;/p>&lt;/td>&lt;/tr>&lt;/table>
+	</descr>
+      <logmsg dest="logndisplay">&lt;p>
+	jvmLowMemoryPoolCollectNotif trap received
+	jvmMemPoolName=%parm[#1]%
+	jvmMemPoolCollectUsed=%parm[#2]%
+	jvmMemPoolCollectThreshdCount=%parm[#3]%&lt;/p>
+	</logmsg>
+      <severity>Indeterminate</severity>
+   </event>
+</events>

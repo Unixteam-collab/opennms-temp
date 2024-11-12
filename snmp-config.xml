@@ -1,0 +1,102 @@
+<snmp-config xmlns="http://xmlns.opennms.org/xsd/config/snmp" version="v2c" read-community="public" timeout="10000" retry="1">
+   <definition read-community="CS-Admin">
+      <range begin="10.1.0.1" end="10.1.0.254"/>
+   </definition>
+   <definition read-community="oct-evan01">
+      <range begin="10.1.3.1" end="10.1.3.254"/>
+   </definition>
+   <definition read-community="oct-evap01">
+      <range begin="10.1.4.1" end="10.1.4.254"/>
+   </definition>
+   <definition read-community="oct-evad01">
+      <range begin="10.1.5.1" end="10.1.5.254"/>
+   </definition>
+   <definition read-community="opennms123">
+      <range begin="10.3.0.1" end="10.3.0.254"/>
+   </definition>
+   <definition read-community="opennms123">
+      <range begin="10.3.1.1" end="10.3.1.254"/>
+   </definition>
+   <definition read-community="opennms123">
+      <range begin="10.3.2.1" end="10.3.2.254"/>
+   </definition>
+   <definition read-community="acm-evas01">
+      <range begin="10.165.9.1" end="10.165.9.254"/>
+   </definition>
+   <definition read-community="acm-evas02">
+      <range begin="10.165.21.1" end="10.165.21.254"/>
+   </definition>
+   <definition read-community="eau-evan01">
+      <range begin="10.165.7.1" end="10.165.7.254"/>
+   </definition>
+   <definition read-community="eau-evap01">
+      <range begin="10.165.10.1" end="10.165.10.254"/>
+   </definition>
+   <definition read-community="eau-evad01">
+      <range begin="10.165.11.1" end="10.165.11.254"/>
+   </definition>
+   <definition read-community="vic-evan01">
+      <range begin="10.165.6.1" end="10.165.6.254"/>
+   </definition>
+   <definition read-community="vic-evap01">
+      <range begin="10.165.4.1" end="10.165.4.254"/>
+   </definition>
+   <definition read-community="vic-evad01">
+      <range begin="10.165.14.1" end="10.165.14.254"/>
+   </definition>
+   <definition read-community="sky-ccln01">
+      <range begin="10.165.13.1" end="10.165.13.254"/>
+   </definition>
+   <definition read-community="sky-cclp01">
+      <range begin="10.165.15.1" end="10.165.15.254"/>
+   </definition>
+   <definition read-community="kum-evan01">
+      <range begin="10.165.12.1" end="10.165.12.254"/>
+   </definition>
+   <definition read-community="kum-evap01">
+      <range begin="10.165.17.1" end="10.165.17.254"/>
+   </definition>
+   <definition read-community="kum-evad01">
+      <range begin="10.165.18.1" end="10.165.18.254"/>
+   </definition>
+   <definition read-community="cs-ausp01">
+      <range begin="10.2.0.1" end="10.2.0.254"/>
+   </definition>
+   <definition read-community="aci-Ellipse-PRD">
+      <range begin="10.242.147.1" end="10.242.147.254"/>
+   </definition>
+   <definition read-community="aci-Ellipse-DEV">
+      <range begin="10.242.145.1" end="10.242.145.254"/>
+   </definition>
+   <definition read-community="aci-Ellipse-TST">
+      <range begin="10.242.146.1" end="10.242.146.254"/>
+   </definition>
+   <definition read-community="cs-mgt-B1">
+      <specific>192.55.198.43</specific>
+   </definition>
+   <definition read-community="public">
+      <range begin="10.161.59.1" end="10.161.59.254"/>
+   </definition>
+   <definition proxy-host="10.161.59.68" read-community="cmty_batch01_arttrn">
+      <specific>10.0.32.24</specific>
+   </definition>
+   <definition proxy-host="10.161.59.68" read-community="cmty_batch01_arttst">
+      <specific>10.0.32.17</specific>
+   </definition>
+   <definition proxy-host="10.161.59.68" read-community="cmty_batch01_arttrn">
+      <specific>10.0.32.24</specific>
+   </definition>
+   <definition read-community="blah">
+      <range begin="9.2.0.9" end="9.2.0.15"/>
+   </definition>
+   <definition write-community="private" read-community="axis_mgt" port="161">
+      <range begin="1.93.199.1" end="1.93.199.254"/>
+   </definition>
+   <definition write-community="private" read-community="zenoss">
+      <specific>192.55.198.12</specific>
+      <specific>192.55.198.166</specific>
+   </definition>
+   <definition read-community="test">
+      <range begin="1.2.3.1" end="1.2.3.5"/>
+   </definition>
+</snmp-config>

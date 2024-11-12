@@ -1,0 +1,15 @@
+<xml-groups>
+    <xml-group name="ABBCS-FSMon" resource-type="FilesystemMon"
+                resource-xpath="/server/filesystem"
+                key-xpath="@fs_mountpoint">
+      <xml-object name="fsName" type="STRING" xpath="@fs_mountpoint" />
+      <xml-object name="fsSize" type="GAUGE" xpath="@fs_size" />
+      <xml-object name="fsUsed" type="GAUGE" xpath="@fs_used" />
+      <xml-object name="fsPctUsed" type="GAUGE" xpath="@fs_pctused" />
+      <xml-object name="fsNotify" type="STRING" xpath="@fs_notify" />
+      <xml-object name="fsThreshP1" type="GAUGE" xpath="thresholds/@P1" />
+      <xml-object name="fsThreshP2" type="GAUGE" xpath="thresholds/@P2" />
+      <xml-object name="fsThreshP3" type="GAUGE" xpath="thresholds/@P3" />
+      <xml-object name="fsThreshP4" type="GAUGE" xpath="thresholds/@P4" />
+    </xml-group>
+</xml-groups>

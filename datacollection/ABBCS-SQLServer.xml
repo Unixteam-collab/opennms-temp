@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<datacollection-group name="ABBCS-SQLServer">
+
+   <resourceType name="dbDatabaseSql" label="Database"
+          resourceLabel="Database ${dbName} (index:${index})">
+     <persistenceSelectorStrategy
+          class="org.opennms.netmgt.collection.support.PersistAllSelectorStrategy"/>
+     <storageStrategy
+          class="org.opennms.netmgt.collection.support.IndexStorageStrategy"/>
+   </resourceType>
+
+</datacollection-group>

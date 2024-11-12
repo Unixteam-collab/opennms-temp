@@ -1,0 +1,75 @@
+<foreign-source xmlns="http://xmlns.opennms.org/xsd/config/foreign-source" name="Servers" date-stamp="2017-03-08T15:14:55.608+10:00">
+   <scan-interval>1d</scan-interval>
+   <detectors>
+      <detector name="Process-java" class="org.opennms.netmgt.provision.detector.snmp.HostResourceSWRunDetector">
+         <parameter key="serviceNameOid" value=".1.3.6.1.2.1.25.4.2.1.5"/>
+         <parameter key="serviceToDetect" value="~.*java.*"/>
+      </detector>
+      <detector name="SNMP" class="org.opennms.netmgt.provision.detector.snmp.SnmpDetector"/>
+      <detector name="ABBCS-FSMon" class="org.opennms.netmgt.provision.detector.snmp.SnmpDetector"/>
+      <detector name="ABBCS-Jboss" class="org.opennms.netmgt.provision.detector.snmp.SnmpDetector">
+         <parameter key="oid" value=".1.3.6.1.4.1.42.2.145.3.163.1.1.4.1"/>
+         <parameter key="port" value="161"/>
+         <parameter key="forceVersion" value="2c"/>
+      </detector>
+      <detector name="ABBCS-OpenFiles" class="org.opennms.netmgt.provision.detector.snmp.SnmpDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="oid" value=".1.3.6.1.4.1.8072.1.3.2.4.1.2.9.79.112.101.110.70.105.108.101.115.1"/>
+         <parameter key="forceVersion" value="2c"/>
+      </detector>
+      <detector name="ABBCS-logmatch" class="org.opennms.netmgt.provision.detector.snmp.SnmpDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="oid" value=".1.3.6.1.4.1.2021.16.2.1.1.1"/>
+         <parameter key="forceVersion" value="2c"/>
+      </detector>
+      <detector name="SWAP" class="org.opennms.netmgt.provision.detector.snmp.SnmpDetector">
+         <parameter key="oid" value=".1.3.6.1.4.1.2021.4.100.0"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="ABBCS-KernelMon" class="org.opennms.netmgt.provision.detector.snmp.SnmpDetector">
+         <parameter key="oid" value=".1.3.6.1.2.1.1.8.0"/>
+         <parameter key="port" value="161"/>
+         <parameter key="forceVersion" value="2c"/>
+      </detector>
+   </detectors>
+   <policies>
+      <policy name="Servers" class="org.opennms.netmgt.provision.persist.policies.NodeCategorySettingPolicy">
+         <parameter key="category" value="Servers"/>
+         <parameter key="matchBehavior" value="ALL_PARAMETERS"/>
+      </policy>
+      <policy name="SNMP" class="org.opennms.netmgt.provision.persist.policies.NodeCategorySettingPolicy">
+         <parameter key="category" value="SNMP"/>
+         <parameter key="sysObjectId" value="~(^\.1\.3\.6\.1\.4\.1\.(8072|311).*)"/>
+         <parameter key="matchBehavior" value="ALL_PARAMETERS"/>
+      </policy>
+      <policy name="RFNotification" class="org.opennms.netmgt.provision.persist.policies.NodeCategorySettingPolicy">
+         <parameter key="category" value="RFNotification"/>
+         <parameter key="matchBehavior" value="ALL_PARAMETERS"/>
+      </policy>
+      <policy name="JBoss" class="org.opennms.netmgt.provision.persist.policies.NodeCategorySettingPolicy">
+         <parameter key="sysName" value="~(^ell.*|^vip.*|^ews.*|^batch.*|^ellipse.*|^hgel[bosi].*)"/>
+         <parameter key="matchBehavior" value="ALL_PARAMETERS"/>
+         <parameter key="category" value="Jboss7"/>
+      </policy>
+      <policy name="jvmAlerts" class="org.opennms.netmgt.provision.persist.policies.NodeCategorySettingPolicy">
+         <parameter key="sysName" value="~(^ell.*|^vip.*|^ews.*|^batch.*|^ellipse.*|^hgel[bosi].*)"/>
+         <parameter key="matchBehavior" value="ALL_PARAMETERS"/>
+         <parameter key="category" value="jvmAlerts"/>
+      </policy>
+      <policy name="Http" class="org.opennms.netmgt.provision.persist.policies.NodeCategorySettingPolicy">
+         <parameter key="category" value="Http"/>
+         <parameter key="matchBehavior" value="ALL_PARAMETERS"/>
+         <parameter key="sysName" value="~(^ell.*|^vip.*|^ews.*|^batch.*|^ellipse.*|^waf.*|.*rfinteg.*|^hgel[bosi].*)"/>
+      </policy>
+      <policy name="EllipseOnline" class="org.opennms.netmgt.provision.persist.policies.NodeCategorySettingPolicy">
+         <parameter key="matchBehavior" value="ALL_PARAMETERS"/>
+         <parameter key="sysName" value="~(^ellipse.*|^ellonllb.*|^hgelo[ptr].*)"/>
+         <parameter key="category" value="EllipseOnline"/>
+      </policy>
+      <policy name="EllipseEWS" class="org.opennms.netmgt.provision.persist.policies.NodeCategorySettingPolicy">
+         <parameter key="matchBehavior" value="ALL_PARAMETERS"/>
+         <parameter key="sysName" value="~(^ews.*)"/>
+         <parameter key="category" value="EllipseEWS"/>
+      </policy>
+   </policies>
+</foreign-source>

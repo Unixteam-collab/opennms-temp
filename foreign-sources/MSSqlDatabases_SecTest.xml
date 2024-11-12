@@ -1,0 +1,11 @@
+<foreign-source xmlns="http://xmlns.opennms.org/xsd/config/foreign-source" name="MSSQLDatabases_SecTest" date-stamp="2017-03-08T15:14:55.608+10:00">
+   <scan-interval>1d</scan-interval>
+   <detectors>
+      <detector name="ABBCS-MSSQL-sectest" class="org.opennms.netmgt.provision.detector.jdbc.JdbcDetector">
+         <parameter key="url" value="jdbc:sqlserver://sec-test.database.windows.net:1433;databaseName=sec-test;user=csadmin@sec-test;password=Mincom2018!!;sendStringParametersAsUnicode=false;packetSize=16362;loginTimeout=30;"/>
+         <parameter key="timeout" value="30"/>
+         <parameter key="dbDriver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+      </detector>
+   </detectors>
+   <policies/>
+</foreign-source>

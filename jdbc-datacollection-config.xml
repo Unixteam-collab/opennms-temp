@@ -1,0 +1,862 @@
+<jdbc-datacollection-config xmlns="http://xmlns.opennms.org/xsd/config/jdbc-datacollection" rrdRepository="/opt/opennms/share/rrd/snmp/">
+   <jdbc-collection name="default">
+      <rrd step="300">
+         <rra>RRA:AVERAGE:0.5:1:2016</rra>
+         <rra>RRA:AVERAGE:0.5:12:1488</rra>
+         <rra>RRA:AVERAGE:0.5:288:366</rra>
+         <rra>RRA:MAX:0.5:288:366</rra>
+         <rra>RRA:MIN:0.5:288:366</rra>
+      </rrd>
+      <queries>
+         <query name="opennmsEventQuery" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SELECT COUNT(eventid) as EventCount, (SELECT reltuples AS estimate FROM pg_class WHERE relname = 'events') FROM events WHERE eventtime BETWEEN (CURRENT_TIMESTAMP - INTERVAL '1 day') AND CURRENT_TIMESTAMP;</queryString>
+            </statement>
+            <columns>
+               <column name="eventCount" data-source-name="EventCount" type="gauge" alias="OnmsEventCount"/>
+               <column name="eventEstimate" data-source-name="estimate" type="gauge" alias="OnmsEventEstimate"/>
+            </columns>
+         </query>
+         <query name="opennmsAlarmQuery" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SELECT COUNT(alarmid) as AlarmCount FROM alarms;</queryString>
+            </statement>
+            <columns>
+               <column name="alarmCount" data-source-name="AlarmCount" type="gauge" alias="OnmsAlarmCount"/>
+            </columns>
+         </query>
+         <query name="opennmsNodeQuery" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SELECT COUNT(*) as NodeCount FROM node WHERE nodetype != 'D';</queryString>
+            </statement>
+            <columns>
+               <column name="nodeCount" data-source-name="NodeCount" type="gauge" alias="OnmsNodeCount"/>
+            </columns>
+         </query>
+      </queries>
+   </jdbc-collection>
+   <jdbc-collection name="MySQL-Global-Stats">
+      <rrd step="300">
+         <rra>RRA:AVERAGE:0.5:1:2016</rra>
+         <rra>RRA:AVERAGE:0.5:12:1488</rra>
+         <rra>RRA:AVERAGE:0.5:288:366</rra>
+         <rra>RRA:MAX:0.5:288:366</rra>
+         <rra>RRA:MIN:0.5:288:366</rra>
+      </rrd>
+      <queries>
+         <query name="Q_MyUptime" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'UPTIME'</queryString>
+            </statement>
+            <columns>
+               <column name="UPTIME" data-source-name="Value" alias="MyUptime" type="gauge"/>
+            </columns>
+         </query>
+         <query name="Q_MyBytesReceived" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'BYTES_RECEIVED'</queryString>
+            </statement>
+            <columns>
+               <column name="BYTES_RECEIVED" data-source-name="Value" alias="MyBytesReceived" type="counter"/>
+            </columns>
+         </query>
+         <query name="Q_MyBytesSent" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'BYTES_SENT'</queryString>
+            </statement>
+            <columns>
+               <column name="BYTES_SENT" data-source-name="Value" alias="MyBytesSent" type="counter"/>
+            </columns>
+         </query>
+         <query name="Q_Com_delete" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'COM_DELETE'</queryString>
+            </statement>
+            <columns>
+               <column name="COM_DELETE" data-source-name="Value" alias="MyComDelete" type="counter"/>
+            </columns>
+         </query>
+         <query name="Q_Com_delete_multi" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'COM_DELETE_MULTI'</queryString>
+            </statement>
+            <columns>
+               <column name="COM_DELETE_MULTI" data-source-name="Value" alias="MyComDeleteMulti" type="counter"/>
+            </columns>
+         </query>
+         <query name="Q_Com_insert" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'COM_INSERT'</queryString>
+            </statement>
+            <columns>
+               <column name="COM_INSERT" data-source-name="Value" alias="MyComInsert" type="counter"/>
+            </columns>
+         </query>
+         <query name="Q_Com_insert_select" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'COM_INSERT_SELECT'</queryString>
+            </statement>
+            <columns>
+               <column name="COM_INSERT_SELECT" data-source-name="Value" alias="MyComInsertSelect" type="counter"/>
+            </columns>
+         </query>
+         <query name="Q_Com_select" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'COM_SELECT'</queryString>
+            </statement>
+            <columns>
+               <column name="COM_SELECT" data-source-name="Value" alias="MyComSelect" type="counter"/>
+            </columns>
+         </query>
+         <query name="Q_Com_stmt_execute" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'COM_STMT_EXECUTE'</queryString>
+            </statement>
+            <columns>
+               <column name="COM_STMT_EXECUTE" data-source-name="Value" alias="MyComStmtExecute" type="counter"/>
+            </columns>
+         </query>
+         <query name="Q_Com_update" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'COM_UPDATE'</queryString>
+            </statement>
+            <columns>
+               <column name="COM_UPDATE" data-source-name="Value" alias="MyComUpdate" type="counter"/>
+            </columns>
+         </query>
+         <query name="Q_Com_update_multi" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'COM_UPDATE_MULTI'</queryString>
+            </statement>
+            <columns>
+               <column name="COM_UPDATE_MULTI" data-source-name="Value" alias="MyComUpdateMulti" type="counter"/>
+            </columns>
+         </query>
+         <query name="Q_Created_tmp_disk_tables" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'CREATED_TMP_DISK_TABLES'</queryString>
+            </statement>
+            <columns>
+               <column name="CREATED_TMP_DISK_TABLES" data-source-name="Value" alias="MyCreatTmpDiskTbl" type="counter"/>
+            </columns>
+         </query>
+         <query name="Q_Created_tmp_tables" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'CREATED_TMP_TABLES'</queryString>
+            </statement>
+            <columns>
+               <column name="CREATED_TMP_TABLES" data-source-name="Value" alias="MyCreatTmpTables" type="counter"/>
+            </columns>
+         </query>
+         <query name="Q_key_buffer_size" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL VARIABLES WHERE VARIABLE_NAME ='KEY_BUFFER_SIZE'</queryString>
+            </statement>
+            <columns>
+               <column name="KEY_BUFFER_SIZE" data-source-name="Value" alias="MyKeyBufferSize" type="gauge"/>
+            </columns>
+         </query>
+         <query name="Q_key_cache_block_size" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL VARIABLES WHERE VARIABLE_NAME ='KEY_CACHE_BLOCK_SIZE'</queryString>
+            </statement>
+            <columns>
+               <column name="KEY_CACHE_BLOCK_SIZE" data-source-name="Value" alias="MyKeyCacheBlkSize" type="gauge"/>
+            </columns>
+         </query>
+         <query name="Q_Key_blocks_unused" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'KEY_BLOCKS_UNUSED'</queryString>
+            </statement>
+            <columns>
+               <column name="KEY_BLOCKS_UNUSED" data-source-name="Value" alias="MyKeyBlkUnused" type="gauge"/>
+            </columns>
+         </query>
+         <query name="Q_Key_read_requests" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'KEY_READ_REQUESTS'</queryString>
+            </statement>
+            <columns>
+               <column name="KEY_READ_REQUESTS" data-source-name="Value" alias="MyKeyReadReqs" type="counter"/>
+            </columns>
+         </query>
+         <query name="Q_Key_reads" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'KEY_READS'</queryString>
+            </statement>
+            <columns>
+               <column name="KEY_READS" data-source-name="Value" alias="MyKeyReads" type="counter"/>
+            </columns>
+         </query>
+         <query name="Q_Key_write_requests" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'KEY_WRITE_REQUESTS'</queryString>
+            </statement>
+            <columns>
+               <column name="KEY_WRITE_REQUESTS" data-source-name="Value" alias="MyKeyWriteReqs" type="counter"/>
+            </columns>
+         </query>
+         <query name="Q_Key_writes" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'KEY_WRITES'</queryString>
+            </statement>
+            <columns>
+               <column name="KEY_WRITES" data-source-name="Value" alias="MyKeyWrites" type="counter"/>
+            </columns>
+         </query>
+         <query name="Q_Open_files" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'OPEN_FILES'</queryString>
+            </statement>
+            <columns>
+               <column name="OPEN_FILES" data-source-name="Value" alias="MyOpenFiles" type="gauge"/>
+            </columns>
+         </query>
+         <query name="Q_Open_tables" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'OPEN_TABLES'</queryString>
+            </statement>
+            <columns>
+               <column name="OPEN_TABLES" data-source-name="Value" alias="MyOpenTables" type="gauge"/>
+            </columns>
+         </query>
+         <query name="Q_table_open_cache" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL VARIABLES WHERE VARIABLE_NAME ='TABLE_OPEN_CACHE'</queryString>
+            </statement>
+            <columns>
+               <column name="TABLE_OPEN_CACHE" data-source-name="Value" alias="MyTableOpenCache" type="gauge"/>
+            </columns>
+         </query>
+         <query name="Q_Questions" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'QUESTIONS'</queryString>
+            </statement>
+            <columns>
+               <column name="QUESTIONS" data-source-name="Value" alias="MyQuestions" type="counter"/>
+            </columns>
+         </query>
+         <query name="Q_Slow_queries" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'SLOW_QUERIES'</queryString>
+            </statement>
+            <columns>
+               <column name="SLOW_QUERIES" data-source-name="Value" alias="MySlowQueries" type="counter"/>
+            </columns>
+         </query>
+         <query name="Q_Connections" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'CONNECTIONS'</queryString>
+            </statement>
+            <columns>
+               <column name="CONNECTIONS" data-source-name="Value" alias="MyConnections" type="counter"/>
+            </columns>
+         </query>
+         <query name="Q_Threads_created" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'THREADS_CREATED'</queryString>
+            </statement>
+            <columns>
+               <column name="THREADS_CREATED" data-source-name="Value" alias="MyThreadsCreatd" type="counter"/>
+            </columns>
+         </query>
+         <query name="Q_Threads_cached" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'THREADS_CACHED'</queryString>
+            </statement>
+            <columns>
+               <column name="THREADS_CACHED" data-source-name="Value" alias="MyThreadsCachd" type="gauge"/>
+            </columns>
+         </query>
+         <query name="Q_Threads_connected" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'THREADS_CONNECTED'</queryString>
+            </statement>
+            <columns>
+               <column name="THREADS_CONNECTED" data-source-name="Value" alias="MyThreadsCnnctd" type="gauge"/>
+            </columns>
+         </query>
+         <query name="Q_Threads_running" recheckInterval="0" ifType="ignore">
+            <statement>
+               <queryString>SHOW GLOBAL STATUS WHERE VARIABLE_NAME = 'THREADS_RUNNING'</queryString>
+            </statement>
+            <columns>
+               <column name="THREADS_RUNNING" data-source-name="Value" alias="MyThreadsRunng" type="gauge"/>
+            </columns>
+         </query>
+      </queries>
+   </jdbc-collection>
+   <jdbc-collection name="PostgreSQL">
+      <rrd step="300">
+         <rra>RRA:AVERAGE:0.5:1:2016</rra>
+         <rra>RRA:AVERAGE:0.5:12:1488</rra>
+         <rra>RRA:AVERAGE:0.5:288:366</rra>
+         <rra>RRA:MAX:0.5:288:366</rra>
+         <rra>RRA:MIN:0.5:288:366</rra>
+      </rrd>
+      <queries>
+         <query name="pg_tablespace_size" recheckInterval="0" ifType="all" resourceType="pgTableSpace" instance-column="spcname">
+            <statement>
+               <queryString>
+                    SELECT spcname, pg_tablespace_size(pg_tablespace.spcname) AS ts_size
+                    FROM pg_tablespace
+                    </queryString>
+            </statement>
+            <columns>
+               <column name="spcname" data-source-name="spcname" type="string" alias="spcname"/>
+               <column name="ts_size" data-source-name="ts_size" type="gauge" alias="ts_size"/>
+            </columns>
+         </query>
+         <query name="pg_stat_database" recheckInterval="0" ifType="all" resourceType="pgDatabase" instance-column="datname">
+            <statement>
+               <queryString>
+                    SELECT datname, numbackends, xact_commit, xact_rollback, blks_read, blks_hit,
+                           pg_database_size(pg_stat_database.datname) AS db_size
+                    FROM pg_stat_database
+                    WHERE datname NOT IN ('template0', 'template1')
+                    </queryString>
+            </statement>
+            <columns>
+               <column name="datname" data-source-name="datname" type="string" alias="datname"/>
+               <column name="numbackends" data-source-name="numbackends" type="gauge" alias="numbackends"/>
+               <column name="xact_commit" data-source-name="xact_commit" type="counter" alias="xact_commit"/>
+               <column name="xact_rollback" data-source-name="xact_rollback" type="counter" alias="xact_rollback"/>
+               <column name="blks_read" data-source-name="blks_read" type="counter" alias="blks_read"/>
+               <column name="blks_hit" data-source-name="blks_hit" type="counter" alias="blks_hit"/>
+               <column name="db_size" data-source-name="db_size" type="gauge" alias="db_size"/>
+            </columns>
+         </query>
+      </queries>
+   </jdbc-collection>
+    <jdbc-collection name="onms-postgresql">
+        <rrd step="300">
+            <rra>RRA:AVERAGE:0.5:1:2016</rra>
+            <rra>RRA:AVERAGE:0.5:12:1488</rra>
+            <rra>RRA:AVERAGE:0.5:288:366</rra>
+            <rra>RRA:MAX:0.5:288:366</rra>
+            <rra>RRA:MIN:0.5:288:366</rra>
+        </rrd>
+        <queries>
+            <query name="pg_stat_database" ifType="ignore">
+              <statement>
+                <queryString>
+                   SELECT * FROM pg_stat_database
+                    WHERE datname='opennms'
+                </queryString>
+              </statement>
+              <columns>
+                <column name="xact_commit" data-source-name="xact_commit" alias="xact_commit" type="counter"/>
+                <column name="xact_rollback" data-source-name="xact_rollback" alias="xact_rollback" type="counter"/>
+                <column name="blks_read" data-source-name="blks_read" alias="blks_read" type="counter"/>
+                <column name="blks_hit" data-source-name="blks_hit" alias="blks_hit" type="counter"/>
+              </columns>
+            </query>
+            <query name="pg_dbsize" ifType="ignore">
+              <statement>
+                <queryString>
+                  SELECT pg_database_size(pg_database.datname) AS db_size
+                    FROM pg_database
+                   WHERE pg_database.datname='opennms'
+                </queryString>
+              </statement>
+              <columns>
+                <column name="db_size" data-source-name="db_size" alias="db_size" type="gauge"/>
+              </columns>
+            </query>
+            <query name="pg_stat_user_tables" ifType="ignore">
+              <statement>
+                <queryString>
+                SELECT SUM(seq_scan) as a1,
+                       SUM(seq_tup_read) as a2,
+                       SUM(idx_scan) as a3,
+                       SUM(idx_tup_fetch) as a4,
+                       SUM(n_tup_ins) as a5,
+                       SUM(n_tup_upd) as a6,
+                       SUM(n_tup_del) as a7
+                  FROM pg_stat_user_tables
+                </queryString>
+              </statement>
+              <columns>
+                <column name="a1" data-source-name="a1" alias="seq_scan" type="counter"/>
+                <column name="a2" data-source-name="a2" alias="seq_tup_read" type="counter"/>
+                <column name="a3" data-source-name="a3" alias="idx_scan" type="counter"/>
+                <column name="a4" data-source-name="a4" alias="idx_tup_fetch" type="counter"/>
+                <column name="a5" data-source-name="a5" alias="n_tup_ins" type="counter"/>
+                <column name="a6" data-source-name="a6" alias="n_tup_upd" type="counter"/>
+                <column name="a7" data-source-name="a7" alias="n_tup_del" type="counter"/>
+              </columns>
+            </query>
+            <query name="pg_statio_user_tables" ifType="ignore">
+              <statement>
+                <queryString>
+                SELECT SUM(heap_blks_read) as b1,
+                       SUM(heap_blks_hit) as b2,
+                       SUM(idx_blks_read) as b3,
+                       SUM(idx_blks_hit) as b4,
+                       SUM(toast_blks_read) as b5,
+                       SUM(toast_blks_hit) as b6,
+                       SUM(tidx_blks_read) as b7,
+                       SUM(tidx_blks_hit) as b8
+                  FROM pg_statio_user_tables
+                </queryString>
+              </statement>
+              <columns>
+                <column name="b1" data-source-name="b1" alias="heap_blks_read" type="counter"/>
+                <column name="b2" data-source-name="b2" alias="heap_blks_hit" type="counter"/>
+                <column name="b3" data-source-name="b3" alias="idx_blks_read" type="counter"/>
+                <column name="b4" data-source-name="b4" alias="idx_blks_hit" type="counter"/>
+                <column name="b5" data-source-name="b5" alias="toast_blks_read" type="counter"/>
+                <column name="b6" data-source-name="b6" alias="toast_blks_hit" type="counter"/>
+                <column name="b7" data-source-name="b7" alias="tidx_blks_read" type="counter"/>
+                <column name="b8" data-source-name="b8" alias="tidx_blks_hit" type="counter"/>
+              </columns>
+            </query>
+         </queries>
+    </jdbc-collection>
+   <jdbc-collection name="ABBCS-Oracle-DR">
+      <rrd step="300">
+         <rra>RRA:AVERAGE:0.5:1:2016</rra>
+         <rra>RRA:AVERAGE:0.5:12:1488</rra>
+         <rra>RRA:AVERAGE:0.5:288:366</rra>
+         <rra>RRA:MAX:0.5:288:366</rra>
+         <rra>RRA:MIN:0.5:288:366</rra>
+      </rrd>
+      <queries>
+         <query name="dbDRlag" ifType="ignore">
+            <statement>
+               <queryString>
+                  select distinct(
+                  case when database_role != 'PRIMARY'
+                  then
+                    (select (substr(value,2,2)*1440)+(substr(value,5,2)*60)+(substr(value,8,2))
+                     from v$dataguard_stats where name = 'apply lag')
+                  else
+                    (select trunc(((select sysdate from dual) - (select max(first_time)
+                     from v$log_history)) * 1440) - 10
+                         from dual)
+                  end) as "Minutes lag behind Primary"
+                  from v$database
+               </queryString>
+            </statement>
+            <columns>
+               <column name="dbDRlag" alias="dbDRlag" data-source-name="dbDRlag" type="gauge"/>
+            </columns>
+         </query>
+       </queries>
+   </jdbc-collection>
+   <jdbc-collection name="ABBCS-Oracle">
+       <rrd step="300">
+          <rra>RRA:AVERAGE:0.5:1:2016</rra>
+          <rra>RRA:AVERAGE:0.5:12:1488</rra>
+          <rra>RRA:AVERAGE:0.5:288:366</rra>
+          <rra>RRA:MAX:0.5:288:366</rra>
+          <rra>RRA:MIN:0.5:288:366</rra>
+       </rrd>
+       <queries>
+          <query name="tablespace_PctUsed" ifType="all" instance-column="TableSpaceName" resourceType="dbTableSpace">
+             <statement>
+                <queryString>select a.name||'_'||b.value2 as TableSpaceName, b.value1 as PctUsed from zen_tab_5min b, v$database a where b.name='tablespace_%used'</queryString>
+             </statement>
+             <columns>
+                <column name="TableSpaceName" alias="dbTableSpaceName" data-source-name="TableSpaceName" type="string"/>
+                <column name="PctUsed" alias="dbTSpctUsed" data-source-name="PctUsed" type="gauge"/>
+             </columns>
+          </query>
+
+          <query name="dbLastBackedUp" ifType="ignore">
+             <statement>
+               <queryString>
+                  select a.name as "DBNAME"
+                       , b.value1 - b.threshold as dbLastBackedUp
+                  from   zen_tab_5min b
+                       , v$database a
+                  where b.name='days_without_backup'
+               </queryString>
+             </statement>
+             <columns>
+               <column name="DBNAME" alias="dbName" data-source-name="DBNAME" type="string"/>
+               <column name="dbLastBackedUp" alias="dbLastBackedUp" data-source-name="dbLastBackedUp" type="gauge"/>
+             </columns>
+           </query>
+
+           <query name="dbInvalidObjects" ifType="ignore" >
+             <statement>
+               <queryString>select VALUE1-THRESHOLD as dbInvalidObjects from zen_tab_1hr where name='invalid_object_count' </queryString>
+             </statement>
+             <columns>
+               <column name="dbInvalidObjects" alias="dbInvalidObjects" data-source-name="dbInvalidObjects" type="gauge"/>
+             </columns>
+           </query>
+
+<!--           <query name="dbBcacheHitRatio" ifType="ignore" >
+             <statement>
+               <queryString>select 90 - THRESHOLD + VALUE1 as dbBcacheHitRatio from zen_tab_1hr where name='bcache_hit_ratio' </queryString>
+             </statement>
+             <columns>
+               <column name="dbBcacheHitRatio" alias="dbBcacheHitRatio" data-source-name="dbBcacheHitRatio" type="gauge"/>
+             </columns>
+           </query> -->
+           <query name="dbForceLogging" ifType="ignore" >
+             <statement>
+               <queryString>select VALUE1-THRESHOLD as dbForceLogging from zen_tab_1hr where name='force_logging' </queryString>
+             </statement>
+             <columns>
+               <column name="dbForceLogging" alias="dbForceLogging" data-source-name="dbForceLogging" type="gauge"/>
+             </columns>
+           </query>
+           <query name="dbCorruptBlocks" ifType="ignore" >
+             <statement>
+               <queryString>select VALUE1 as dbCorruptBlocks from zen_tab_1hr where name='corrupt_block_detected' </queryString>
+             </statement>
+             <columns>
+               <column name="dbCorruptBlocks" alias="dbCorruptBlocks" data-source-name="dbCorruptBlocks" type="gauge"/>
+             </columns>
+           </query>
+<!--           <query name="dbTempSpaceUsed" ifType="ignore" >
+             <statement>
+               <queryString>select 100-(free_space/tablespace_size)*100 as dbTempSpaceUsed from dba_temp_free_space </queryString>
+             </statement>
+             <columns>
+               <column name="dbTempSpaceUsed" alias="dbTempSpaceUsed" data-source-name="dbTempSpaceUsed" type="gauge"/>
+             </columns>
+           </query>
+           <query name="dbCursorsUsed" ifType="ignore" >
+             <statement>
+               <queryString>select (max(a.value)/p.value)*100 as dbCursorsUsed from v$sesstat a, v$statname b, v$parameter p where a.statistic# = b.statistic# and b.name = 'opened cursors current' and p.name= 'open_cursors' group by p.value </queryString>
+             </statement>
+             <columns>
+               <column name="dbCursorsUsed" alias="dbCursorsUsed" data-source-name="dbCursorsUsed" type="gauge"/>
+             </columns>
+           </query> -->
+        </queries>
+    </jdbc-collection>
+
+   <jdbc-collection name="ABBCS-Oracle-1hr">
+       <rrd step="3600">
+          <rra>RRA:AVERAGE:0.5:1:768</rra>
+          <rra>RRA:AVERAGE:0.5:4:738</rra>
+          <rra>RRA:AVERAGE:0.5:24:366</rra>
+          <rra>RRA:MAX:0.5:24:366</rra>
+          <rra>RRA:MIN:0.5:24:366</rra>
+       </rrd>
+       <queries>
+<!--           <query name="dbSGAFree" ifType="ignore" >
+             <statement>
+               <queryString>select trunc(bytes/1024/1024) as dbSGAFree from v$sgastat where pool='shared pool' and name='free memory'</queryString>
+             </statement>
+             <columns>
+               <column name="dbSGAFree" alias="dbSGAFree" data-source-name="dbSGAFree" type="gauge"/>
+             </columns>
+           </query> 
+           <query name="dbPGAFree" ifType="ignore" >
+             <statement>
+               <queryString>select trunc(a.value/1024/1024 - b.value/1024/1024)  dbPGAFree from v$parameter a,v$pgastat b where a.name='pga_aggregate_target' and b.name='total PGA inuse'</queryString>
+             </statement>
+             <columns>
+               <column name="dbPGAFree" alias="dbPGAFree" data-source-name="dbPGAFree" type="gauge"/>
+             </columns>
+           </query> -->
+       </queries>
+   </jdbc-collection>
+
+
+   <jdbc-collection name="ABBCS-SQLServer">
+       <rrd step="300">
+          <rra>RRA:AVERAGE:0.5:1:2016</rra>
+          <rra>RRA:AVERAGE:0.5:12:1488</rra>
+          <rra>RRA:AVERAGE:0.5:288:366</rra>
+          <rra>RRA:MAX:0.5:288:366</rra>
+          <rra>RRA:MIN:0.5:288:366</rra>
+       </rrd>
+       <queries>
+          <query name="dbPerfStats" ifType="all" instance-column="dbName" resourceType="dbDatabaseSql">
+             <statement>
+                <queryString>
+WITH DB_CPU_Stats
+AS
+(
+    SELECT DatabaseID, isnull(DB_Name(DatabaseID),case DatabaseID when 32767 then 'Internal ResourceDB' else CONVERT(varchar(255),DatabaseID)end) AS [DatabaseName], 
+      SUM(total_worker_time) AS [CPU Time Ms],
+      SUM(total_logical_reads)  AS [Logical Reads],
+      SUM(total_logical_writes)  AS [Logical Writes],
+      SUM(total_logical_reads+total_logical_writes)  AS [Logical IO],
+      SUM(total_physical_reads)  AS [Physical Reads],
+      SUM(total_elapsed_time)  AS [Duration MicroSec],
+      SUM(total_clr_time)  AS [CLR Time MicroSec],
+      SUM(total_rows)  AS [Rows Returned],
+      SUM(execution_count)  AS [Execution Count],
+      count(*) 'Plan Count'
+
+    FROM sys.dm_exec_query_stats AS qs
+    CROSS APPLY (
+                    SELECT CONVERT(int, value) AS [DatabaseID] 
+                  FROM sys.dm_exec_plan_attributes(qs.plan_handle)
+                  WHERE attribute = N'dbid') AS F_DB
+    GROUP BY DatabaseID
+)
+SELECT ROW_NUMBER() OVER(ORDER BY [CPU Time Ms] DESC) AS [RankCPU],
+       [DatabaseID] AS [dbID],
+       [DatabaseName] AS [dbName],
+       [CPUTimeHr] = convert(decimal(15,2),([CPU Time Ms]/1000.0)/3600) ,
+        CAST([CPU Time Ms] * 1.0 / SUM([CPU Time Ms]) OVER() * 100.0 AS DECIMAL(5, 2)) AS [CPUPct],
+       [DurationHr] = convert(decimal(15,2),([Duration MicroSec]/1000000.0)/3600) , 
+       CAST([Duration MicroSec] * 1.0 / SUM([Duration MicroSec]) OVER() * 100.0 AS DECIMAL(5, 2)) AS [DurationPct],    
+       [Logical Reads] AS [LogicalReads],
+        CAST([Logical Reads] * 1.0 / SUM([Logical Reads]) OVER() * 100.0 AS DECIMAL(5, 2)) AS [LogicalReadsPct],      
+       [Rows Returned] AS [RowsReturned],
+        CAST([Rows Returned] * 1.0 / SUM([Rows Returned]) OVER() * 100.0 AS DECIMAL(5, 2)) AS [RowsReturnedPct],
+       [ReadsPerRowReturned] = [Logical Reads]/[Rows Returned],
+       [Execution Count] AS [ExecutionCount],
+        CAST([Execution Count] * 1.0 / SUM([Execution Count]) OVER() * 100.0 AS DECIMAL(5, 2)) AS [ExecutionCountPct],
+       [Physical Reads] as [PhysicalReads],
+       CAST([Physical Reads] * 1.0 / SUM([Physical Reads]) OVER() * 100.0 AS DECIMAL(5, 2)) AS [PhysicalReadsPct], 
+       [Logical Writes] AS [LogicalWrites],
+        CAST([Logical Writes] * 1.0 / SUM([Logical Writes]) OVER() * 100.0 AS DECIMAL(5, 2)) AS [LogicalWritesPct],
+       [Logical IO] AS [LogicalIO],
+        CAST([Logical IO] * 1.0 / SUM([Logical IO]) OVER() * 100.0 AS DECIMAL(5, 2)) AS [LogicalIOPct],
+       [CLR Time MicroSec] AS [CLRTimeMicroSec],
+       CAST([CLR Time MicroSec] * 1.0 / SUM(case [CLR Time MicroSec] when 0 then 1 else [CLR Time MicroSec] end ) OVER() * 100.0 AS DECIMAL(5, 2)) AS [CLRTimePct],
+       [CPU Time Ms] AS [CPUTimeMs] ,[CPU Time Ms]/1000 [CPUTimeSec],
+       [Duration MicroSec] AS [DurationMicroSec] ,[Duration MicroSec]/1000000 [DurationSec]
+FROM DB_CPU_Stats
+ORDER BY [RankCPU] OPTION (RECOMPILE)
+                </queryString>
+             </statement>
+             <columns>
+                <column name="RankCPU" alias="RankCPU" data-source-name="RankCPU" type="gauge"/>
+                <column name="dbID" alias="dbID" data-source-name="dbID" type="string"/>
+                <column name="dbName" alias="dbName" data-source-name="dbName" type="string"/>
+                <column name="CPUTimeHr" alias="CPUTimeHr" data-source-name="CPUTimeHr" type="gauge"/>
+                <column name="CPUPct" alias="CPUPct" data-source-name="CPUPct" type="gauge"/>
+                <column name="DurationHr" alias="DurationHr" data-source-name="DurationHr" type="gauge"/>
+                <column name="DurationPct" alias="DurationPct" data-source-name="DurationPct" type="gauge"/>
+                <column name="LogicalReads" alias="LogicalReads" data-source-name="LogicalReads" type="counter"/>
+                <column name="LogicalReadsPct" alias="LogicalReadsPct" data-source-name="LogicalReadsPct" type="gauge"/>
+                <column name="RowsReturned" alias="RowsReturned" data-source-name="RowsReturned" type="counter"/>
+                <column name="RowsReturnedPct" alias="RowsReturnedPct" data-source-name="RowsReturnedPct" type="gauge"/>
+                <column name="ReadsPerRowReturned" alias="ReadsPerRowReturned" data-source-name="ReadsPerRowReturned" type="gauge"/>
+                <column name="ExecutionCount" alias="ExecutionCount" data-source-name="ExecutionCount" type="counter"/>
+                <column name="ExecutionCountPct" alias="ExecutionCountPct" data-source-name="ExecutionCountPct" type="gauge"/>
+                <column name="PhysicalReads" alias="PhysicalReads" data-source-name="PhysicalReads" type="counter"/>
+                <column name="PhysicalReadsPct" alias="PhysicalReadsPct" data-source-name="PhysicalReadsPct" type="gauge"/>
+                <column name="LogicalWrites" alias="LogicalWrites" data-source-name="LogicalWrites" type="counter"/>
+                <column name="LogicalWritesPct" alias="LogicalWritesPct" data-source-name="LogicalWritesPct" type="gauge"/>
+                <column name="LogicalIO" alias="LogicalIO" data-source-name="LogicalIO" type="counter"/>
+                <column name="LogicalIOPct" alias="LogicalIOPct" data-source-name="LogicalIOPct" type="gauge"/>
+                <column name="CLRTimeMicroSec" alias="CLRTimeMicroSec" data-source-name="CLRTimeMicroSec" type="gauge"/>
+                <column name="CLRTimePct" alias="CLRTimePct" data-source-name="CLRTimePct" type="gauge"/>
+                <column name="CPUTimeMs" alias="CPUTimeMs" data-source-name="CPUTimeMs" type="gauge"/>
+                <column name="CPUTimeSec" alias="CPUTimeSec" data-source-name="CPUTimeSec" type="gauge"/>
+                <column name="DurationMicroSec" alias="DurationMicroSec" data-source-name="DurationMicroSec" type="gauge"/>
+                <column name="DurationSec" alias="DurationSec" data-source-name="DurationSec" type="gauge"/>
+             </columns>
+          </query>
+          <query name="dbLastBackedUp" ifType="all" instance-column="dbName" resourceType="dbDatabaseSql">
+             <statement>
+               <queryString>
+                  SELECT B.name as dbName
+                       , B.dbid as dbID
+                       , ISNULL(STR(ABS(DATEDIFF(day, GetDate(), MAX(Backup_finish_date)))), '9999') as DaysSinceLastBackup
+                       , ISNULL(Convert(char(10), MAX(backup_finish_date), 101), 'NEVER') as LastBackupDate
+                  FROM master.dbo.sysdatabases B
+                  LEFT OUTER JOIN msdb.dbo.backupset A 
+                       ON A.database_name = B.name
+                  AND A.type = 'D'
+                  WHERE B.name not in ('tempdb','model','BaselineData')
+                  AND B.name not like '%Empty'
+                  AND B.name not like '%NEW'
+                  GROUP BY B.name,B.dbid
+                  ORDER BY B.name,B.dbid
+               </queryString>
+             </statement>
+             <columns>
+                <column name="dbName" alias="dbName" data-source-name="dbName" type="string"/>
+                <column name="dbID" alias="dbID" data-source-name="dbID" type="string"/>
+                <column name="dbLastBackedUp" alias="dbLastBackedUp" data-source-name="DaysSinceLastBackup" type="gauge"/>
+                <column name="dbLastBackedUpDate" alias="dbLastBackedUpDate" data-source-name="LastBackupdate" type="string"/>
+             </columns>
+          </query>
+          <query name="dbLastBackedUpTL" ifType="all" instance-column="dbName" resourceType="dbDatabaseSql">
+             <statement>
+               <queryString>
+                  SELECT B.name as dbName
+                       , ISNULL(STR(ABS(DATEDIFF(hour, GetDate(), MAX(Backup_finish_date)))), '9999') as HoursSinceLastBackup
+                       , ISNULL(Convert(char(10), MAX(backup_finish_date), 101), 'NEVER') as LastBackupDateTL
+                  FROM sys.databases B
+                  LEFT OUTER JOIN msdb.dbo.backupset A
+                       ON A.database_name = B.name
+                  AND A.type = 'L'
+                  WHERE B.recovery_model_desc = 'FULL'
+                  AND B.name not in ('tempdb','model')
+                  AND B.name not like '%Empty'
+                  AND B.name not like '%NEW'
+                  GROUP BY B.name
+                  ORDER BY B.name
+               </queryString>
+             </statement>
+             <columns>
+                <column name="dbName" alias="dbName" data-source-name="dbName" type="string"/>
+                <column name="dbLastBackedUpHrs" alias="dbLastBackedUpHrs" data-source-name="HoursSinceLastBackup" type="gauge"/>
+                <column name="dbLastBackedUpDateTL" alias="dbLastBackedUpDateTL" data-source-name="LastBackupDateTL" type="string"/>
+             </columns>
+          </query>
+          <query name="dbBufferCacheHit" ifType="ignore">
+             <statement>
+               <queryString>
+                  SELECT (a.cntr_value * 1.0 / b.cntr_value) * 100.0 as BufferCacheHitRatio
+                  FROM sys.dm_os_performance_counters  a
+                  JOIN  (SELECT cntr_value, OBJECT_NAME 
+                      FROM sys.dm_os_performance_counters  
+                      WHERE counter_name = 'Buffer cache hit ratio base'
+                          AND OBJECT_NAME like '%Buffer Manager%') b ON  a.OBJECT_NAME = b.OBJECT_NAME
+                  WHERE a.counter_name = 'Buffer cache hit ratio'
+                  AND a.OBJECT_NAME like '%Buffer Manager%'
+               </queryString>
+             </statement>
+             <columns>
+                <column name="dbBufferCacheHit" alias="dbBufferCacheHit" data-source-name="BufferCacheHitRatio" type="gauge"/>
+             </columns>
+          </query>
+          <query name="dbSize" ifType="all" instance-column="dbName" resourceType="dbDatabaseSql">
+             <statement>
+               <queryString>
+                  SELECT      @@SERVERNAME AS dbInstanceName,
+                              db.name AS dbName,
+                              db.dbid AS dbID,
+                              SUM(CASE WHEN af.groupid = 0 THEN 0 ELSE 8192.0E * af.size / 1048576.0E END) AS DatabaseSize,
+                              SUM(CASE WHEN af.groupid = 0 THEN 8192.0E * af.size / 1048576.0E ELSE 0 END) AS LogSize,
+                              SUM(8192.0E * af.size / 1048576.0E) AS TotalSize
+                  FROM        master..sysdatabases AS db
+                  INNER JOIN master..sysaltfiles AS af ON af.[dbid] = db.[dbid]
+                  -- WHERE       db.name NOT IN('distribution', 'Resource', 'tempdb', 'master', 'model', 'msdb')       -- System databases
+                  GROUP BY    db.name,db.dbid
+               </queryString>
+             </statement>
+             <columns>
+                <column name="dbInstanceName" alias="dbInstanceName" data-source-name="dbInstanceName" type="string"/>
+                <column name="dbName" alias="dbName" data-source-name="dbName" type="string"/>
+                <column name="dbID" alias="dbID" data-source-name="dbID" type="string"/>
+                <column name="dbDatabaseSize" alias="dbDatabaseSize" data-source-name="DatabaseSize" type="gauge"/>
+                <column name="dbLogSize" alias="dbLogSize" data-source-name="LogSize" type="gauge"/>
+                <column name="dbTotalSize" alias="dbTotalSize" data-source-name="TotalSize" type="gauge"/>
+             </columns>
+          </query>
+        </queries>
+    </jdbc-collection>
+    <jdbc-collection name="ABBCS-SQLServer-Analytics">
+       <rrd step="300">
+          <rra>RRA:AVERAGE:0.5:1:2016</rra>
+          <rra>RRA:AVERAGE:0.5:12:1488</rra>
+          <rra>RRA:AVERAGE:0.5:288:366</rra>
+          <rra>RRA:MAX:0.5:288:366</rra>
+          <rra>RRA:MIN:0.5:288:366</rra>
+       </rrd>
+       <queries>
+          <query name="anlLastCompleteJob" ifType="ignore">
+             <statement>
+               <queryString>
+                   select count(1) success
+                     from z_run_history
+                     where run_id = (select max(run_id)
+                                     from z_run_history
+                                     where end_time is not null)
+                    and success=1 and as_success=1
+               </queryString>
+             </statement>
+             <columns>
+                <column name="anlSuccess" alias="anlSuccess" data-source-name="success" type="gauge"/>
+             </columns>
+          </query>
+          <query name="anlTimeSinceLast" ifType="ignore">
+             <statement>
+               <queryString>
+                  select datediff(hh, max(start_time), getdate()) as anlLastStarted
+                  from z_run_history
+               </queryString>
+             </statement>
+             <columns>
+                <column name="anlLastStarted" alias="anlLastStarted" data-source-name="anlLastStarted" type="gauge"/>
+             </columns>
+          </query>
+          <query name="anlOverdueMinutes" ifType="ignore">
+             <statement>
+               <queryString>
+                  select cast(case
+                           when end_time is null then datediff(mi, this.start_time, getdate()) - computed.max_minutes
+                              else 0
+                           end as INT) overdue_minutes
+                    from z_run_history this,
+                        (select 0.5 * avg(datediff(mi, start_time, end_time) ) max_minutes
+                         from z_run_history
+                        where success = 1
+                          and start_time != end_time) computed
+                  where run_id = (select max(run_id) from z_run_history)
+               </queryString>
+             </statement>
+             <columns>
+                <column name="anlOverdueMinutes" alias="anlOverdueMinutes" data-source-name="overdue_minutes" type="string"/>
+             </columns>
+          </query>
+		  <query name="anlJobHungState" ifType="ignore">
+			<statement>
+				<queryString>
+					select datediff(hh, max(start_time), getdate()) as anlFailedHung
+					from z_run_history where End_Time is null
+				</queryString>
+             </statement>
+             <columns>
+                <column name="anlFailedHung" alias="anlFailedHung" data-source-name="anlFailedHung" type="gauge"/>
+             </columns>
+          </query>
+        </queries>
+    </jdbc-collection>
+    <jdbc-collection name="ABBCS-SQLServer-Analytics-NRT">
+       <rrd step="300">
+          <rra>RRA:AVERAGE:0.5:1:2016</rra>
+          <rra>RRA:AVERAGE:0.5:12:1488</rra>
+          <rra>RRA:AVERAGE:0.5:288:366</rra>
+          <rra>RRA:MAX:0.5:288:366</rra>
+          <rra>RRA:MIN:0.5:288:366</rra>
+       </rrd>
+       <queries>
+          <query name="NRTLoadFailedHungState" ifType="ignore">
+             <statement>
+               <queryString>
+                  select count(1) as anlNRTFailedHung from NRT_Run_History
+                                  where run_ID = (select max(Run_ID) from NRT_Run_History)
+                  and End_Time is null
+                  and DATEDIFF(mi,Start_Time,getdate()) > 30
+               </queryString>
+             </statement>
+             <columns>
+                <column name="anlNRTFailedHung" alias="anlNRTFailedHung" data-source-name="anlNRTFailedHung" type="gauge"/>
+             </columns>
+          </query>
+          <query name="NRTScheduleNotWorking" ifType="ignore">
+             <statement>
+               <queryString>
+                  select count(1) as anlScheduleNotWorking from NRT_Run_History where
+                  run_ID = (select max(Run_ID) from NRT_Run_History where end_Time is not null)
+                  and
+                  Start_time is not null and End_Time is not null
+                  and
+                 DATEPART(hh,Start_Time) between 8 AND 18
+               </queryString>
+             </statement>
+             <columns>
+                <column name="anlScheduleNotWorking" alias="anlScheduleNotWorking" data-source-name="anlScheduleNotWorking" type="gauge"/>
+             </columns>
+          </query>
+          <query name="NRTTableLoadError" ifType="ignore">
+             <statement>
+               <queryString>
+                  select count(1) as anlTableLoadError from ST_NRT_Tables where LastLoadMessage like 'Error%'
+               </queryString>
+             </statement>
+             <columns>
+                <column name="anlTableLoadError" alias="anlTableLoadError" data-source-name="anlTableLoadError" type="gauge"/>
+             </columns>
+          </query>
+        </queries>
+    </jdbc-collection>
+</jdbc-datacollection-config>

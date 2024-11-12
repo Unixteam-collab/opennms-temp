@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<datacollection-group name="ABBCS-CheckVPN">
+
+
+   <group name="ABBCS-CheckVPN-test" ifType="ignore">
+      <mibObj oid=".1.3.6.1.4.1.8072.1.3.2.4.1.2.16.118.112.110.95.109.111.110.105.116.111.114.95.116.101.115.116" instance="1" alias="vpnID" type="string" />
+      <mibObj oid=".1.3.6.1.4.1.8072.1.3.2.4.1.2.16.118.112.110.95.109.111.110.105.116.111.114.95.116.101.115.116" instance="2" alias="vpnMessage" type="string" />
+      <mibObj oid=".1.3.6.1.4.1.8072.1.3.2.4.1.2.16.118.112.110.95.109.111.110.105.116.111.114.95.116.101.115.116" instance="3" alias="vpnThreshold" type="integer" />
+      <mibObj oid=".1.3.6.1.4.1.8072.1.3.2.4.1.2.16.118.112.110.95.109.111.110.105.116.111.114.95.116.101.115.116" instance="4" alias="vpnFailures" type="integer" />
+      <mibObj oid=".1.3.6.1.4.1.8072.1.3.2.4.1.2.16.118.112.110.95.109.111.110.105.116.111.114.95.116.101.115.116" instance="5" alias="vpnNotify" type="string" />
+   </group>
+
+
+    <systemDef name="ABBCS-CheckVPN">
+       <sysoidMask>.1.3.6.1.4.1.8072.3.</sysoidMask> 
+      <collect>
+        <includeGroup>ABBCS-CheckVPN-test</includeGroup>
+      </collect>
+    </systemDef>
+</datacollection-group>

@@ -1,0 +1,87 @@
+<model-import xmlns="http://xmlns.opennms.org/xsd/config/model-import" date-stamp="2024-10-20T04:00:08.999+10:00" foreign-source="Windows_Servers" last-import="2024-10-20T16:05:30.471+10:00">
+   <node foreign-id="cs-ausp-pow01.gms.mincom.com" node-label="cs-ausp-pow01.gms.mincom.com">
+      <interface ip-addr="10.2.0.99" status="1" snmp-primary="P">
+         <monitored-service service-name="ABBCS-Azure-Metrics"/>
+      </interface>
+      <asset name="password" value="eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImpTMVhvMU9XRGpfNTJ2YndHTmd2UU8yVnpNYyIsImtpZCI6ImpTMVhvMU9XRGpfNTJ2YndHTmd2UU8yVnpNYyJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuYXp1cmUuY29tLyIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzM3MmVlOWUwLTljZTAtNDAzMy1hNjRhLWMwNzA3M2E5MWVjZC8iLCJpYXQiOjE2NDg3NjgyMDMsIm5iZiI6MTY0ODc2ODIwMywiZXhwIjoxNjQ4NzcyMTAzLCJhaW8iOiJFMlpnWVBpbWxmMHNxZmxhOG8rYkZvK2ZoWWZlQlFBPSIsImFwcGlkIjoiN2U3YmNjNGQtZjNjNi00MDU0LTliM2YtMzMyMGRhZWFhODdjIiwiYXBwaWRhY3IiOiIxIiwiaWRwIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvMzcyZWU5ZTAtOWNlMC00MDMzLWE2NGEtYzA3MDczYTkxZWNkLyIsImlkdHlwIjoiYXBwIiwib2lkIjoiZmI0OWY2Y2EtZDAyMC00MzE0LTk5YTUtYjUxNTcwODJkZjE4IiwicmgiOiIwLkFRSUE0T2t1Ti1DY00wQ21Tc0J3YzZrZXpVWklmM2tBdXRkUHVrUGF3ZmoyTUJNQ0FBQS4iLCJzdWIiOiJmYjQ5ZjZjYS1kMDIwLTQzMTQtOTlhNS1iNTE1NzA4MmRmMTgiLCJ0aWQiOiIzNzJlZTllMC05Y2UwLTQwMzMtYTY0YS1jMDcwNzNhOTFlY2QiLCJ1dGkiOiJIaUVIX3ZOeHNVcVBLTm45Y25zQkFBIiwidmVyIjoiMS4wIiwieG1zX3RjZHQiOjEzNTk1MzY2NTR9.EMYOJmkvL-sxEMsZeENX5adAhTtszZO-OEjKDkcDFiBXHKIS0EHZX1d4Ot5wohUtxmJ_paUZ4ahMxMRMVLNEz7uoXGiOV6lUH84yEq7b_u65uGkVWiuGmm1cueBkzHQsIr6d217AX8jmrXwQofJWwuqKJvfa2l_JYlLoThMLzCbepU6-hhKnBgItCqRtmn4aCZ5ln7_F_Sn7ri-m0-EUeq6oFOwp-fJ0hsn0imodNxaBePsgDlRQm7l7lrarObxcFtXP3qJ0jAeqKRRUL6tANFwZth6wjQ82KAbiDpaBJMIzeL15rrtUNIKSdbV9yl0oRmP31AkCyXqnx7z5Zy6VxQ"/>
+      <asset name="description" value="cs-ausp-pow01"/>
+      <asset name="modelNumber" value="Standard_DS11_v2_Promo"/>
+      <asset name="vendor" value="Microsoft Azure"/>
+      <asset name="assetNumber" value="/subscriptions/2febe52f-f289-4d77-912c-851d9f84f4ef/resourceGroups/CS-AUSP01/providers/Microsoft.Compute/virtualMachines/cs-ausp-pow01"/>
+      <asset name="division" value="CS-AUSP01"/>
+      <asset name="department" value="2febe52f-f289-4d77-912c-851d9f84f4ef"/>
+   </node>
+   <node foreign-id="aue-s-dc01.gms.mincom.com" node-label="aue-s-dc01.gms.mincom.com">
+      <interface ip-addr="10.2.0.6" status="1" snmp-primary="P">
+         <monitored-service service-name="ABBCS-Azure-Metrics"/>
+      </interface>
+      <asset name="password" value="eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImpTMVhvMU9XRGpfNTJ2YndHTmd2UU8yVnpNYyIsImtpZCI6ImpTMVhvMU9XRGpfNTJ2YndHTmd2UU8yVnpNYyJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuYXp1cmUuY29tLyIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzM3MmVlOWUwLTljZTAtNDAzMy1hNjRhLWMwNzA3M2E5MWVjZC8iLCJpYXQiOjE2NDg3NjgyMDMsIm5iZiI6MTY0ODc2ODIwMywiZXhwIjoxNjQ4NzcyMTAzLCJhaW8iOiJFMlpnWVBpbWxmMHNxZmxhOG8rYkZvK2ZoWWZlQlFBPSIsImFwcGlkIjoiN2U3YmNjNGQtZjNjNi00MDU0LTliM2YtMzMyMGRhZWFhODdjIiwiYXBwaWRhY3IiOiIxIiwiaWRwIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvMzcyZWU5ZTAtOWNlMC00MDMzLWE2NGEtYzA3MDczYTkxZWNkLyIsImlkdHlwIjoiYXBwIiwib2lkIjoiZmI0OWY2Y2EtZDAyMC00MzE0LTk5YTUtYjUxNTcwODJkZjE4IiwicmgiOiIwLkFRSUE0T2t1Ti1DY00wQ21Tc0J3YzZrZXpVWklmM2tBdXRkUHVrUGF3ZmoyTUJNQ0FBQS4iLCJzdWIiOiJmYjQ5ZjZjYS1kMDIwLTQzMTQtOTlhNS1iNTE1NzA4MmRmMTgiLCJ0aWQiOiIzNzJlZTllMC05Y2UwLTQwMzMtYTY0YS1jMDcwNzNhOTFlY2QiLCJ1dGkiOiJIaUVIX3ZOeHNVcVBLTm45Y25zQkFBIiwidmVyIjoiMS4wIiwieG1zX3RjZHQiOjEzNTk1MzY2NTR9.EMYOJmkvL-sxEMsZeENX5adAhTtszZO-OEjKDkcDFiBXHKIS0EHZX1d4Ot5wohUtxmJ_paUZ4ahMxMRMVLNEz7uoXGiOV6lUH84yEq7b_u65uGkVWiuGmm1cueBkzHQsIr6d217AX8jmrXwQofJWwuqKJvfa2l_JYlLoThMLzCbepU6-hhKnBgItCqRtmn4aCZ5ln7_F_Sn7ri-m0-EUeq6oFOwp-fJ0hsn0imodNxaBePsgDlRQm7l7lrarObxcFtXP3qJ0jAeqKRRUL6tANFwZth6wjQ82KAbiDpaBJMIzeL15rrtUNIKSdbV9yl0oRmP31AkCyXqnx7z5Zy6VxQ"/>
+      <asset name="description" value="aue-s-dc01"/>
+      <asset name="modelNumber" value="Basic_A1"/>
+      <asset name="vendor" value="Microsoft Azure"/>
+      <asset name="assetNumber" value="/subscriptions/2febe52f-f289-4d77-912c-851d9f84f4ef/resourceGroups/CS-AUSP01/providers/Microsoft.Compute/virtualMachines/aue-s-dc01"/>
+      <asset name="division" value="CS-AUSP01"/>
+      <asset name="department" value="2febe52f-f289-4d77-912c-851d9f84f4ef"/>
+   </node>
+   <node foreign-id="aue-s-cusdc01.gms.mincom.com" node-label="aue-s-cusdc01.gms.mincom.com">
+      <interface ip-addr="10.2.0.23" snmp-primary="P">
+         <monitored-service service-name="ABBCS-Azure-Metrics"/>
+      </interface>
+      <asset name="password" value="eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImpTMVhvMU9XRGpfNTJ2YndHTmd2UU8yVnpNYyIsImtpZCI6ImpTMVhvMU9XRGpfNTJ2YndHTmd2UU8yVnpNYyJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuYXp1cmUuY29tLyIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzM3MmVlOWUwLTljZTAtNDAzMy1hNjRhLWMwNzA3M2E5MWVjZC8iLCJpYXQiOjE2NDg3NjgyMDMsIm5iZiI6MTY0ODc2ODIwMywiZXhwIjoxNjQ4NzcyMTAzLCJhaW8iOiJFMlpnWVBpbWxmMHNxZmxhOG8rYkZvK2ZoWWZlQlFBPSIsImFwcGlkIjoiN2U3YmNjNGQtZjNjNi00MDU0LTliM2YtMzMyMGRhZWFhODdjIiwiYXBwaWRhY3IiOiIxIiwiaWRwIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvMzcyZWU5ZTAtOWNlMC00MDMzLWE2NGEtYzA3MDczYTkxZWNkLyIsImlkdHlwIjoiYXBwIiwib2lkIjoiZmI0OWY2Y2EtZDAyMC00MzE0LTk5YTUtYjUxNTcwODJkZjE4IiwicmgiOiIwLkFRSUE0T2t1Ti1DY00wQ21Tc0J3YzZrZXpVWklmM2tBdXRkUHVrUGF3ZmoyTUJNQ0FBQS4iLCJzdWIiOiJmYjQ5ZjZjYS1kMDIwLTQzMTQtOTlhNS1iNTE1NzA4MmRmMTgiLCJ0aWQiOiIzNzJlZTllMC05Y2UwLTQwMzMtYTY0YS1jMDcwNzNhOTFlY2QiLCJ1dGkiOiJIaUVIX3ZOeHNVcVBLTm45Y25zQkFBIiwidmVyIjoiMS4wIiwieG1zX3RjZHQiOjEzNTk1MzY2NTR9.EMYOJmkvL-sxEMsZeENX5adAhTtszZO-OEjKDkcDFiBXHKIS0EHZX1d4Ot5wohUtxmJ_paUZ4ahMxMRMVLNEz7uoXGiOV6lUH84yEq7b_u65uGkVWiuGmm1cueBkzHQsIr6d217AX8jmrXwQofJWwuqKJvfa2l_JYlLoThMLzCbepU6-hhKnBgItCqRtmn4aCZ5ln7_F_Sn7ri-m0-EUeq6oFOwp-fJ0hsn0imodNxaBePsgDlRQm7l7lrarObxcFtXP3qJ0jAeqKRRUL6tANFwZth6wjQ82KAbiDpaBJMIzeL15rrtUNIKSdbV9yl0oRmP31AkCyXqnx7z5Zy6VxQ"/>
+      <asset name="description" value="aue-s-cusdc01"/>
+      <asset name="modelNumber" value="Standard_B2s"/>
+      <asset name="vendor" value="Microsoft Azure"/>
+      <asset name="assetNumber" value="/subscriptions/2febe52f-f289-4d77-912c-851d9f84f4ef/resourceGroups/CS-AUSP01/providers/Microsoft.Compute/virtualMachines/aue-s-cusdc01"/>
+      <asset name="division" value="CS-AUSP01"/>
+      <asset name="department" value="2febe52f-f289-4d77-912c-851d9f84f4ef"/>
+   </node>
+   <node foreign-id="aue-s-tse01.gms.mincom.com" node-label="aue-s-tse01.gms.mincom.com">
+      <interface ip-addr="10.2.0.14" status="1" snmp-primary="P">
+         <monitored-service service-name="ABBCS-FSMon"/>
+         <monitored-service service-name="ABBCS-Azure-Metrics"/>
+      </interface>
+      <asset name="password" value="eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImpTMVhvMU9XRGpfNTJ2YndHTmd2UU8yVnpNYyIsImtpZCI6ImpTMVhvMU9XRGpfNTJ2YndHTmd2UU8yVnpNYyJ9.eyJhdWQiOiJodHRwczovL21hbmFnZW1lbnQuYXp1cmUuY29tLyIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzM3MmVlOWUwLTljZTAtNDAzMy1hNjRhLWMwNzA3M2E5MWVjZC8iLCJpYXQiOjE2NDg3NjgyMDMsIm5iZiI6MTY0ODc2ODIwMywiZXhwIjoxNjQ4NzcyMTAzLCJhaW8iOiJFMlpnWVBpbWxmMHNxZmxhOG8rYkZvK2ZoWWZlQlFBPSIsImFwcGlkIjoiN2U3YmNjNGQtZjNjNi00MDU0LTliM2YtMzMyMGRhZWFhODdjIiwiYXBwaWRhY3IiOiIxIiwiaWRwIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvMzcyZWU5ZTAtOWNlMC00MDMzLWE2NGEtYzA3MDczYTkxZWNkLyIsImlkdHlwIjoiYXBwIiwib2lkIjoiZmI0OWY2Y2EtZDAyMC00MzE0LTk5YTUtYjUxNTcwODJkZjE4IiwicmgiOiIwLkFRSUE0T2t1Ti1DY00wQ21Tc0J3YzZrZXpVWklmM2tBdXRkUHVrUGF3ZmoyTUJNQ0FBQS4iLCJzdWIiOiJmYjQ5ZjZjYS1kMDIwLTQzMTQtOTlhNS1iNTE1NzA4MmRmMTgiLCJ0aWQiOiIzNzJlZTllMC05Y2UwLTQwMzMtYTY0YS1jMDcwNzNhOTFlY2QiLCJ1dGkiOiJIaUVIX3ZOeHNVcVBLTm45Y25zQkFBIiwidmVyIjoiMS4wIiwieG1zX3RjZHQiOjEzNTk1MzY2NTR9.EMYOJmkvL-sxEMsZeENX5adAhTtszZO-OEjKDkcDFiBXHKIS0EHZX1d4Ot5wohUtxmJ_paUZ4ahMxMRMVLNEz7uoXGiOV6lUH84yEq7b_u65uGkVWiuGmm1cueBkzHQsIr6d217AX8jmrXwQofJWwuqKJvfa2l_JYlLoThMLzCbepU6-hhKnBgItCqRtmn4aCZ5ln7_F_Sn7ri-m0-EUeq6oFOwp-fJ0hsn0imodNxaBePsgDlRQm7l7lrarObxcFtXP3qJ0jAeqKRRUL6tANFwZth6wjQ82KAbiDpaBJMIzeL15rrtUNIKSdbV9yl0oRmP31AkCyXqnx7z5Zy6VxQ"/>
+      <asset name="description" value="aue-s-tse01"/>
+      <asset name="modelNumber" value="Standard_E4s_v3"/>
+      <asset name="vendor" value="Microsoft Azure"/>
+      <asset name="assetNumber" value="/subscriptions/2febe52f-f289-4d77-912c-851d9f84f4ef/resourceGroups/CS-AUSP01/providers/Microsoft.Compute/virtualMachines/aue-s-tse01"/>
+      <asset name="division" value="CS-AUSP01"/>
+      <asset name="department" value="2febe52f-f289-4d77-912c-851d9f84f4ef"/>
+   </node>
+   <node foreign-id="csa-mgts01-adm-ljm01.gms.mincom.com." node-label="csa-mgts01-adm-ljm01.gms.mincom.com.">
+      <interface ip-addr="10.2.0.30" snmp-primary="P"/>
+   </node>
+   <node foreign-id="AUE-S-DC0119.gms.mincom.com" node-label="AUE-S-DC0119.gms.mincom.com">
+      <interface ip-addr="10.2.0.35" snmp-primary="P"/>
+   </node>
+   <node foreign-id="aue-s-epo01.gms.mincom.com" node-label="aue-s-epo01.gms.mincom.com">
+      <interface ip-addr="10.2.0.37" snmp-primary="P"/>
+   </node>
+   <node foreign-id="aue-s-wsus01.gms.mincom.com" node-label="aue-s-wsus01.gms.mincom.com">
+      <interface ip-addr="10.2.0.36" snmp-primary="P"/>
+   </node>
+   <node foreign-id="tmpubuntu.gms.mincom.com." node-label="tmpubuntu.gms.mincom.com.">
+      <interface ip-addr="10.1.6.13" snmp-primary="P"/>
+   </node>
+   <node foreign-id="aue-s-solwha.gms.mincom.com" node-label="aue-s-solwha.gms.mincom.com">
+      <interface ip-addr="10.2.0.43" snmp-primary="P"/>
+   </node>
+   <node foreign-id="cs-oel88-vpn01.gms.mincom.com" node-label="cs-oel88-vpn01.gms.mincom.com">
+      <interface ip-addr="10.2.0.50" snmp-primary="P"/>
+   </node>
+   <node foreign-id="aue-s-audit01.gms.mincom.com" node-label="aue-s-audit01.gms.mincom.com">
+      <interface ip-addr="172.17.71.4" snmp-primary="P"/>
+   </node>
+   <node foreign-id="csa-mgts01-adm-ljm01.gms.mincom.com" node-label="csa-mgts01-adm-ljm01.gms.mincom.com">
+      <interface ip-addr="10.2.0.8" snmp-primary="P"/>
+   </node>
+   <node foreign-id="aue-s-opennms01" node-label="aue-s-opennms01">
+      <interface ip-addr="10.2.0.9" snmp-primary="P"/>
+   </node>
+   <node foreign-id="cs-ausp01-svc-vpn01.gms.mincom.com" node-label="cs-ausp01-svc-vpn01.gms.mincom.com">
+      <interface ip-addr="10.2.1.254" snmp-primary="P"/>
+   </node>
+   <node foreign-id="oel8-8-ora19c-v1.gms.mincom.com" node-label="oel8-8-ora19c-v1.gms.mincom.com">
+      <interface ip-addr="10.165.5.6" snmp-primary="P"/>
+   </node>
+</model-import>

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<datacollection-group name="ABBCS-Jboss">
+
+<!--    <resourceType name="ABBCS-Jboss" label="ABBCS-Jboss">
+        <persistenceSelectorStrategy class="org.opennms.netmgt.collection.support.PersistAllSelectorStrategy"/>
+        <storageStrategy class="org.opennms.netmgt.collection.support.IndexStorageStrategy"/>
+    </resourceType>
+-->
+
+
+   <resourceType name="jvmMemManagerIndex" label="JVM GC Stats" resourceLabel="${jvmMemManagerName} (index ${index})">
+        <persistenceSelectorStrategy class="org.opennms.netmgt.collection.support.PersistAllSelectorStrategy"/>
+        <storageStrategy class="org.opennms.netmgt.collection.support.IndexStorageStrategy"/>
+   </resourceType>
+
+   <resourceType name="jvmMemPoolIndex" label="JVM Memory Pool Stats" resourceLabel="Memory Pool - ${jvmMemPoolName} (index ${index})">
+        <persistenceSelectorStrategy class="org.opennms.netmgt.collection.support.PersistAllSelectorStrategy"/>
+        <storageStrategy class="org.opennms.netmgt.collection.support.IndexStorageStrategy"/>
+  </resourceType>
+
+
+
+      <!-- Jboss MIB's -->
+
+    <group name="ABBCS-Jboss-Global" ifType="ignore">
+      <mibObj oid=".1.3.6.1.4.1.42.2.145.3.163.1.1.2.11" instance="0" alias="jvmHeapUsed" type="Gauge64" />
+      <mibObj oid=".1.3.6.1.4.1.42.2.145.3.163.1.1.2.12" instance="0" alias="jvmHeapCommitted" type="Gauge64" />
+      <mibObj oid=".1.3.6.1.4.1.42.2.145.3.163.1.1.2.13" instance="0" alias="jvmHeapMax" type="Gauge64" />
+      <mibObj oid=".1.3.6.1.4.1.42.2.145.3.163.1.1.2.21" instance="0" alias="jvmNonHeapUsed" type="Gauge64" />
+      <mibObj oid=".1.3.6.1.4.1.42.2.145.3.163.1.1.2.22" instance="0" alias="jvmNonHeapCommitted" type="Gauge64" />
+      <mibObj oid=".1.3.6.1.4.1.42.2.145.3.163.1.1.2.23" instance="0" alias="jvmNonHeapMax" type="Gauge64" />
+      <mibObj oid=".1.3.6.1.4.1.42.2.145.3.163.1.1.3.1" instance="0" alias="jvmThreadCount" type="Gauge64" />
+      <mibObj oid=".1.3.6.1.4.1.42.2.145.3.163.1.1.4.11" instance="0" alias="jvmRTUptimeMs" type="Gauge64" />
+    </group>
+    <group name="ABBCS-Jboss-MemManager" ifType="all">
+      <mibObj oid=".1.3.6.1.4.1.42.2.145.3.163.1.1.2.100.1.2"  instance="jvmMemManagerIndex" alias="jvmMemManagerName" type="string" />
+      <mibObj oid=".1.3.6.1.4.1.42.2.145.3.163.1.1.2.101.1.2"  instance="jvmMemManagerIndex" alias="jvmMemGCCount" type="Counter64" />
+      <mibObj oid=".1.3.6.1.4.1.42.2.145.3.163.1.1.2.101.1.3"  instance="jvmMemManagerIndex" alias="jvmMemGCTimeMs" type="Counter64" />
+    </group>
+    <group name="ABBCS-Jboss-MemPool" ifType="all">
+      <mibObj oid=".1.3.6.1.4.1.42.2.145.3.163.1.1.2.110.1.2"  instance="jvmMemPoolIndex" alias="jvmMemPoolName" type="string" />
+      <mibObj oid=".1.3.6.1.4.1.42.2.145.3.163.1.1.2.110.1.10" instance="jvmMemPoolIndex" alias="jvmMemPoolInitSize" type="Gauge64" />
+      <mibObj oid=".1.3.6.1.4.1.42.2.145.3.163.1.1.2.110.1.11" instance="jvmMemPoolIndex" alias="jvmMemPoolUsed" type="Gauge64" />
+      <mibObj oid=".1.3.6.1.4.1.42.2.145.3.163.1.1.2.110.1.12" instance="jvmMemPoolIndex" alias="jvmMemPoolCommit" type="Gauge64" />
+      <mibObj oid=".1.3.6.1.4.1.42.2.145.3.163.1.1.2.110.1.13" instance="jvmMemPoolIndex" alias="jvmMemPoolMaxSize" type="Gauge64" />
+    </group>
+
+    <systemDef name="ABBCS-Jboss">
+       <sysoidMask>.1.3.6.1.4.1.8072.3.</sysoidMask> 
+      <collect>
+        <includeGroup>ABBCS-Jboss-Global</includeGroup>
+        <includeGroup>ABBCS-Jboss-MemManager</includeGroup>
+        <includeGroup>ABBCS-Jboss-MemPool</includeGroup>
+      </collect>
+    </systemDef>
+</datacollection-group>

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<datacollection-group name="ABBCS-logmatch">
+
+    <resourceType name="logMatchIndex" label="NetSnmp Log Match"
+                  resourceLabel="${logMatchName} RegEx - ${logMatchRegEx}">
+        <persistenceSelectorStrategy class="org.opennms.netmgt.collection.support.PersistAllSelectorStrategy"/>
+        <storageStrategy class="org.opennms.netmgt.collection.support.IndexStorageStrategy"/>
+    </resourceType>
+
+<!--
+    <group name="ABBCS-logmatch" ifType="all">
+        <mibObj oid=".1.3.6.1.4.1.2021.16.2.1.2" instance="logMatchIndex" alias="logMatchName" type="string" />
+        <mibObj oid=".1.3.6.1.4.1.2021.16.2.1.4" instance="logMatchIndex" alias="logMatchRegEx" type="string" />
+        <mibObj oid=".1.3.6.1.4.1.2021.16.2.1.5" instance="logMatchIndex" alias="logMatchGlobCnt" type="Counter32" />
+        <mibObj oid=".1.3.6.1.4.1.2021.16.2.1.6" instance="logMatchIndex" alias="logMatchGlobInt" type="Integer" />
+    </group>
+
+-->
+    <group name="ABBCS-logmatch-rfinteg" ifType="ignore">
+        <mibObj oid=".1.3.6.1.4.1.2021.16.2.1.5" instance="1" alias="rfTotalCalls" type="Counter32" />
+        <mibObj oid=".1.3.6.1.4.1.2021.16.2.1.5" instance="2" alias="rfNewIncidents" type="Counter32" />
+        <mibObj oid=".1.3.6.1.4.1.2021.16.2.1.5" instance="3" alias="rfExistingTickets" type="Counter32" />
+        <mibObj oid=".1.3.6.1.4.1.2021.16.2.1.5" instance="4" alias="rfCreatedTickets" type="Counter32" />
+        <mibObj oid=".1.3.6.1.4.1.2021.16.2.1.5" instance="5" alias="rfCILookupFailures" type="Counter32" />
+        <mibObj oid=".1.3.6.1.4.1.2021.16.2.1.5" instance="6" alias="rfCINotInService" type="Counter32" />
+    </group>
+    <group name="ABBCS-logmatch-batch" ifType="ignore">
+        <mibObj oid=".1.3.6.1.4.1.2021.16.2.1.2" instance="1" alias="logMatchName" type="string" />
+        <mibObj oid=".1.3.6.1.4.1.2021.16.2.1.5" instance="1" alias="batchfailure" type="Counter32" />
+    </group>
+
+    <systemDef name="ABBCS-rfinteg">
+        <sysoidMask>.1.3.6.1.4.1.8072.3.2.10.2</sysoidMask> 
+        <collect>
+           <includeGroup>ABBCS-logmatch-rfinteg</includeGroup>
+        </collect>
+    </systemDef>
+    <systemDef name="ABBCS-batch">
+        <sysoidMask>.1.3.6.1.4.1.8072.3.2.10.3</sysoidMask> 
+        <collect>
+           <includeGroup>ABBCS-logmatch-batch</includeGroup>
+        </collect>
+    </systemDef>
+</datacollection-group>

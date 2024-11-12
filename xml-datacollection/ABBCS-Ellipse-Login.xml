@@ -1,0 +1,11 @@
+<xml-groups>
+    <xml-group name="ABBCS-URL-Ellipse-Login" resource-type="node"
+                resource-xpath="/URL_Test"
+                key-xpath="@page">
+      <xml-object name="host" type="STRING" xpath="host" />
+      <xml-object name="URI" type="STRING" xpath="URI" />
+      <xml-object name="SUCCESS" type="GAUGE" xpath="SUCCESS" />
+      <xml-object name="TIME" type="GAUGE" xpath="TIME" />
+    </xml-group>
+</xml-groups>
+

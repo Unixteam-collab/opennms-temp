@@ -1,0 +1,158 @@
+<foreign-source xmlns="http://xmlns.opennms.org/xsd/config/foreign-source" name="default" date-stamp="2017-03-08T15:14:55.608+10:00">
+   <scan-interval>1d</scan-interval>
+   <detectors>
+      <detector name="DNS" class="org.opennms.netmgt.provision.detector.datagram.DnsDetector"/>
+      <detector name="Process-java" class="org.opennms.netmgt.provision.detector.snmp.HostResourceSWRunDetector">
+         <parameter key="serviceNameOid" value=".1.3.6.1.2.1.25.4.2.1.5"/>
+         <parameter key="serviceToDetect" value="~.*java.*"/>
+      </detector>
+      <detector name="ABBCS-EllipseHttp" class="org.opennms.netmgt.provision.detector.web.WebDetector">
+         <parameter key="retries" value="0"/>
+         <parameter key="port" value="8080"/>
+         <parameter key="path" value="/ria/ui.html"/>
+         <parameter key="timeout" value="10000"/>
+         <parameter key="responseRange" value="100-401"/>
+      </detector>
+      <detector name="ABBCS-AssetSuiteHttp" class="org.opennms.netmgt.provision.detector.web.WebDetector">
+         <parameter key="retries" value="0"/>
+         <parameter key="port" value="8080"/>
+         <parameter key="timeout" value="10000"/>
+         <parameter key="responseRange" value="100-401"/>
+         <parameter key="path" value="/as/ui/"/>
+      </detector>
+      <detector name="ABBCS-VIPHttp" class="org.opennms.netmgt.provision.detector.web.WebDetector">
+         <parameter key="retries" value="0"/>
+         <parameter key="port" value="80"/>
+         <parameter key="timeout" value="10000"/>
+         <parameter key="path" value="/vip/"/>
+         <parameter key="responseRange" value="100-401"/>
+      </detector>
+      <detector name="ABBCS-JbossManagement" class="org.opennms.netmgt.provision.detector.web.WebDetector">
+         <parameter key="timeout" value="10000"/>
+         <parameter key="path" value="/console/App.html"/>
+         <parameter key="responseRange" value="100-401"/>
+         <parameter key="port" value="10090"/>
+      </detector>
+      <detector name="FTP" class="org.opennms.netmgt.provision.detector.simple.FtpDetector"/>
+      <detector name="HTTP" class="org.opennms.netmgt.provision.detector.simple.HttpDetector"/>
+      <detector name="HTTPS" class="org.opennms.netmgt.provision.detector.simple.HttpsDetector"/>
+      <detector name="ICMP" class="org.opennms.netmgt.provision.detector.icmp.IcmpDetector"/>
+      <detector name="IMAP" class="org.opennms.netmgt.provision.detector.simple.ImapDetector"/>
+      <detector name="LDAP" class="org.opennms.netmgt.provision.detector.simple.LdapDetector"/>
+      <detector name="LDAPS" class="org.opennms.netmgt.provision.detector.simple.LdapsDetector"/>
+      <detector name="NRPE" class="org.opennms.netmgt.provision.detector.simple.NrpeDetector"/>
+      <detector name="POP3" class="org.opennms.netmgt.provision.detector.simple.Pop3Detector"/>
+      <detector name="SMTP" class="org.opennms.netmgt.provision.detector.simple.SmtpDetector"/>
+      <detector name="SNMP" class="org.opennms.netmgt.provision.detector.snmp.SnmpDetector"/>
+      <detector name="SSH" class="org.opennms.netmgt.provision.detector.ssh.SshDetector"/>
+      <detector name="WS-Man" class="org.opennms.netmgt.provision.detector.wsman.WsManDetector"/>
+      <detector name="OpenNMS-JVM" class="org.opennms.netmgt.provision.detector.jmx.Jsr160Detector">
+         <parameter key="factory" value="PASSWORD-CLEAR"/>
+         <parameter key="username" value="admin"/>
+         <parameter key="timeout" value="30000"/>
+         <parameter key="port" value="18980"/>
+         <parameter key="password" value="kntEof3EH6BDgtnPaBNU"/>
+         <parameter key="urlPath" value="/jmxrmi"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="type" value="default"/>
+         <parameter key="protocol" value="rmi"/>
+      </detector>
+      <detector name="OpenNMS-Postgres" class="org.opennms.netmgt.provision.detector.jdbc.JdbcDetector">
+         <parameter key="user" value="opennms"/>
+         <parameter key="url" value="jdbc:postgresql://OPENNMS_JDBC_HOSTNAME:5432/opennms"/>
+         <parameter key="dbDriver" value="org.postgresql.Driver"/>
+         <parameter key="password" value="opennms"/>
+      </detector>
+      <detector name="JMX-Minion" class="org.opennms.netmgt.provision.detector.jmx.Jsr160Detector">
+         <parameter key="factory" value="PASSWORD-CLEAR"/>
+         <parameter key="username" value="admin"/>
+         <parameter key="password" value="kntEof3EH6BDgtnPaBNU"/>
+         <parameter key="port" value="1299"/>
+         <parameter key="urlPath" value="/karaf-minion"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="type" value="default"/>
+         <parameter key="protocol" value="rmi"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="JMX-Cassandra" class="org.opennms.netmgt.provision.detector.jmx.Jsr160Detector">
+         <parameter key="factory" value="PASSWORD-CLEAR"/>
+         <parameter key="port" value="7199"/>
+         <parameter key="username" value="cassandra-username"/>
+         <parameter key="password" value="cassandra-password"/>
+         <parameter key="urlPath" value="/jmxrmi"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="type" value="default"/>
+         <parameter key="timeout" value="3000"/>
+         <parameter key="protocol" value="rmi"/>
+      </detector>
+      <detector name="JMX-Cassandra-Newts" class="org.opennms.netmgt.provision.detector.jmx.Jsr160Detector">
+         <parameter key="factory" value="PASSWORD-CLEAR"/>
+         <parameter key="port" value="7199"/>
+         <parameter key="username" value="cassandra-username"/>
+         <parameter key="password" value="cassandra-password"/>
+         <parameter key="urlPath" value="/jmxrmi"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="type" value="default"/>
+         <parameter key="object" value="org.apache.cassandra.db:type=ColumnFamilies,keyspace=newts,columnfamily=samples"/>
+         <parameter key="timeout" value="3000"/>
+         <parameter key="protocol" value="rmi"/>
+      </detector>
+      <detector name="MS-RDP" class="org.opennms.netmgt.provision.detector.simple.TcpDetector">
+         <parameter key="port" value="3389"/>
+      </detector>
+      <detector name="ABBCS-logmatch" class="org.opennms.netmgt.provision.detector.snmp.SnmpDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="oid" value=".1.3.6.1.4.1.2021.16.2.1.1.1"/>
+         <parameter key="forceVersion" value="2c"/>
+      </detector>
+      <detector name="PostgresTest" class="org.opennms.netmgt.provision.detector.jdbc.JdbcQueryDetector">
+         <parameter key="password" value="postgres"/>
+         <parameter key="url" value="jdbc:postgresql://OPENNMS_JDBC_HOSTNAME:5432/opennms"/>
+         <parameter key="dbDriver" value="org.postgresql.Driver"/>
+         <parameter key="user" value="postgres"/>
+      </detector>
+      <detector name="SWAP" class="org.opennms.netmgt.provision.detector.snmp.SnmpDetector">
+         <parameter key="oid" value=".1.3.6.1.4.1.2021.4.100.0"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WMI" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector"/>
+      <detector name="SSL-Cert-HTTPS-443" class="org.opennms.netmgt.provision.detector.simple.TcpDetector">
+         <parameter key="port" value="443"/>
+      </detector>
+      <detector name="SSL-Cert-HTTPS-8443" class="org.opennms.netmgt.provision.detector.simple.TcpDetector">
+         <parameter key="port" value="8443"/>
+      </detector>
+   </detectors>
+   <policies>
+      <policy name="Servers" class="org.opennms.netmgt.provision.persist.policies.NodeCategorySettingPolicy">
+         <parameter key="category" value="Servers"/>
+         <parameter key="matchBehavior" value="ALL_PARAMETERS"/>
+      </policy>
+      <policy name="SNMP" class="org.opennms.netmgt.provision.persist.policies.NodeCategorySettingPolicy">
+         <parameter key="category" value="SNMP"/>
+         <parameter key="sysObjectId" value="~(^\.1\.3\.6\.1\.4\.1\.(8072|311).*)"/>
+         <parameter key="matchBehavior" value="ALL_PARAMETERS"/>
+      </policy>
+      <policy name="JBoss" class="org.opennms.netmgt.provision.persist.policies.NodeCategorySettingPolicy">
+         <parameter key="sysName" value="~(^ell.*|^vip.*|^ews.*|^batch.*|^ellipse.*|^hgel[bosi].*)"/>
+         <parameter key="matchBehavior" value="ALL_PARAMETERS"/>
+         <parameter key="category" value="Jboss7"/>
+      </policy>
+      <policy name="Http" class="org.opennms.netmgt.provision.persist.policies.NodeCategorySettingPolicy">
+         <parameter key="category" value="Http"/>
+         <parameter key="matchBehavior" value="ALL_PARAMETERS"/>
+         <parameter key="sysName" value="~(^ell.*|^vip.*|^ews.*|^batch.*|^ellipse.*|^waf.*|.*rfinteg.*|^hgel[bosi].*)"/>
+      </policy>
+      <policy name="Microsoft" class="org.opennms.netmgt.provision.persist.policies.NodeCategorySettingPolicy">
+         <parameter key="operatingSystem" value="~(.*Microsoft.*)"/>
+         <parameter key="matchBehavior" value="ANY_PARAMETER"/>
+         <parameter key="sysObjectId" value="~(^\.1\.3\.6\.1\.4\.1\.311.*)"/>
+         <parameter key="category" value="Microsoft"/>
+      </policy>
+      <policy name="vpnMonitor" class="org.opennms.netmgt.provision.persist.policies.NodeCategorySettingPolicy">
+         <parameter key="category" value="vpnmonitor"/>
+         <parameter key="sysObjectId" value="~(^\.1\.3\.6\.1\.4\.1\.(8072|311).*)"/>
+         <parameter key="matchBehavior" value="ALL_PARAMETERS"/>
+      </policy>
+   </policies>
+</foreign-source>

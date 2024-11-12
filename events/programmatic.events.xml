@@ -1,0 +1,42 @@
+<events xmlns="http://xmlns.opennms.org/xsd/eventconf">
+   <event>
+      <uei>uei.opennms.org/ABBCS-OpenFiles-trigger</uei>
+      <event-label>User-defined HIGH threshold event exceeded: uei.opennms.org/ABBCS-OpenFiles-trigger</event-label>
+      <descr>A high threshold for the following metric exceeded: %parm[all]%</descr>
+      <logmsg dest="logndisplay">
+            High threshold exceeded for service %service% metric %parm[ds]% on interface %parm[label]%/%interface%
+        </logmsg>
+      <severity>Warning</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="1" auto-clean="false"/>
+   </event>
+   <event>
+      <uei>uei.opennms.org/ABBCS-OpenFiles-rearm</uei>
+      <event-label>User-defined HIGH threshold event rearmed: uei.opennms.org/ABBCS-OpenFiles-rearm</event-label>
+      <descr>High threshold has been rearmed for the following metric: %parm[all]%</descr>
+      <logmsg dest="logndisplay">
+            High threshold rearmed for service %service% metric %parm[ds]% on interface %parm[label]%/%interface%
+        </logmsg>
+      <severity>Normal</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="2" clear-key="uei.opennms.org/ABBCS-OpenFiles-trigger:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" auto-clean="false"/>
+   </event>
+   <event>
+      <uei></uei>
+      <event-label>User-defined HIGH threshold event rearmed:</event-label>
+      <descr>High threshold has been rearmed for the following metric: %parm[all]%</descr>
+      <logmsg dest="logndisplay">
+            High threshold rearmed for service %service% metric %parm[ds]% on interface %parm[label]%/%interface%
+        </logmsg>
+      <severity>Normal</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="2" clear-key="uei.opennms.org/ABBCS/highwaitIO-trigger:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" auto-clean="false"/>
+   </event>
+   <event>
+      <uei> uei.opennms.org/ABBCS/highwaitIO-rearm</uei>
+      <event-label>User-defined HIGH threshold event rearmed:  uei.opennms.org/ABBCS/highwaitIO-rearm</event-label>
+      <descr>High threshold has been rearmed for the following metric: %parm[all]%</descr>
+      <logmsg dest="logndisplay">
+            High threshold rearmed for service %service% metric %parm[ds]% on interface %parm[label]%/%interface%
+        </logmsg>
+      <severity>Normal</severity>
+      <alarm-data reduction-key="%uei%:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" alarm-type="2" clear-key="uei.opennms.org/ABBCS/highwaitIO-trigger:%dpname%:%nodeid%:%interface%:%parm[ds]%:%parm[threshold]%:%parm[trigger]%:%parm[rearm]%:%parm[label]%" auto-clean="false"/>
+   </event>
+</events>

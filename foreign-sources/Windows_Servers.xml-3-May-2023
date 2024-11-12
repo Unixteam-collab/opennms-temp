@@ -1,0 +1,2040 @@
+<foreign-source xmlns="http://xmlns.opennms.org/xsd/config/foreign-source" name="Windows_Servers" date-stamp="2020-01-01T15:14:55.608+10:00">
+   <scan-interval>1d</scan-interval>
+   <detectors>
+      <detector name="DNS" class="org.opennms.netmgt.provision.detector.datagram.DnsDetector"/>
+      <detector name="HTTP" class="org.opennms.netmgt.provision.detector.simple.HttpDetector"/>
+      <detector name="HTTPS" class="org.opennms.netmgt.provision.detector.simple.HttpsDetector"/>
+      <detector name="ICMP" class="org.opennms.netmgt.provision.detector.icmp.IcmpDetector"/>
+      <detector name="SNMP" class="org.opennms.netmgt.provision.detector.snmp.SnmpDetector"/>
+      <detector name="ABBCS-FSMon" class="org.opennms.netmgt.provision.detector.snmp.SnmpDetector"/>
+      <detector name="WS-Man" class="org.opennms.netmgt.provision.detector.wsman.WsManDetector"/>
+      <detector name="MS-RDP" class="org.opennms.netmgt.provision.detector.simple.TcpDetector">
+         <parameter key="port" value="3389"/>
+      </detector>
+      <detector name="WMI" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector"/>
+      <detector name="WMI-Application-Host-Helper-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Application Host Helper Service'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector"/>
+      <detector name="WMI-Adlib-FMR" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Adlib FMR'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector"/>
+      <detector name="WMI-Adlib-Job-Management-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Adlib Job Management Service'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector"/>
+      <detector name="WMI-Adlib-Management-Console-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Adlib Management Console Service'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector"/>
+      <detector name="WMI-Adlib-Process-Manager" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Adlib Process Manager'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Adlib-System-Manager-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Adlib System Manager Service'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Apache24" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Apache2.4'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-apacheds2-default" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='ApacheDS2 - default'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Apache-Tomcat-85-Tomcat8" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Apache Tomcat 8.5 Tomcat8'"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-ActiveMQ_AXBAPPSP16" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='ActiveMQ_AXBAPPSP16'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-ActiveMQ_AXBAPPSP17" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='ActiveMQ_AXBAPPSP17'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>	  
+     <detector name="WMI-ActiveMQ_AXBAPPSP18" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='ActiveMQ_AXBAPPSP18'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>	  
+      <detector name="WMI-AxisHealthAMQ" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='AxisHealthAMQ'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Background-Tasks-Infrastructure-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Background Tasks Infrastructure Service'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Base-Filtering-Engine" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Base Filtering Engine'"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Certificate-Propagation" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Certificate Propagation'"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-CIOService" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='CIOService'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-CIOpgAgent" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='CIO_pgAgent'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Citrix-Independent-Management-Architecture" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Citrix Independent Management Architecture'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+	  <detector name="WMI-Citrix-MFCOM-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Citrix MFCOM Service'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+	  <detector name="WMI-Citrix-Print-Manager-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Citrix Print Manager Service'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+	  <detector name="WMI-Citrix-SMA-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Citrix SMA Service'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+	  <detector name="WMI-Citrix-XML-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Citrix XML Service'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-CIOPostgreSQL" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='CIO_Postgre_SQL'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-CNG-Key-Isolation" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='CNG Key Isolation'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-COM+-Event-System" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='COM+ Event System'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Connected-Devices-Platform-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Connected Devices Platform Service'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-conversion-service-agent" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='conversion-service-agent'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-conversion-service-job-processor" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='conversion-service-job-processor'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-conversion-service-minio" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='conversion-service-minio'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-CoreMessaging" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='CoreMessaging'"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Credential-Manager" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Credential Manager'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Cryptographic-Services" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Cryptographic Services'"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-DCOM-Server-Process-Launcher" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='DCOM Server Process Launcher'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-DHCP-Client" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='DHCP Client'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Diagnostic-Policy-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Diagnostic Policy Service'"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Distributed-Link-Tracking-Client" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Distributed Link Tracking Client'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Distributed-Transaction-Coordinator" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Distributed Transaction Coordinator'"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-DNS-Client" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='DNS Client'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Ezescan-Server" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Ezescan-Server'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Group-Policy-Client" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Group Policy Client'"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-HyperV-Data-Exchange-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Hyper-V Data Exchange Service'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-HyperV-Guest-Shutdown-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Hyper-V Guest Shutdown Service'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-HyperV-Heartbeat-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Hyper-V Heartbeat Service'"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-HyperV-Remote-Desktop-Virtualization-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Hyper-V Remote Desktop Virtualization Service'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-HyperV-Time-Synchronization-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Hyper-V Time Synchronization Service'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-HyperV-Volume-Shadow-Copy-Requestor" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Hyper-V Volume Shadow Copy Requestor'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-IIS-Admin-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='IIS Admin Service'"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-IBM-CICS-Universal-Client" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='IBM CICS Universal Client'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-IBM-CICS-Transaction-Gateway" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='IBM CICS Transaction Gateway'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-IKE-and-AuthIP-IPsec-Keying-Modules" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='IKE and AuthIP IPsec Keying Modules'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-IP-Helper" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='IP Helper'"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-IPsec-Policy-Agent" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='IPsec Policy Agent'"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Jenkins" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Jenkins'"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-JBOSS18SRV3" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='JBOSS18SRV3'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-JBOSS18SRV4" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='JBOSS18SRV4'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-JBOSS18SRV5" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='JBOSS18SRV5'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Local-Session-Manager" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Local Session Manager'"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-MacServer_QueenslandUrbanUtilities" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='MacServer_QueenslandUrbanUtilities'"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector> 
+      <detector name="WMI-MacServerAngloThermalCoalSouthAfrica" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='MacServer_AngloThermalCoalSouthAfrica'"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-MacServerATOMSupply" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='MacServer_ATOMSupply'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-MacServerBunningsAus" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='MacServerBunningsAus'"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-MacServerDCS" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='MacServerDCS'"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-MacServerGlencoreMtIsa" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='MacServerGlencoreMtIsa'"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-MACServerGlencoreMtIsa" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='MACServerGlencoreMtIsa'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-MacServerHudBayMinerals" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='MacServerHudBayMinerals'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-MacServerJoyGlobal" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='MacServerJoyGlobal'"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-MacServerMSA" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='MacServerMSA'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-MACServerMSA" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='MACServerMSA'"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-MacServerQBuild" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='MacServerQBuild'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-MacServerSpotlessServicesAustralia" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='MacServerSpotlessServicesAustralia'"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-MacServerStateTransitAuthorityNSW" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='MacServer_StateTransitAuthorityNSW'"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-MacServerTarongEnergy" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='MacServerTarongEnergy'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-MACServerTarongEnergy" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='MACServerTarongEnergy'"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Netlogon" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Netlogon'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Network-Connection-Broker" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Network Connection Broker'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Network-List-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Network List Service'"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Network-Location-Awareness" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Network Location Awareness'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Network-Store-Interface-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Network Store Interface Service'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-ObjAppServer" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Objective Application Server'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-OBJCLECM" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='OBJCLECM'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-ObjEcmGateway" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Objective ECM Gateway'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Objective-Auto-Load" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Objective Auto Load'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Objective-QueryCache" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Objective QueryCache'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-ObjectiveActiveMQ" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Objective ActiveMQ Broker'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-ObjectivePROD" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='ObjectivePROD'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-OCL_ObjectUpdater" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Objective Object Updater'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Onpremises-data-gateway-service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='On-premises data gateway service'"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Performance-Logs-&amp;-Alerts" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Performance Logs &amp; Alerts'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Plug-and-Play" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Plug and Play'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Power" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Power'"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Print-Spooler" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Print Spooler'"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Program-Compatibility-Assistant-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Program Compatibility Assistant Service'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-RdAgent" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='RdAgent'"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Remote-Desktop-Configuration" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Remote Desktop Configuration'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Remote-Desktop-Services" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Remote Desktop Services'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Remote-Desktop-Services-UserMode-Port-Redirector" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Remote Desktop Services UserMode Port Redirector'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Remote-Procedure-Call-RPC" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Remote Procedure Call (RPC)'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-RPC-Endpoint-Mapper" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='RPC Endpoint Mapper'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Security-Accounts-Manager" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Security Accounts Manager'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Server" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Server'"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Shell-Hardware-Detection" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Shell Hardware Detection'"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-SNMP-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='SNMP Service'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-SQL-Server-VSS-Writer" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='SQL Server VSS Writer'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-SQL-Server-Reporting" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='SQL Server Reporting'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-SQL-Server-MSSQLSERVER" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='SQL Server (MSSQLSERVER)'"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-SQL-Server-Agent-MSSQLSERVER" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='SQL Server Agent (MSSQLSERVER)'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-SQL-Server-Launchpad-MSSQLSERVER" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='SQL Server Launchpad (MSSQLSERVER)'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-SQL-Server-Integration-Services-130" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='SQL Server Integration Services 13.0'"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-SQL-Server-CEIP-service-MSSQLSERVER" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='SQL Server CEIP service (MSSQLSERVER)'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-SQL-Server-Analysis-Services-MSSQLSERVER" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='SQL Server Analysis Services (MSSQLSERVER)'"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-SQL-Server-Analysis-Services-CEIP-MSSQLSERVER" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='SQL Server Analysis Services CEIP (MSSQLSERVER)'"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-SQL-Server-Integration-Services-CEIP-service-130" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='SQL Server Integration Services CEIP service 13.0'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-SSDP-Discovery" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='SSDP Discovery'"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-State-Repository-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='State Repository Service'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Superfetch" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Superfetch'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-System-Event-Notification-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='System Event Notification Service'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-System-Events-Broker" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='System Events Broker'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Task-Scheduler" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Task Scheduler'"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-TCPIP-NetBIOS-Helper" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='TCP/IP NetBIOS Helper'"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Time-Broker" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Time Broker'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-User-Access-Logging-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='User Access Logging Service'"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-User-Manager" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='User Manager'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-User-Profile-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='User Profile Service'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Windows-Azure-Guest-Agent" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Windows Azure Guest Agent'"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Windows-Azure-Network-Agent" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Windows Azure Network Agent'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Windows-Azure-Telemetry-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Windows Azure Telemetry Service'"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Windows-Connection-Manager" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Windows Connection Manager'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Windows-Defender-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Windows Defender Service'"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Windows-Driver-Foundation-Usermode-Driver-Framework" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Windows Driver Foundation - User-mode Driver Framework'"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Windows-Event-Log" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Windows Event Log'"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Windows-Firewall" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Windows Firewall'"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Windows-Internal-Database" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Windows Internal Database'"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Windows-Internal-Database-VSS-Writer" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Windows Internal Database VSS Writer'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Windows-Management-Instrumentation" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Windows Management Instrumentation'"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Windows-Process-Activation-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Windows Process Activation Service'"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Windows-Push-Notifications-System-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Windows Push Notifications System Service'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Windows-Remote-Management-WSManagement" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Windows Remote Management (WS-Management)'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Windows-Time" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Windows Time'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-Workstation" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='Workstation'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-World-Wide-Web-Publishing-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='World Wide Web Publishing Service'"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WMI-WSUS-Service" class="org.opennms.netmgt.provision.detector.wmi.WmiDetector">
+         <parameter key="wmiWqlStr" value="Select State From Win32_Service Where DisplayName='WSUS Service'"/>
+         <parameter key="wmiClass" value="Win32_Service"/>
+         <parameter key="matchType" value="all"/>
+         <parameter key="compVal" value="Running"/>
+         <parameter key="compOp" value="EQ"/>
+         <parameter key="retries" value="2"/>
+         <parameter key="wmiObject" value="State"/>
+         <parameter key="timeout" value="3000"/>
+      </detector>
+      <detector name="WIN-Application-Host-Helper-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Application Host Helper Service"/>
+      </detector>
+      <detector name="WIN-Adlib-FMR" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Adlib FMR"/>
+      </detector>
+      <detector name="WIN-Adlib-Job-Management-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Adlib Job Management Service"/>
+      </detector>
+      <detector name="WIN-Adlib-Management-Console-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Adlib Management Console Service"/>
+      </detector>
+      <detector name="WIN-Adlib-Process-Manager" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Adlib Process Manager"/>
+      </detector>
+      <detector name="WIN-Adlib-System-Manager-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Adlib System Manager Service"/>
+      </detector>
+      <detector name="WIN-Apache-Tomcat-8.5-Tomcat8" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Apache Tomcat 8.5 Tomcat8"/>
+      </detector>
+      <detector name="WIN-Apache2.4" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Apache2.4"/>
+      </detector>
+      <detector name="WIN-apacheds2-default" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="ApacheDS2 - default"/>
+      </detector>
+      <detector name="WIN-ActiveMQ_AXBAPPSP16" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="ActiveMQ_AXBAPPSP16"/>
+      </detector>	
+      <detector name="WIN-ActiveMQ_AXBAPPSP17" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="ActiveMQ_AXBAPPSP17"/>
+      </detector>
+      <detector name="WIN-ActiveMQ_AXBAPPSP18" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="ActiveMQ_AXBAPPSP18"/>
+      </detector>
+      <detector name="WIN-AxisHealthAMQ" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="AxisHealthAMQ"/>
+      </detector>
+      <detector name="WIN-Background-Tasks-Infrastructure-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Background Tasks Infrastructure Service"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-Base-Filtering-Engine" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Base Filtering Engine"/>
+      </detector>
+      <detector name="WIN-Certificate-Propagation" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Certificate Propagation"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-CIOService" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="CIOService"/>
+      </detector>
+      <detector name="WIN-CIOpgAgent" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="CIO_pgAgent"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-Citrix-Independent-Management-Architecture" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Citrix Independent Management Architecture"/>
+      </detector>
+      <detector name="WIN-Citrix-MFCOM-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Citrix MFCOM Service"/>
+      </detector>
+      <detector name="WIN-Citrix-Print-Manager-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Citrix Print Manager Service"/>
+      </detector>
+      <detector name="WIN-Citrix-SMA-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Citrix SMA Service"/>
+      </detector>
+      <detector name="WIN-Citrix-XML-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Citrix XML Service"/>
+      </detector>
+      <detector name="WIN-CIOPostgreSQL" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="CIO_Postgre_SQL"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-CNG-Key-Isolation" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="CNG Key Isolation"/>
+      </detector>
+      <detector name="WIN-COM-Event-System" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="COM+ Event System"/>
+      </detector>
+      <detector name="WIN-Connected-Devices-Platform-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Connected Devices Platform Service"/>
+      </detector>
+      <detector name="WIN-conversion-service-agent" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="conversion-service-agent"/>
+      </detector>
+      <detector name="WIN-conversion-service-job-processor" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="conversion-service-job-processor"/>
+      </detector>
+      <detector name="WIN-conversion-service-minio" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="conversion-service-minio"/>
+      </detector>
+      <detector name="WIN-CoreMessaging" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="CoreMessaging"/>
+      </detector>
+      <detector name="WIN-Credential-Manager" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Credential Manager"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-Cryptographic-Services" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Cryptographic Services"/>
+      </detector>
+      <detector name="WIN-DCOM-Server-Process-Launcher" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="DCOM Server Process Launcher"/>
+      </detector>
+      <detector name="WIN-DHCP-Client" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="DHCP Client"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-Diagnostic-Policy-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Diagnostic Policy Service"/>
+      </detector>
+      <detector name="WIN-Distributed-Link-Tracking-Client" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Distributed Link Tracking Client"/>
+      </detector>
+      <detector name="WIN-Distributed-Transaction-Coordinator" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Distributed Transaction Coordinator"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-DNS-Client" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="DNS Client"/>
+      </detector>
+      <detector name="WIN-Ezescan-Server" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Ezescan-Server"/>
+      </detector>
+      <detector name="WIN-Group-Policy-Client" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Group Policy Client"/>
+      </detector>
+      <detector name="WIN-HyperV-Data-Exchange-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Hyper-V Data Exchange Service"/>
+      </detector>
+      <detector name="WIN-HyperV-Guest-Shutdown-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Hyper-V Guest Shutdown Service"/>
+      </detector>
+      <detector name="WIN-HyperV-Heartbeat-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Hyper-V Heartbeat Service"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-HyperV-Remote-Desktop-Virtualization-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Hyper-V Remote Desktop Virtualization Service"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-HyperV-Time-Synchronization-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Hyper-V Time Synchronization Service"/>
+      </detector>
+      <detector name="WIN-HyperV-Volume-Shadow-Copy-Requestor" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Hyper-V Volume Shadow Copy Requestor"/>
+      </detector>
+      <detector name="WIN-IIS-Admin-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="IIS Admin Service"/>
+      </detector>
+      <detector name="WIN-IBM-CICS-Universal-Client" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="IBM CICS Universal Client"/>
+      </detector> 
+         <detector name="WIN-IBM-CICS-Transaction-Gateway" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="IBM CICS Transaction Gateway"/>
+      </detector>
+      <detector name="WIN-IKE-and-AuthIP-IPsec-Keying-Modules" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="IKE and AuthIP IPsec Keying Modules"/>
+      </detector>
+      <detector name="WIN-IP-Helper" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="IP Helper"/>
+      </detector>
+      <detector name="WIN-IPsec-Policy-Agent" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="IPsec Policy Agent"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-Jenkins" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Jenkins"/>
+      </detector>
+      <detector name="WIN-JBOSS18SRV3" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="JBOSS18SRV3"/>
+      </detector>	
+      <detector name="WIN-JBOSS18SRV4" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="JBOSS18SRV4"/>
+      </detector>
+      <detector name="WIN-JBOSS18SRV5" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="JBOSS18SRV5"/>
+      </detector>
+      <detector name="WIN-Local-Session-Manager" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Local Session Manager"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-MacServer-AngloThermalCoalSouthAfrica" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="MacServer_AngloThermalCoalSouthAfrica"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-MacServer-ATOMSupply" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="MacServer_ATOMSupply"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-MacServerBunningsAus" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="MacServerBunningsAus"/>
+      </detector>
+      <detector name="WIN-MacServerDCS" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="MacServerDCS"/>
+      </detector>
+      <detector name="WIN-MacServerHudBayMinerals" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="MacServerHudBayMinerals"/>
+      </detector>
+      <detector name="WIN-MacServerJoyGlobal" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="MacServerJoyGlobal"/>
+      </detector>
+      <detector name="WIN-MacServerGlencoreMtIsa" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="MacServerGlencoreMtIsa"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-MACServerGlencoreMtIsa" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="MACServerGlencoreMtIsa"/>
+      </detector>
+      <detector name="WIN-MacServerMSA" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="MacServerMSA"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-MACServerMSA" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="MACServerMSA"/>
+      </detector>
+      <detector name="WIN-MacServerSpotlessServicesAustralia" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="MacServerSpotlessServicesAustralia"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-MacServer-StateTransitAuthorityNSW" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="MacServer_StateTransitAuthorityNSW"/>
+      </detector>
+      <detector name="WIN-MacServerTarongEnergy" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="MacServerTarongEnergy"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-MACServerTarongEnergy" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="MACServerTarongEnergy"/>
+      </detector>
+      <detector name="WIN-MacServerQBuild" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="MacServerQBuild"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-MacServer_QueenslandUrbanUtilities" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="MacServer_QueenslandUrbanUtilities"/>
+         <parameter key="port" value="161"/>
+      </detector> 
+      <detector name="WIN-Netlogon" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Netlogon"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-Network-Connection-Broker" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Network Connection Broker"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-Network-List-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Network List Service"/>
+      </detector>
+      <detector name="WIN-Network-Location-Awareness" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Network Location Awareness"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-Network-Store-Interface-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Network Store Interface Service"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-ObjAppServer" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Objective Application Server"/>
+      </detector>
+      <detector name="WIN-OBJCLECM" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="OBJCLECM"/>
+      </detector>
+      <detector name="WIN-ObjEcmGateway" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Objective ECM Gateway"/>
+      </detector>
+      <detector name="WIN-Objective-Auto-Load" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Objective Auto Load"/>
+      </detector>
+      <detector name="WIN-Objective-QueryCache" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Objective QueryCache"/>
+      </detector>
+      <detector name="WIN-ObjectiveActiveMQ" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Objective ActiveMQ Broker"/>
+      </detector>
+      <detector name="WIN-ObjectivePROD" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="ObjectivePROD"/>
+      </detector>
+      <detector name="WIN-OCL_ObjectUpdater" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Objective Object Updater"/>
+      </detector>
+      <detector name="WIN-Onpremises-data-gateway-service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="On-premises data gateway service"/>
+      </detector>
+      <detector name="WIN-Performance-Logs--Alerts" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Performance Logs &amp; Alerts"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-Plug-and-Play" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Plug and Play"/>
+      </detector>
+      <detector name="WIN-Power" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Power"/>
+      </detector>
+      <detector name="WIN-Print-Spooler" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Print Spooler"/>
+      </detector>
+      <detector name="WIN-Program-Compatibility-Assistant-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Program Compatibility Assistant Service"/>
+      </detector>
+      <detector name="WIN-RdAgent" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="RdAgent"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-Remote-Desktop-Configuration" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Remote Desktop Configuration"/>
+      </detector>
+      <detector name="WIN-Remote-Desktop-Services" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Remote Desktop Services"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-Remote-Desktop-Services-UserMode-Port-Redirector" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Remote Desktop Services UserMode Port Redirector"/>
+      </detector>
+      <detector name="WIN-Remote-Procedure-Call-RPC" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Remote Procedure Call (RPC)"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-RPC-Endpoint-Mapper" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="RPC Endpoint Mapper"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-Security-Accounts-Manager" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Security Accounts Manager"/>
+      </detector>
+      <detector name="WIN-Server" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Server"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-Shell-Hardware-Detection" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Shell Hardware Detection"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-SNMP-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="SNMP Service"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-SQL-Server-VSS-Writer" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="SQL Server VSS Writer"/>
+      </detector>
+     <detector name="WIN-SQL-Server-Reporting" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="SQL Server Reporting"/>
+      </detector>
+      <detector name="WIN-SQL-Server-MSSQLSERVER" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="SQL Server (MSSQLSERVER)"/>
+      </detector>
+      <detector name="WIN-SQL-Server-Agent-MSSQLSERVER" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="SQL Server Agent (MSSQLSERVER)"/>
+      </detector>
+      <detector name="WIN-SQL-Server-Launchpad-MSSQLSERVER" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="SQL Server Launchpad (MSSQLSERVER)"/>
+      </detector>
+      <detector name="WIN-SQL-Server-Integration-Services-130" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="SQL Server Integration Services 13.0"/>
+      </detector>
+      <detector name="WIN-SQL-Server-CEIP-service-MSSQLSERVER" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="SQL Server CEIP service (MSSQLSERVER)"/>
+      </detector>
+      <detector name="WIN-SQL-Server-Analysis-Services-MSSQLSERVER" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="SQL Server Analysis Services (MSSQLSERVER)"/>
+      </detector>
+      <detector name="WIN-SQL-Server-Analysis-Services-CEIP-MSSQLSERVER" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="SQL Server Analysis Services CEIP (MSSQLSERVER)"/>
+      </detector>
+      <detector name="WIN-SQL-Server-Integration-Services-CEIP-service-130" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="SQL Server Integration Services CEIP service 13.0"/>
+      </detector>
+      <detector name="WIN-SSDP-Discovery" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="SSDP Discovery"/>
+      </detector>
+      <detector name="WIN-State-Repository-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="State Repository Service"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-Superfetch" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Superfetch"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-System-Event-Notification-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="System Event Notification Service"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-System-Events-Broker" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="System Events Broker"/>
+      </detector>
+      <detector name="WIN-Task-Scheduler" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Task Scheduler"/>
+      </detector>
+      <detector name="WIN-TCPIP-NetBIOS-Helper" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="TCP/IP NetBIOS Helper"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-Time-Broker" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Time Broker"/>
+      </detector>
+      <detector name="WIN-User-Access-Logging-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="User Access Logging Service"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-User-Manager" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="User Manager"/>
+      </detector>
+      <detector name="WIN-User-Profile-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="User Profile Service"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-Windows-Azure-Guest-Agent" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Windows Azure Guest Agent"/>
+      </detector>
+      <detector name="WIN-Windows-Azure-Network-Agent" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Windows Azure Network Agent"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-Windows-Azure-Telemetry-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Windows Azure Telemetry Service"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-Windows-Connection-Manager" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Windows Connection Manager"/>
+      </detector>
+      <detector name="WIN-Windows-Defender-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Windows Defender Service"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-Windows-Driver-Foundation--Usermode-Driver-Framework" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Windows Driver Foundation - User-mode Driver Framework"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-Windows-Event-Log" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Windows Event Log"/>
+      </detector>
+      <detector name="WIN-Windows-Firewall" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Windows Firewall"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-Windows-Internal-Database" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Windows Internal Database"/>
+      </detector>
+      <detector name="WIN-Windows-Internal-Database-VSS-Writer" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Windows Internal Database VSS Writer"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-Windows-Management-Instrumentation" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Windows Management Instrumentation"/>
+      </detector>
+      <detector name="WIN-Windows-Process-Activation-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Windows Process Activation Service"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-Windows-Push-Notifications-System-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Windows Push Notifications System Service"/>
+      </detector>
+      <detector name="WIN-Windows-Remote-Management-WSManagement" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Windows Remote Management (WS-Management)"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-Windows-Time" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="Windows Time"/>
+      </detector>
+      <detector name="WIN-Workstation" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="Workstation"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-World-Wide-Web-Publishing-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="win32ServiceName" value="World Wide Web Publishing Service"/>
+         <parameter key="port" value="161"/>
+      </detector>
+      <detector name="WIN-WSUS-Service" class="org.opennms.netmgt.provision.detector.snmp.Win32ServiceDetector">
+         <parameter key="port" value="161"/>
+         <parameter key="win32ServiceName" value="WSUS Service"/>
+      </detector>
+      <detector name="SSL-Cert-HTTPS-443" class="org.opennms.netmgt.provision.detector.simple.TcpDetector">
+         <parameter key="port" value="443"/>
+      </detector>
+      <detector name="DataProtector" class="org.opennms.netmgt.provision.detector.simple.TcpDetector">
+         <parameter key="port" value="5555"/>
+         <parameter key="timeout" value="3000"/>
+         <parameter key="retries" value="3"/>
+      </detector>
+   </detectors>
+   <policies>
+      <policy name="Servers" class="org.opennms.netmgt.provision.persist.policies.NodeCategorySettingPolicy">
+         <parameter key="category" value="Servers"/>
+         <parameter key="matchBehavior" value="ALL_PARAMETERS"/>
+      </policy>
+      <policy name="SNMP" class="org.opennms.netmgt.provision.persist.policies.NodeCategorySettingPolicy">
+         <parameter key="category" value="SNMP"/>
+         <parameter key="sysObjectId" value="~(^\.1\.3\.6\.1\.4\.1\.(8072|311).*)"/>
+         <parameter key="matchBehavior" value="ALL_PARAMETERS"/>
+      </policy>
+      <policy name="RFNotification" class="org.opennms.netmgt.provision.persist.policies.NodeCategorySettingPolicy">
+         <parameter key="category" value="RFNotification"/>
+         <parameter key="matchBehavior" value="ALL_PARAMETERS"/>
+      </policy>
+      <policy name="Http" class="org.opennms.netmgt.provision.persist.policies.NodeCategorySettingPolicy">
+         <parameter key="category" value="Http"/>
+         <parameter key="sysName" value="~(^ell.*|^vip.*|^ews.*|^batch.*|^ellipse.*|^waf.*|.*rfinteg.*|^hgel[bosi].*|^geq.*)"/>
+         <parameter key="matchBehavior" value="ALL_PARAMETERS"/>
+      </policy>
+      <policy name="Microsoft" class="org.opennms.netmgt.provision.persist.policies.NodeCategorySettingPolicy">
+         <parameter key="category" value="Microsoft"/>
+         <parameter key="matchBehavior" value="ALL_PARAMETERS"/>
+      </policy>
+   </policies>
+</foreign-source>

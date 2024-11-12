@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<prometheus-datacollection-config>
+   <collection name="jenkins_metrics">
+     <rrd step="300">
+       <rra>RRA:AVERAGE:0.5:1:2016</rra>
+       <rra>RRA:AVERAGE:0.5:12:1488</rra>
+       <rra>RRA:AVERAGE:0.5:288:366</rra>
+       <rra>RRA:MAX:0.5:288:366</rra>
+       <rra>RRA:MIN:0.5:288:366</rra>
+     </rrd>
+
+     <group-ref>default_jenkins_executors</group-ref> 
+   </collection>
+
+   <!--
+     default_jenkins_executors_busy{label="python3-cloud-ansible",} 0.0
+     default_jenkins_executors_busy{label="master",} 11.0
+     default_jenkins_executors_busy{label="docker-host",} 11.0
+     # HELP default_jenkins_executors_connecting Executors Connecting
+     # TYPE default_jenkins_executors_connecting gauge
+     default_jenkins_executors_connecting{label="python3-cloud-ansible",} 0.0
+     default_jenkins_executors_connecting{label="master",} 0.0
+     default_jenkins_executors_connecting{label="docker-host",} 0.0
+     # HELP default_jenkins_executors_defined Executors Defined
+     # TYPE default_jenkins_executors_defined gauge
+     default_jenkins_executors_defined{label="python3-cloud-ansible",} 0.0
+     default_jenkins_executors_defined{label="master",} 25.0
+     default_jenkins_executors_defined{label="docker-host",} 25.0
+     # HELP default_jenkins_executors_idle Executors Idle
+     # TYPE default_jenkins_executors_idle gauge
+     default_jenkins_executors_idle{label="python3-cloud-ansible",} 0.0
+     default_jenkins_executors_idle{label="master",} 14.0
+     default_jenkins_executors_idle{label="docker-host",} 14.0
+     # HELP default_jenkins_executors_online Executors Online
+     # TYPE default_jenkins_executors_online gauge
+     default_jenkins_executors_online{label="python3-cloud-ansible",} 0.0
+     default_jenkins_executors_online{label="master",} 25.0
+     default_jenkins_executors_online{label="docker-host",} 25.0
+     # HELP default_jenkins_executors_queue_length Executors Queue Length
+     # TYPE default_jenkins_executors_queue_length gauge
+     default_jenkins_executors_queue_length{label="python3-cloud-ansible",} 0.0
+     default_jenkins_executors_queue_length{label="master",} 0.0
+     default_jenkins_executors_queue_length{label="docker-host",} 0.0
+   -->
+   <group name="default_jenkins_executors"
+     resource-type="node"
+     filter-exp="name matches 'default_jenkins_executors.*'">
+    
+     <numeric-attribute alias-exp="name.substring('default_jenkins_executors_'.length())"/>
+   </group>
+
+</prometheus-datacollection-config>
