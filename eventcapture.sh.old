@@ -1,0 +1,91 @@
+#!/bin/bash
+
+#PATH=/usr/bin
+#export PATH
+
+PARMFILE=/tmp/_parms
+RFINTEG_INCOMING_DIR=/opt/rfinteg/var/incoming
+date >> /tmp/notify.out
+echo ==== environment === >> /tmp/notify.out
+env >> /tmp/notify.out
+
+echo ==== parameters === >> /tmp/notify.out
+
+PARM=""
+VAL=""
+eval $(while [ $# -gt 0 ]
+do
+   PARM=$1
+   shift
+   if [[ "$1" == *PARAM* ]]
+   then 
+      VAL=""
+   else
+      VAL=$1
+      shift
+   fi
+   echo "$PARM\"$VAL\""
+done)
+
+echo ==== STDIN === >> /tmp/notify.out
+cat - | strings> $PARMFILE
+cat $PARMFILE >> /tmp/notify.out
+chmod +x $PARMFILE
+echo  >> /tmp/notify.out
+. $PARMFILE
+
+echo ==== extracted parameters === >> /tmp/notify.out
+
+echo PARAM_DESTINATION = $PARAM_DESTINATION >> /tmp/notify.out
+echo PARAM_NUM_MSG = $PARAM_NUM_MSG >> /tmp/notify.out
+echo PARAM_RESPONSE = $PARAM_RESPONSE >> /tmp/notify.out
+echo PARAM_NODE = $PARAM_NODE >> /tmp/notify.out
+echo PARAM_INTERFACE = $PARAM_INTERFACE >> /tmp/notify.out
+echo PARAM_SERVICE = $PARAM_SERVICE >> /tmp/notify.out
+echo PARAM_SUBJECT = $PARAM_SUBJECT >> /tmp/notify.out
+echo PARAM_EMAIL = $PARAM_EMAIL >> /tmp/notify.out
+echo PARAM_TUI_PIN = $PARAM_TUI_PIN >> /tmp/notify.out
+echo CATEGORY = $CATEGORY >> /tmp/notify.out
+echo RESOURCEID = $RESOURCEID >> /tmp/notify.out
+echo NODE = $NODE  >> /tmp/notify.out
+echo NOTICEID = $NOTICEID  >> /tmp/notify.out
+echo SEVERITY = $SEVERITY  >> /tmp/notify.out
+echo SERVICE = $SERVICE  >> /tmp/notify.out
+echo EVENTID = $EVENTID  >> /tmp/notify.out
+echo OPERATORINSTRUCT = $OPERATORINSTRUCT  >> /tmp/notify.out
+echo MESSAGE = $MESSAGE  >> /tmp/notify.out
+
+echo >> /tmp/notify.out
+
+if [ "X$CATEGORY" == "X" ]
+then
+   CATEGORY=UX_FS
+fi
+
+if [ "X$RESOURCEID" == "X" ]
+then
+   RESOURCEID=${EVENTID}:${NOTICEID}
+fi
+
+echo ==== RF Integration Data === >> /tmp/notify.out
+EVENT="${HOSTNAME}:${NODE}:${EVENTID}:${NOTICEID}"
+MESSAGEKEY="${HOSTNAME}:${NODE}:${SEVERITY}:${RESOURCEID}"
+
+EVENT_FILE="${RFINTEG_INCOMING_DIR}/${EVENT}"
+
+echo $NODE > $EVENT_FILE
+echo ${SEVERITY,,} >> $EVENT_FILE
+echo $EVENT >> $EVENT_FILE
+echo $MESSAGE >> $EVENT_FILE
+#echo GMS-UNIX-ADMIN >> $EVENT_FILE
+echo $CATEGORY >> $EVENT_FILE
+echo $MESSAGEKEY >> $EVENT_FILE
+
+cat $EVENT_FILE >> /tmp/notify.out
+
+
+echo  >> /tmp/notify.out
+echo ====================== >> /tmp/notify.out
+echo  >> /tmp/notify.out
+exit 0
+

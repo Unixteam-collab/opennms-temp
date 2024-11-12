@@ -1,0 +1,20 @@
+#!/bin/bash
+
+HOME=/home/opennms
+WORK=$HOME/azure_update
+VAR=$HOME/var
+ETC=$HOME/etc
+LOGDIR=$HOME/logs
+
+LOGFILE=$LOGDIR/azure-metrics.log
+LOGERR=$LOGDIR/azure-metrics.err
+
+AZURE_RESOURCES_URL=http://10.2.0.99/resources.txt
+AZURE_RESOURCES=$WORK/resources.txt
+CREDS=$ETC/credentials.txt
+METRIC_STOR=$VAR/metrics
+
+TIMEOUT=30
+
+export WORK VAR HOME ETC AZURE_RESOURCES_URL AZURE_RESOURCES CREDS METRIC_STOR TIMEOUT LOGDIR LOGFILE LOGERR
+

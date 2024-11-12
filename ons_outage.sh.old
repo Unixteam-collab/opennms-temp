@@ -1,0 +1,170 @@
+#!/bin/bash -x
+
+#
+#  Program:   ons_outage.sh
+#
+#  Purpose:   To create an outage for suppression of events from OpenNMS server
+#             To be used when opennms is restarted.
+#
+#  Author:   John Blackburn
+#
+#  Version:  1.0
+#
+#  History:  1.0  JDB 2017-12-05  Initial Revision - code migrated out of install_customisations.sh
+#
+
+OBSOLETE_FILES="/opt/opennms/etc/events/AlarmChangeNotifierEvents.xml"
+
+OPENNMS_BASE=/opt/opennms
+OPENNMS_HOMEDIR=/home/opennms
+LOGDIR=$OPENNMS_HOMEIDR/logs
+LOGFILE=$LOGDIR/config_update.log
+CONFIG_DIR=${OPENNMS_BASE}/.ABBCS_Config_defaults
+CONFIG_DEFAULTS=${CONFIG_DIR}/defaults
+
+
+
+usage() {
+   echo "Usage: $0 " >&2
+   exit 1
+}
+
+
+check_remote_ons ()
+{
+   ONS_HOST=$1
+
+   FS="OpenNMSServers"
+   HOST=$(hostname)
+   FSID="$FS:$HOST"
+   MY_IP=$(hostname -I | head -1)
+   echo checking Remote Monitor $ONS_HOST
+
+   # Check if the "$FS" requisition exists.  If not, create it.
+   /opt/opennms/bin/provision.pl --url http://$ONS_HOST:8980/opennms/rest requisition list $FS
+
+   if [ $? != 0 ]
+   then
+      echo Creating Requisition \"$FS\ on $ONS_HOST"
+      /opt/opennms/bin/provision.pl --url http://$ONS_HOST:8980/opennms/rest requisition add $FS
+   else
+      echo Found Requisition \"$FS\ on $ONS_HOST"
+   fi
+
+
+   /opt/opennms/bin/provision.pl --url http://$ONS_HOST:8980/opennms/rest node add $FS $HOST $HOST
+   /opt/opennms/bin/provision.pl --url http://$ONS_HOST:8980/opennms/rest interface add $FS $HOST $MY_IP
+   /opt/opennms/bin/provision.pl --url http://$ONS_HOST:8980/opennms/rest interface set $FS $HOST $MY_IP snmp-primary P
+
+   /opt/opennms/bin/provision.pl --url http://$ONS_HOST:8980/opennms/rest requisition import $FS
+
+}
+
+
+get_node_id()
+{
+
+
+  ONS_HOST=$1
+
+  # get ONS Node ID for automatic outage
+  ONS_NODE_ID=$(curl http://admin:kntEof3EH6BDgtnPaBNU@${ONS_HOST}:8980/opennms/rest/nodes/Servers:`hostname` 2> /dev/null | xmllint --format - 2> /dev/null | awk ' { FS = "\"" } $2 == "'`hostname`'" { print $8 }' )
+
+  # Maybe ONS Node name is FQDN?
+  if [ "${ONS_NODE_ID}X" = "X" ]
+  then 
+     ONS_NODE_ID=$(curl http://admin:kntEof3EH6BDgtnPaBNU@${ONS_HOST}:8980/opennms/rest/nodes/Servers:`hostname`.$DOMAIN 2> /dev/null | xmllint --format - 2> /dev/null | awk ' { FS = "\"" } $2 == "'`hostname`.$DOMAIN'" { print $8 }' )
+
+     # For new server, there will not yet be a node in opennms
+     if [ "${ONS_NODE_ID}X" = "X" ]
+     then 
+        # Try OpenNMSServers Requisition
+        ONS_NODE_ID=$(curl http://admin:kntEof3EH6BDgtnPaBNU@${ONS_HOST}:8980/opennms/rest/nodes/OpenNMSServers:`hostname` 2> /dev/null | xmllint --format - 2> /dev/null | awk ' { FS = "\"" } $2 == "'`hostname`'" { print $8 }' )
+
+        # And also try FQDN with the OpenNMSServers Requisition
+        if [ "${ONS_NODE_ID}X" = "X" ]
+        then 
+           ONS_NODE_ID=$(curl http://admin:kntEof3EH6BDgtnPaBNU@${ONS_HOST}:8980/opennms/rest/nodes/OpenNMSServers:`hostname`.$DOMAIN 2> /dev/null | xmllint --format - 2> /dev/null | awk ' { FS = "\"" } $2 == "'`hostname`.$DOMAIN'" { print $8 }' )
+
+           # For new server, there will not yet be a node in opennms.  If we get this far, we have tried all known Requisitions
+           # that opennms servers could live in.
+           if [ "${ONS_NODE_ID}X" = "X" ]
+           then 
+             if [ "$ONS_HOST" != "localhost" ]
+             then
+                # if we can't find it, then this will create it on remote hosts.
+                check_remote_ons $ONS_HOST
+                sleep 30 # allow time for node creation to complete before querying for the ID
+                ONS_NODE_ID=$(curl http://admin:kntEof3EH6BDgtnPaBNU@${ONS_HOST}:8980/opennms/rest/nodes/OpenNMSServers:`hostname` 2> /dev/null | xmllint --format - 2> /dev/null | awk ' { FS = "\"" } $2 == "'`hostname`'" { print $8 }' )
+             else
+                ONS_NODE_ID=0
+             fi
+   
+           fi
+        fi
+     fi 
+  fi
+  echo $ONS_NODE_ID
+}
+
+# create a 15 minute outage for opennms so that restart doesn't raise RF tickets
+create_ons_outage ()
+{
+   for ONS_HOST in $ONS_OUTAGE_HOSTS
+   do
+
+      ONS_NODE_ID=$(get_node_id $ONS_HOST)
+
+      if [ "$ONS_HOST" = "localhost" ]
+      then
+         ONS_OUTAGE_NAME="OpenNMSConfigUpdate"
+      else
+         ONS_OUTAGE_NAME="OpenNMSConfigUpdate-$(hostname)"
+      fi
+
+      if [ $ONS_NODE_ID = 0 ]
+      then
+         echo `hostname` not yet in opennms - not creating outage
+      else
+         # Extract localtime from remote OpenNMS host 
+         rdatestring=$( snmpget -v2c -c OpenNMSMon $ONS_HOST HOST-RESOURCES-MIB::hrSystemDate.0 | gawk '{print $NF}' )
+
+         #  if nothing returned, then just use local time
+         if [ ! "$rdatestring" ] ; then
+            OUTAGE_START=$(date "+%d-%b-%Y %H:%M:%S")
+         else
+            # Convert SNMP datetime to unix datetime
+            rdate=$( echo $rdatestring | gawk -F',' '{print $1}' )
+            rtime=$( echo $rdatestring | gawk -F',' '{print $2}' | gawk -F'.' '{print $1}' )
+            cldate=$( echo $rdate | gawk -F'-' '{printf("%4i",$1)}; {printf("%02i",$2)}; {printf("%02i",$3)};' )
+            cltime=$( echo $rtime | gawk -F':' '{printf("%02i",$1)}; {printf("%02i",$2)}; {printf(" %02i",$3)};' )
+            OUTAGE_START=$( date -d "$cldate $cltime sec" "+%d-%b-%Y %H:%M:%S" )
+         fi
+         OUTAGE_END=$(date -d "$OUTAGE_START 15 min" "+%d-%b-%Y %H:%M:%S")
+         BODY='<?xml version="1.0"?>
+           <outage name="'$ONS_OUTAGE_NAME'" type="specific">
+           <time begins="'$OUTAGE_START'" ends="'$OUTAGE_END'" />
+           <node id ="'$ONS_NODE_ID'" />
+           </outage>'
+         curl -X DELETE "http://admin:kntEof3EH6BDgtnPaBNU@$ONS_HOST:8980/opennms/rest/sched-outages/$ONS_OUTAGE_NAME/notifd"
+         curl -X DELETE "http://admin:kntEof3EH6BDgtnPaBNU@$ONS_HOST:8980/opennms/rest/sched-outages/$ONS_OUTAGE_NAME"
+         sleep 5
+         echo Creating $ONS_OUTAGE_NAME schedule
+         curl -v -X POST -H 'Content-type: application/xml' -d "$BODY" "http://admin:kntEof3EH6BDgtnPaBNU@$ONS_HOST:8980/opennms/rest/sched-outages"
+         sleep 5
+         echo linking $ONS_OUTAGE_NAME to notifd
+         curl -v -X PUT "http://admin:kntEof3EH6BDgtnPaBNU@$ONS_HOST:8980/opennms/rest/sched-outages/$ONS_OUTAGE_NAME/notifd"
+         sleep 5
+      fi
+   done
+}
+
+
+
+. $CONFIG_DEFAULTS
+
+
+create_ons_outage
+
+
+exit 0

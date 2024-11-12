@@ -1,0 +1,24 @@
+#!/bin/bash
+
+STAT=$1
+BASE=/opt/SyncKit
+STATFILE="$BASE/var/${STAT}"
+
+
+NOW=$(date '+%s')
+if [ -f $STATFILE ]
+then
+   . $STATFILE
+   SYNCDATE=$TS
+else
+   SYNCDATE=$NOW
+fi
+
+DIFF=$(( $NOW - $SYNCDATE ))
+
+echo $STAT
+echo $MESSAGE last successful run completed $DIFF seconds ago. Threshold is $THRESHOLD seconds 
+echo $THRESHOLD
+echo $DIFF
+
+

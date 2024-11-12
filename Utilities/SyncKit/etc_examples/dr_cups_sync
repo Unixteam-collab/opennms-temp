@@ -1,0 +1,5 @@
+#Customised message text to send to Remedy Force
+MESSAGE="DR cups sync"
+# Threshold for last successful run to trigger alert at (in seconds)
+THRESHOLD=900
+/opt/SyncKit/bin/cups_sync.sh abc-evap01-svc-git01

@@ -1,0 +1,17 @@
+#Customised message text to send to Remedy Force
+MESSAGE="DR git repository sync"
+# Threshold for last successful run to trigger alert at (in seconds)
+THRESHOLD=900
+
+
+# Lenght of time to suppress http node down events (in minutes)
+OUTAGE_LENGTH=10
+# Monitoring OpenNMS server to create outage against (this server needs to be able to resolve this hostname)
+OPENNMS_SERVER=aue-s-opennms03.gms.mincom.com
+
+HOSTNAME=$(hostname)
+OUTAGE_NAME=${HOSTNAME}_git_dr_sync
+
+# Create outage to suppress httpd node lost service events
+/opt/SyncKit/bin/outage.sh -p $OPENNMS_SERVER $OUTAGE_NAME $OUTAGE_LENGTH $HOSTNAME "Other Services" "ABBCS-Process Package"
+/opt/SyncKit/bin/git_prod_restore.sh mit_evap01_svc_git01.gms.mincom.com production

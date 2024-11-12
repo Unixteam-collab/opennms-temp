@@ -1,0 +1,8 @@
+/opt/SyncKit/log/*.log {
+    missingok
+    weekly
+    rotate 5
+    compress
+    copytruncate
+}
+

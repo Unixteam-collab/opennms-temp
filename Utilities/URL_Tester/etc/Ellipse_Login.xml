@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<interaction>
+  <actions>
+    <action>
+      <name>loginEncoded</name>
+      <data>
+        <username>ABB_Monitoring</username>
+        <password>qTImqN==</password>
+        <scope/>
+        <position/>
+        <rememberMe>N</rememberMe>
+      </data>
+      <id>51153065-1428-7716-3474-999805BE53AB</id>
+    </action>
+  </actions>
+  <chains/>
+  <application>login</application>
+  <applicationPage/>
+</interaction>
