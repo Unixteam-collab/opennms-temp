@@ -64,8 +64,10 @@ Main () {
 Set_environment ()  {
 
    ORACLE_HOME=`find /oracle/product/ -maxdepth 1|grep 12.|sort|tail -1`
-   PATH=$PATH:$ORACLE_HOME/bin
+   PATH=$ORACLE_HOME/bin:$PATH
    export ORACLE_HOME PATH
+   LD_LIBRARY_PATH=$(dirname $(find -L /oracle -name libclntsh.so | grep 12. 2> /dev/null))
+   export LD_LIBRARY_PATH
 
 }
 
@@ -73,6 +75,8 @@ Run_query ()  {
 
    # Query the database to determine time lag
 
+   DOWN=0
+   NOMOUNT=0
    TRIES=1
    while test $TRIES != 6
    do
@@ -92,6 +96,12 @@ Run_query ()  {
         exit;
 EOF`
       if [ ${#LAGGED} -gt 24 ] ; then   # Test length of sqlplus result
+         if [[ $LAGGED == *"ORA-01034"* ]]; then
+           DOWN=`expr $DOWN + 1`
+         fi
+         if [[ $LAGGED == *"ORA-01507"* ]]; then
+           NOMOUNT=`expr $NOMOUNT + 1`
+         fi
          sleep 60                       # eg. ORADR DB down for roll-forward
          TRIES=`expr $TRIES + 1`
       else
@@ -105,6 +115,18 @@ EOF`
 }
 
 Check_lag () {
+   # Is the database down
+   if [ "$TRIES" = "6" -a $DOWN -gt 2 ] ; then
+      /opt/opennms/bin/send-event.pl uei.opennms.org/ABBCS/oracle/Major -n $TARGETDEVICEID -d "DR Database Down" -p "value $DOWN" -p "description DR Database appears to be down please check"
+      return 1
+   fi
+
+   # Is the database stuck in a nomounted state
+   if [ "$TRIES" = "6" -a $NOMOUNT -gt 2 ] ; then
+      /opt/opennms/bin/send-event.pl uei.opennms.org/ABBCS/oracle/Major -n $TARGETDEVICEID -d "DR Database in nomount state" -p "value $NOMOUNT" -p "description DR Database appears to be stuck in a NOMOUNT state please check"
+      return 1
+   fi
+
    # Compare current DR lag minutes to max permitted threshold, alert if lagged
    if [ "$LAGGED" -gt "$LAG" ] ; then
       /opt/opennms/bin/send-event.pl uei.opennms.org/ABBCS/jdbc/oracle/DRlag-trigger -n $TARGETDEVICEID -d "DR Database Lag" -p "value $LAGGED" -p "resourceId DRlag" -p "ds DRlag" -p "description DR Database Lag exceeds threshold"
@@ -134,4 +156,5 @@ then
 fi
 
 Main
+
 

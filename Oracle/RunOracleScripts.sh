@@ -9,7 +9,7 @@ BIN=/opt/opennms/scripts/Oracle
 if [ $# != 1 ]
 then
    #echo "Usage: $0 [MSSQL|4HMSSQL|WMSSQL]"
-   echo "Usage: $0 [Oracle]"
+   echo "Usage: $0 [Oracle|1HROracle]"
    echo "   Oracle: run every 10 minutes"
 # other prefix schedules will need to be setup in cron
    exit 1
@@ -44,7 +44,12 @@ then
               SCRIPT=$(echo $CMD | awk '{ print $1 }')
               if [ -f "$BIN/$SCRIPT" ]
               then
+		if [ `echo $CMD | awk '{ print $5 }' | grep -i magasdw` ] && (( `date +%H` < 6 || `date +%H` > 16 )) 
+		then
+		      	echo "Skipping" `echo $CMD | awk '{ print $5 }'` ": Daily DW refresh outage window"
+	        else
                 $BIN/$CMD >> $LOGFILE 2>&1
+		fi
               fi
         done
   done

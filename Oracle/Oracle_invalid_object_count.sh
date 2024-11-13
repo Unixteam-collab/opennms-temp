@@ -62,8 +62,10 @@ Main () {
 Set_environment ()  {
 
    ORACLE_HOME=`find /oracle/product/ -maxdepth 1|grep 12.|sort|tail -1`
-   PATH=$PATH:$ORACLE_HOME/bin
+   PATH=$ORACLE_HOME/bin:$PATH
    export ORACLE_HOME PATH
+   LD_LIBRARY_PATH=$(dirname $(find -L /oracle -name libclntsh.so | grep 12. 2> /dev/null))
+   export LD_LIBRARY_PATH
 
 }
 
@@ -107,5 +109,16 @@ then
    exit
 fi
 
-Main
+# We really only want to run this script once every hour instead of every 10 minutes.
+# If the minute part of the time is in the first 10 minutes of the hour, run it, else don't.
+# The script by default runs on the 6 minutes (6,16,26,36,46,56).
+
+MIN=`date +%M`
+if [ $MIN -le 10 ]
+then
+   Main
+else
+   exit 0
+fi
+
 

@@ -62,8 +62,10 @@ Main () {
 Set_environment ()  {
 
    ORACLE_HOME=`find /oracle/product/ -maxdepth 1|grep 12.|sort|tail -1`
-   PATH=$PATH:$ORACLE_HOME/bin
+   PATH=$ORACLE_HOME/bin:$PATH
    export ORACLE_HOME PATH
+   LD_LIBRARY_PATH=$(dirname $(find -L /oracle -name libclntsh.so | grep 12. 2> /dev/null))
+   export LD_LIBRARY_PATH
 
 }
 
@@ -180,7 +182,7 @@ if [ ${#ACTIVEMQ_ACKS_invalid_subs} -gt 0 ]; then
   'EquipmentEventRoute',
   'InspectionScript');  
   exit
-  EOF`
+EOF`
   string="EIP $ACTIVEMQ_ACKS_invalid_subs_count Invalid Subs found=$ACTIVEMQ_ACKS_invalid_subs"
   message=$(echo $string)
   /opt/opennms/bin/send-event.pl uei.opennms.org/ABBCS/EIP-trigger -n $TARGETDEVICEID -d "Ellipse EIP ACTIVEMQ_ACKS - Invalid Subs found," -p "description $message" -p "resourceId ACTIVEMQ_ACKS_invalid_subs"

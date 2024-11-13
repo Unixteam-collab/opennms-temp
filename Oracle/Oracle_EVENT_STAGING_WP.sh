@@ -1,13 +1,12 @@
 ##############################################################################
 ##
-##  Oracle_blocking_locks_10g.sh - Oracle DB blocking locks OpenNMS  Monitoring 
+##  Oracle_EVENT_STAGING_WP.sh - EVENT_STAGING OpenNMS DB Monitoring (customised for Western Power)
 ##
-##  Author: Maurice Reardon, SEP-2022
+##  Author: Maurice Reardon, AUG-2024
 ##
 ##  Brief:  Installed on OpenNMS collector :-
 ##
-##    This script checks for any blocking locks for duration longer than 
-##    threshold in zen_tab_5min 
+##    This script records 10 minute interval volumes of undelivered EVENT_STAGING records
 ##
 ##  Parameters:
 ##             $1 = OpenNMS node (hostname_DBname)
@@ -16,10 +15,13 @@
 ##             $4 = ORACLE_SID of DB being monitored
 ##
 ##  eg.
-##    Oracle_blocking_locks_10g.sh server_DB abbmon pass DB
+##    Oracle_EVENT_STAGING_WP.sh server_DB device_ID abbmon pass DB
 ##
 ##
 ##  Dependencies:-
+##
+##  The abbmon user requires SELECT priv on the following Ellipse tables:
+##  EVENT_STAGING
 ##
 ##############################################################################
 
@@ -30,7 +32,7 @@ Check_shell_cmd ()  {
 # Normally this script will be run through cron with the full path name
 # If it is run manually ensure the full path is used and a SID is passed
 
-   if [ "$SCRIPT" = "Oracle_blocking_locks_10g.sh" ] || [ "$SCRIPT" = "./Oracle_blocking_locks_10g.sh" ] ; then
+   if [ "$SCRIPT" = "Oracle_EVENT_STAGING_WP.sh" ] || [ "$SCRIPT" = "./Oracle_EVENT_STAGING_WP.sh" ] ; then
       echo "Exiting, Use full pathname when running this script!"
       return 1
    fi
@@ -53,8 +55,6 @@ Main () {
 
    Run_query
 
-   Send_alert
-
    Finish_up
 
 }
@@ -62,38 +62,23 @@ Main () {
 Set_environment ()  {
 
    ORACLE_HOME=`find /oracle/product/ -maxdepth 1|grep 12.|sort|tail -1`
-   PATH=$ORACLE_HOME/bin:$PATH
+   PATH=$PATH:$ORACLE_HOME/bin
    export ORACLE_HOME PATH
-   LD_LIBRARY_PATH=$(dirname $(find -L /oracle -name libclntsh.so | grep 12. 2> /dev/null))
-   export LD_LIBRARY_PATH
 
 }
 
 Run_query ()  {
 
-   # Query the database to check for any blocking locks
+   # Query the database and record the count
 
-      ALERT=`sqlplus -s "$USER/$PASS@$OPENNMS_NODE" <<EOF
-      set heading off trimspool on serverout on feedback off
-select 'Blocking Lock= '||c.spid||' '||s1.username||'@'||s1.machine||' ('||s1.sid||','||s1.serial#||') blocking 
-'||s2.username||'@'||s2.machine||' ('||s2.sid||','||s2.serial#||') - for '||l2.ctime||' seconds'  AS Blocking_Lock
-from v\\$lock l1, v\\$session s1, v\\$lock l2, v\\$session s2, v\\$process c
-where s1.sid=l1.sid and s2.sid=l2.sid and s1.paddr=c.addr
-and l1.BLOCK=1 and l2.request > 0 and l1.id1 = l2.id1 and l1.id2 = l2.id2 and l2.ctime > (select threshold from zen_tab_5min where name='blocking_locks') 
-order by l2.ctime desc;      
-exit;
-EOF`
+sqlplus -s "$USER/$PASS@$OPENNMS_NODE" <<EOF
+set heading off trimspool on serverout on feedback off
+insert into abbmon.rowcount select 'ELLIPSE','EVENT_STAGING',sysdate,count(*) from ellipse.event_staging where delivered='N';
+commit;
+exit
+EOF
+
 }
-
-Send_alert () {
-      if [ ${#ALERT} -gt 0 ] ; then   # Test length of sqlplus result
-      	/opt/opennms/bin/send-event.pl uei.opennms.org/ABBCS/oracle/Major -n $TARGETDEVICEID -d "Blocking Locks" -p "value $ALERT" -p "description Blocking Locks"
-      	return 1
-      else
-	return 0
-      fi
-}
-
 
 Finish_up ()  {
    exit
@@ -115,4 +100,5 @@ then
 fi
 
 Main
+
 

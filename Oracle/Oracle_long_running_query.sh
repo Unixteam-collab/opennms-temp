@@ -62,8 +62,10 @@ Main () {
 Set_environment ()  {
 
    ORACLE_HOME=`find /oracle/product/ -maxdepth 1|grep 12.|sort|tail -1`
-   PATH=$PATH:$ORACLE_HOME/bin
+   PATH=$ORACLE_HOME/bin:$PATH
    export ORACLE_HOME PATH
+   LD_LIBRARY_PATH=$(dirname $(find -L /oracle -name libclntsh.so | grep 12. 2> /dev/null))
+   export LD_LIBRARY_PATH
 
 }
 

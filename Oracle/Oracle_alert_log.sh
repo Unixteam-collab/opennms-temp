@@ -62,8 +62,10 @@ Main () {
 Set_environment ()  {
 
    ORACLE_HOME=`find /oracle/product/ -maxdepth 1|grep 12.|sort|tail -1`
-   PATH=$PATH:$ORACLE_HOME/bin
+   PATH=$ORACLE_HOME/bin:$PATH
    export ORACLE_HOME PATH
+   LD_LIBRARY_PATH=$(dirname $(find -L /oracle -name libclntsh.so | grep 12. 2> /dev/null))
+   export LD_LIBRARY_PATH
 
 }
 
@@ -87,7 +89,7 @@ EOF`
 }
 
 Send_alert () {
-      if [ ${#ALERT} -gt 8 ] ; then   # Test length of sqlplus result
+      if [ ${#ALERT} -gt 8 ] ; then   # Test length of sqlplus result.
         if [[ $LEVEL == *"zen_tab_msg_warning"* && $LEVEL != *"zen_tab_msg_alarm"* ]] ; then     # If we have warning but NOT alarm, raise as P3
           /opt/opennms/bin/send-event.pl uei.opennms.org/vendor/ABBCS/oracle/Major -n $TARGETDEVICEID -d "Alert Log error" -p "value $ALERT" -p "description Alert Log error" -x 5
         else                                                                                     # otherwise let the default logic do it's thing (P2)
